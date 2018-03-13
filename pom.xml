@@ -14,6 +14,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <javax.servlet>3.1.0</javax.servlet>
         <javax.jstl>1.2</javax.jstl>
+        <log4j>1.2.17</log4j>
+        <h2>1.4.196</h2>
+        <tomcat-jdbc>9.0.6</tomcat-jdbc>
     </properties>
 
     <dependencies>
@@ -35,14 +38,14 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.196</version>
+            <version>${h2}</version>
             <scope>test</scope>
         </dependency>
 
@@ -50,7 +53,7 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <version>9.0.6</version>
+            <version>${tomcat-jdbc}</version>
         </dependency>
 
 
