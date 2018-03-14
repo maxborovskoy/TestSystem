@@ -1,6 +1,5 @@
 package dao;
 
-import org.apache.tomcat.jdbc.pool.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
