@@ -12,18 +12,18 @@
 </head>
 <body>
 <h1>Autorization</h1>
-<form action="LoginServlet" method="post" name="loginForm">
+<form action="loginServlet" method="post" name="loginForm">
     <table boreder = "0">
         <tr>
             <td><b>Login</b></td>
-            <td><input type="text" name="j_username" placeholder="User name" size="50"></td></tr>
+            <td><input type="text" name="user" placeholder="User name" size="50"></td></tr>
         <tr>
             <td><b>Password:</b></td>
-            <td><input type="password" name="j_password" size="50"></td></tr>
+            <td><input type="password" name="password" size="50"></td></tr>
     <tr><td>
         <input type="submit" value="Log in"></td>
         <td>
-        <input type="registration" value="New user"></td></tr>
+        <input type="submit" value="New user"></td></tr>
     </table>
 </form>
 
