@@ -12,17 +12,26 @@
 </head>
 <body>
 <h1>Registration</h1>
-<form action="RegistrationServlet" method="post" name="registrationForm">
+<form action="registrationServlet" method="post" name="registrationForm">
     <table border="0">
         <tr>
             <td><b>Login:</b></td>
-            <td><input type="text" name="j_username" placeholder="User name" size="50"></td></tr>
+            <td><input type="text" name="user" placeholder="User name" size="50"></td>
+        </tr>
         <tr>
             <td><b>Password:</b></td>
-            <td><input type="password" name="j_password" size="50"></td></tr>
-        <tr><td>Retype password:</td>
-            <td><input type="password" name="j_password" size="50"></td></tr>
-        <tr><td><input type="submit" value="Register"></td><td><input type="cancel" value="Cancel"></td></tr>
+            <td><input type="password" name="password" size="50"></td>
+        </tr>
+        <tr>
+            <td><b>Retype password:</b></td>
+            <td><input type="password" name="passwordRepeat" size="50"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Register"></td>
+        </tr>
+        <tr>
+            <td><a href="/login.jsp">Sign in</a></td>
+        </tr>
     </table>
 </form>
 

@@ -25,6 +25,11 @@
     <servlet-class>controllers.LogoutServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>RegistrationServlet</servlet-name>
+    <servlet-class>controllers.RegistrationServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
     <url-pattern>/catalog</url-pattern>
@@ -40,6 +45,10 @@
     <url-pattern>/logoutServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>RegistrationServlet</servlet-name>
+    <url-pattern>/registrationServlet</url-pattern>
+  </servlet-mapping>
 
 
   <filter>

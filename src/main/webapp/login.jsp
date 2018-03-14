@@ -16,14 +16,18 @@
     <table boreder = "0">
         <tr>
             <td><b>Login</b></td>
-            <td><input type="text" name="user" placeholder="User name" size="50"></td></tr>
+            <td><input type="text" name="user" placeholder="User name" size="50"></td>
+        </tr>
         <tr>
             <td><b>Password:</b></td>
-            <td><input type="password" name="password" size="50"></td></tr>
-    <tr><td>
-        <input type="submit" value="Log in"></td>
-        <td>
-        <input type="submit" value="New user"></td></tr>
+            <td><input type="password" name="password" size="50"></td>
+        </tr>
+        <tr>
+        <td><input type="submit" value="Log in"></td>
+        </tr>
+        <tr>
+            <td><a href="/registation.jsp">Sign up</a></td>
+        </tr>
     </table>
 </form>
 
