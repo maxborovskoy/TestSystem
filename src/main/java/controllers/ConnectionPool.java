@@ -1,30 +1,31 @@
 package controllers;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class ConnectionPool {
     private String url;
     private String user;
-    private String pass;
+    private String password;
     private int maxConn;
     private ArrayList<Connection> freeConnections = new ArrayList<>();
     private static ConnectionPool instancePool;
 
-    private ConnectionPool(String url, String user, String pass, int maxConn) {
-        this.url = url;
-        this.user = user;
-        this.pass = pass;
-        this.maxConn = maxConn;
+    private ConnectionPool() {
+        ResourceBundle resource = ResourceBundle.getBundle("sql_queries.properties");
+        this.url = resource.getString("h2.url");
+        this.user = resource.getString("h2.user");
+        this.password = resource.getString("h2.password");
+        this.maxConn = Integer.parseInt(resource.getString("h2.maxConn"));
 
     }
 
-    public static synchronized ConnectionPool getInstanse(String url, String user, String pass, int maxConn){
+    public static synchronized ConnectionPool getInstance(){
         if (instancePool == null) {
-            instancePool = new ConnectionPool(url, user, pass, maxConn);
+            instancePool = new ConnectionPool();
         }
         return instancePool;
     }
@@ -50,7 +51,7 @@ public class ConnectionPool {
     private Connection newConnection() {
         Connection connection;
         try {
-            connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection(url, user, password);
 
         } catch (SQLException e) {
             return null;
