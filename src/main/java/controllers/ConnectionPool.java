@@ -3,77 +3,73 @@ package controllers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class ConnectionPool {
     private String url;
     private String user;
     private String password;
     private int maxConn;
-    private ArrayList<Connection> freeConnections = new ArrayList<>();
+    private BlockingQueue<Connection> freeConnections;
     private static ConnectionPool instancePool;
 
-    private ConnectionPool() {
-        ResourceBundle resource = ResourceBundle.getBundle("sql_queries.properties");
+    private ConnectionPool() throws SQLException {
+        ResourceBundle resource = ResourceBundle.getBundle("sql_queries");
         this.url = resource.getString("h2.url");
         this.user = resource.getString("h2.user");
         this.password = resource.getString("h2.password");
-        this.maxConn = Integer.parseInt(resource.getString("h2.maxConn"));
-
+        this.maxConn = Integer.parseInt(resource.getString("h2.maxConnection"));
+        freeConnections = new ArrayBlockingQueue<>(maxConn);
+        for (int i = 0; i < maxConn; i++) {
+            freeConnections.offer(DriverManager.getConnection(url, user, password));
+        }
     }
 
-    public static synchronized ConnectionPool getInstance(){
+    public static ConnectionPool getInstance() throws SQLException {
         if (instancePool == null) {
             instancePool = new ConnectionPool();
         }
         return instancePool;
     }
 
-    public synchronized Connection getConnection() {
-        Connection connection;
-        if (!freeConnections.isEmpty()) {
-            connection = freeConnections.get(freeConnections.size() - 1);
-            freeConnections.remove(connection);
-            try {
-                if (connection.isClosed()) {
-                    connection = getConnection();
-                }
-            } catch (Exception ex) {
-                connection = getConnection();
-            }
-        } else {
-            connection = newConnection();
+    public static synchronized void init() throws SQLException {
+        if (instancePool == null) {
+            instancePool = new ConnectionPool();
         }
-        return connection;
     }
 
-    private Connection newConnection() {
-        Connection connection;
-        try {
-            connection = DriverManager.getConnection(url, user, password);
+    public static synchronized void dispose() throws SQLException{
+        if (instancePool != null) {
+            instancePool.clearPool();
+            instancePool = null;
+        }
+    }
 
-        } catch (SQLException e) {
+    public Connection getConnection() {
+        try {
+            return freeConnections.take();
+        } catch (InterruptedException e) {
             return null;
         }
-        return connection;
     }
 
-    public synchronized void freeConnection(Connection connection) {
-        if ((connection != null) && (freeConnections.size() <= maxConn)) {
-            freeConnections.add(connection);
+    public void returnConnection(Connection connection) throws SQLException {
+        if (!connection.isClosed()) {
+            freeConnections.offer(connection);
         }
     }
 
-    public synchronized void release() {
-        for (Connection connection : freeConnections) {
-            try {
-                connection.close();
-            } catch (SQLException e) {}
+    private void clearPool() throws SQLException {
+        Connection connection;
+        while ((connection = freeConnections.poll()) != null) {
+            if (!connection.getAutoCommit()) {
+                connection.commit();
+            }
+            connection.close();
         }
-        freeConnections.clear();
     }
-
 }
 
 
