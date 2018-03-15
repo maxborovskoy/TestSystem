@@ -146,5 +146,61 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
             }
         }
     }
+
+    public List<Answer> getAllAnswersByQuestionId(Long questionId) {
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement st = null;
+        List<Answer> answerList = new ArrayList<>();
+        try{
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"));
+            st.setLong(4, questionId);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Answer a = new Answer();
+                a.setId(rs.getLong("id"));
+                a.setText(rs.getString("text"));
+                a.setRight(rs.getBoolean("isRight"));
+                a.setIdQuestion(rs.getLong("idQuestion"));
+                answerList.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (con != null) con.close();
+                pool.freeConnection(con);
+                pool.release();
+                if (st != null) st.close();
+                if (rs != null) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return answerList;
+    }
+
+    public void removeAllAnswersByQuestionId(Long questionId){
+        Connection con = null;
+        PreparedStatement st = null;
+        try{
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("REMOVE_ALL_ANSWERS_BY_QUESTION_ID"));
+            st.setLong(4, questionId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (con != null) con.close();
+                pool.freeConnection(con);
+                pool.release();
+                if (st != null) st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

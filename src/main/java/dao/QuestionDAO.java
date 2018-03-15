@@ -140,4 +140,38 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             }
         }
     }
+
+    public List<Question> getAllQuestionsByTestId(Long TestId){
+        Connection con;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<Question> questionList = new ArrayList<>();
+        try{
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS_BY_TEST_ID"));
+            st.setLong(3, TestId);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Question question = new Question();
+                question.setId(rs.getLong("Id"));
+                question.setText(rs.getString("Text"));
+                question.setIdTest(rs.getLong("TextId"));
+
+                questionList.add(question);
+            }
+            con.close();
+            pool.freeConnection(con);
+            pool.release();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                if(st != null) st.close();
+                if(rs != null) st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return questionList;
+    }
 }

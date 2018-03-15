@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class AbstractDAO<E, K> {
-    protected Connection connection;
     ResourceBundle sqlQueries = ResourceBundle.getBundle("sql_queries_dao");
     ConnectionPool pool = ConnectionPool.getInstance("jdbc:h2:~/labmarch", "root", "root", 5);;
 
