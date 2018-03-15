@@ -18,7 +18,7 @@ public class Answer implements Comparable, Serializable {
         this.id = id;
     }
 
-    public long getIdQuestionId() {
+    public long getIdQuestion() {
         return idQuestion;
     }
 
