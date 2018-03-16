@@ -32,7 +32,7 @@ public class ConnectionPool {
 
     public Connection getConnection() {
         Connection con = freeConnections.get(freeConnections.size() - 1);
-        freeConnections.remove(freeConnections.size() - 1);
+        freeConnections.remove(con);
         return con;
     }
 }
