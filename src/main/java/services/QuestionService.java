@@ -9,7 +9,7 @@ public interface QuestionService {
 
     void removeAllQuestionsByTestId(Long testId);
 
-    List<Question> getQuestionsByTestId(Long testId);
+    List<Question> getAllQuestionsByTestId(Long testId);
 
     Question getQuestion(Long questionId);
 

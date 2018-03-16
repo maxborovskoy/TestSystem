@@ -24,7 +24,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getQuestionsByTestId(Long testId) {
+    public List<Question> getAllQuestionsByTestId(Long testId) {
         return questionDAO.getAllQuestionsByTestId(testId);
     }
 

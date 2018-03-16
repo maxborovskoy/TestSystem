@@ -15,7 +15,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Answers> getAnswersByQuestionId(Long questionId) {
+    public List<Answers> getAllAnswersByQuestionId(Long questionId) {
 
         return answerDAO.getAllAnswersByQuestionId(questionId);
     }

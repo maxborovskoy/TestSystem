@@ -6,5 +6,5 @@ public interface AnswerService {
 
     void remove(Long answerId);
 
-    List<Answers> getAnswersByQuestionId(Long questionId);
+    List<Answers> getAllAnswersByQuestionId(Long questionId);
 }
