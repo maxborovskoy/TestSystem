@@ -1,7 +1,6 @@
 package dao;
 
 import controllers.ConnectionPool;
-import entity.Answer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

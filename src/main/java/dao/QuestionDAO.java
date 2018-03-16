@@ -1,7 +1,6 @@
 package dao;
 
 import controllers.ConnectionPool;
-import entity.Question;
 
 import java.sql.*;
 import java.util.ArrayList;
