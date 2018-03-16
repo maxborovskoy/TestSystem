@@ -2,9 +2,9 @@ package services;
 
 public interface AnswerService {
 
-    void add(Long id);
+    void add(Answer answer);
 
-    void remove(Long id);
+    void remove(Long answerId);
 
-    List<Answers> getAnswersByQuestionId(Long id);
+    List<Answers> getAnswersByQuestionId(Long questionId);
 }

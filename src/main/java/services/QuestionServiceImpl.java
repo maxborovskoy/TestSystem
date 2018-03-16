@@ -10,9 +10,9 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void remove(Long id) {
-        questionDAO.remove(id);
-        new AnswerServiceImpl().removeAllAnswersByQuestionId(id);
+    public void remove(Long questionId) {
+        questionDAO.remove(questionId);
+        new AnswerServiceImpl().removeAllAnswersByQuestionId(questionId);
     }
 
     @Override
@@ -29,9 +29,9 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question getQuestion(Long id) {
-        Question question = questionDAO.get(Long id);
-        question.setAnswers(new AnswerServiceImpl().getAnswersByQuestionId(id));
+    public Question getQuestion(Long questionId) {
+        Question question = questionDAO.get(questionId);
+        question.setAnswers(new AnswerServiceImpl().getAnswersByQuestionId(questionId));
         return question;
     }
 
