@@ -8,7 +8,7 @@ public class Answer implements Comparable, Serializable {
     private long id;
     private String text;
     private Boolean isRight;
-    private long idQuestion;
+    private long questionId;
 
     public long getId() {
         return id;
@@ -18,12 +18,12 @@ public class Answer implements Comparable, Serializable {
         this.id = id;
     }
 
-    public long getIdQuestion() {
-        return idQuestion;
+    public long getQuestionId() {
+        return questionId;
     }
 
-    public void setIdQuestion(long idQuestion) {
-        this.idQuestion = idQuestion;
+    public void setQuestionId(long questionId) {
+        this.questionId = questionId;
     }
 
     public String getText() {

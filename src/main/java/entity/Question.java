@@ -10,14 +10,14 @@ public class Question implements Comparable, Serializable {
     private long id;
     private String text;
     private List<Answer> answers;
-    private long idTest;
+    private long testId;
 
-    public long getIdTest() {
-        return idTest;
+    public long getTestId() {
+        return testId;
     }
 
-    public void setIdTest(long idTest) {
-        this.idTest = idTest;
+    public void setTestId(long testId) {
+        this.testId = testId;
     }
 
     public long getId() {

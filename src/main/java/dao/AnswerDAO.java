@@ -23,7 +23,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
             st.setLong(1, answer.getId()); // Where do we get this?
             st.setString(2, answer.getText());
             st.setBoolean(3, answer.getRight());
-            st.setLong(4, answer.getIdQuestion());
+            st.setLong(4, answer.getQuestionId());
             st.executeUpdate();
 
             con.close();
@@ -58,8 +58,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
                 a.setId(rs.getLong("id"));
                 a.setText(rs.getString("text"));
                 a.setRight(rs.getBoolean("isRight"));
-                a.setIdQuestion(rs.getLong("idQuestion"));
-                // How to deal with list of answers?
+                a.setQuestionId(rs.getLong("questionId"));
 
                 return a;
             } else {
@@ -98,7 +97,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
                 a.setId(rs.getLong("id"));
                 a.setText(rs.getString("text"));
                 a.setRight(rs.getBoolean("isRight"));
-                a.setIdQuestion(rs.getLong("idQuestion"));
+                a.setQuestionId(rs.getLong("questionId"));
 
                 answerList.add(a);
             }
@@ -163,7 +162,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
                 a.setId(rs.getLong("id"));
                 a.setText(rs.getString("text"));
                 a.setRight(rs.getBoolean("isRight"));
-                a.setIdQuestion(rs.getLong("idQuestion"));
+                a.setQuestionId(rs.getLong("questionId"));
                 answerList.add(a);
             }
         } catch (SQLException e) {

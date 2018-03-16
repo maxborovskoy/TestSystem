@@ -19,7 +19,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             st = con.prepareStatement(sqlQueries.getString("ADD_QUESTION"));
             st.setLong(1, question.getId()); // Where do we get this?
             st.setString(2, question.getText());
-            st.setLong(3, question.getIdTest());
+            st.setLong(3, question.getTestId());
             st.executeUpdate();
 
             con.close();
@@ -53,8 +53,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                 q = new Question();
                 q.setId(rs.getLong("id"));
                 q.setText(rs.getString("text"));
-                q.setIdTest(rs.getLong("idTest"));
-                // How to deal with list of answers?
+                q.setTestId(rs.getLong("testId"));
 
                 return q;
             } else {
@@ -92,7 +91,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                 Question q = new Question();
                 q.setId(rs.getLong("id"));
                 q.setText(rs.getString("text"));
-                q.setIdTest(rs.getLong("idTest"));
+                q.setTestId(rs.getLong("testId"));
 
                 questionList.add(q);
             }
@@ -141,7 +140,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         }
     }
 
-    public List<Question> getAllQuestionsByTestId(Long TestId){
+    public List<Question> getAllQuestionsByTestId(Long testId){
         Connection con;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -149,13 +148,13 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         try{
             con = pool.getConnection();
             st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS_BY_TEST_ID"));
-            st.setLong(3, TestId);
+            st.setLong(3, testId);
             rs = st.executeQuery();
             while (rs.next()) {
                 Question question = new Question();
                 question.setId(rs.getLong("Id"));
                 question.setText(rs.getString("Text"));
-                question.setIdTest(rs.getLong("TextId"));
+                question.setTestId(rs.getLong("testId"));
 
                 questionList.add(question);
             }
