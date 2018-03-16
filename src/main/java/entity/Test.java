@@ -8,6 +8,14 @@ import java.util.Locale;
 public class Test implements Comparable, Serializable {
     private long id;
     private String name;
+
+    public Test(long id, String name, List<Question> quest, TestTypes type) {
+        this.id = id;
+        this.name = name;
+        this.quest = quest;
+        this.type = type;
+    }
+
     private List<Question> quest;
     private TestTypes type;
 

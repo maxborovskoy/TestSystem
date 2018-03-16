@@ -23,8 +23,6 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             st.executeUpdate();
 
             con.close();
-            pool.freeConnection(con);
-            pool.release();
         }catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
@@ -50,7 +48,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             rs = st.executeQuery();
 
             if (rs.next()) {
-                q = new Question();
+                q = new Question(); //TODO parameters for constructors
                 q.setId(rs.getLong("id"));
                 q.setText(rs.getString("text"));
                 q.setTestId(rs.getLong("testId"));
@@ -65,8 +63,6 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         } finally {
             try {
                 if(con != null) con.close();
-                pool.freeConnection(con);
-                pool.release();
                 if(st != null) st.close();
                 if(rs != null) rs.close();
             } catch (SQLException e) {
@@ -88,7 +84,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             rs = st.executeQuery();
 
             while (rs.next()) {
-                Question q = new Question();
+                Question q = new Question(); //TODO parameters for constructors
                 q.setId(rs.getLong("id"));
                 q.setText(rs.getString("text"));
                 q.setTestId(rs.getLong("testId"));
@@ -103,8 +99,6 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         finally {
             try {
                 if(con != null) con.close();
-                pool.freeConnection(con);
-                pool.release();
                 if(st != null) st.close();
                 if(rs != null) rs.close();
             } catch (SQLException e) {
@@ -126,8 +120,6 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             st.executeUpdate();
 
             con.close();
-            pool.freeConnection(con);
-            pool.release();
         }catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
@@ -159,8 +151,6 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                 questionList.add(question);
             }
             con.close();
-            pool.freeConnection(con);
-            pool.release();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {

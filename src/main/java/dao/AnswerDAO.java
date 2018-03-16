@@ -27,8 +27,6 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
             st.executeUpdate();
 
             con.close();
-            pool.freeConnection(con);
-            pool.release();
         }catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
@@ -70,8 +68,6 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         } finally {
             try {
                 if(con != null) con.close();
-                pool.freeConnection(con);
-                pool.release();
                 if(st != null) st.close();
                 if(rs != null) rs.close();
             } catch (SQLException e) {
@@ -109,8 +105,6 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         finally {
             try {
                 if(con != null) con.close();
-                pool.freeConnection(con);
-                pool.release();
                 if(st != null) st.close();
                 if(rs != null) rs.close();
             } catch (SQLException e) {
@@ -132,8 +126,6 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
             st.executeUpdate();
 
             con.close();
-            pool.freeConnection(con);
-            pool.release();
         }catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
@@ -170,8 +162,6 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         }finally {
             try {
                 if (con != null) con.close();
-                pool.freeConnection(con);
-                pool.release();
                 if (st != null) st.close();
                 if (rs != null) rs.close();
             } catch (SQLException e) {
@@ -194,8 +184,6 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         }finally {
             try {
                 if (con != null) con.close();
-                pool.freeConnection(con);
-                pool.release();
                 if (st != null) st.close();
             } catch (SQLException e) {
                 e.printStackTrace();
