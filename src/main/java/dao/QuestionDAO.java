@@ -16,7 +16,6 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         try{
             con = pool.getConnection();
             st = con.prepareStatement(sqlQueries.getString("ADD_QUESTION"));
-            st.setLong(1, question.getId()); // Where do we get this?
             st.setString(2, question.getText());
             st.setLong(3, question.getTestId());
             st.executeUpdate();
@@ -35,24 +34,29 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
     }
 
     @Override
-    public Question get(Long id) {
+    public Question get(Long questionId) {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
-        Question q;
         try{
             con = pool.getConnection();
             st = con.prepareStatement(sqlQueries.getString("GET_QUESTION"));
-            st.setLong(1, id);
+            st.setLong(1, questionId);
             rs = st.executeQuery();
-
+            List<Answer> answers = new ArrayList<>();
             if (rs.next()) {
-                q = new Question(); //TODO parameters for constructors
-                q.setId(rs.getLong("id"));
-                q.setText(rs.getString("text"));
-                q.setTestId(rs.getLong("testId"));
+                //q = new Question();
+                long id = rs.getLong("questions.id");
+                String text = rs.getString("questions.text");
+                long testId = rs.getLong("questions.testId");
+                do{
+                    long answerId = rs.getLong("answers.id");
+                    String answerText = rs.getString("answers.text");
+                    boolean isRight = rs.getBoolean("answers.isRight");
+                    answers.add(new Answer(answerId, answerText, isRight, questionId));
+                }while (rs.next());
 
-                return q;
+                return new Question(questionId, text, answers, testId);
             } else {
                 return null;
             }
@@ -142,12 +146,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             st.setLong(3, testId);
             rs = st.executeQuery();
             while (rs.next()) {
-                Question question = new Question();
-                question.setId(rs.getLong("Id"));
-                question.setText(rs.getString("Text"));
-                question.setTestId(rs.getLong("testId"));
-
-                questionList.add(question);
+                questionList.add(get(rs.getLong("Id")));
             }
             con.close();
         } catch (SQLException e) {
