@@ -10,6 +10,13 @@ public class User implements Comparable, Serializable {
     private String password;
     private Boolean isTutor;
 
+    public User(long id, String name, String password, Boolean isTutor) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.isTutor = isTutor;
+    }
+
     public User(String name, String password, Boolean isTutor) {
         this.name = name;
         this.password = password;
@@ -17,7 +24,6 @@ public class User implements Comparable, Serializable {
     }
 
     public long getId() {
-
         return id;
     }
 
