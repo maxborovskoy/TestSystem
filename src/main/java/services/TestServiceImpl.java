@@ -24,18 +24,17 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public List<Test> getAllTests() {
+        //TODO REDONE
         return tDao.getAll();
     }
 
     @Override
     public void removeTest(Long id) {
         tDao.remove(id);
-        new QuestionServiceImpl().removeAllQuestionsByTestId(id);
     }
 
     @Override
-    public void changeTest(Long id) {
-        Test test = tDao.get(id);
+    public void changeTest(Test test) {
         tDao.update(test);
     }
 }

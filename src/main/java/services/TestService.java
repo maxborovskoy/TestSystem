@@ -9,5 +9,5 @@ public interface TestService {
     public Test getTest(Long id);
     public List<Test> getAllTests();
     public void removeTest(Long id);
-    public void changeTest(Long id);
+    public void changeTest(Test test);
 }
