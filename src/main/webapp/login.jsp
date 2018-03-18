@@ -9,27 +9,51 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Autorization</h1>
-<form action="loginServlet" method="post" name="loginForm">
-    <table boreder = "0">
-        <tr>
-            <td><b>Login</b></td>
-            <td><input type="text" name="user" placeholder="User name" size="50"></td>
-        </tr>
-        <tr>
-            <td><b>Password:</b></td>
-            <td><input type="password" name="password" size="50"></td>
-        </tr>
-        <tr>
-        <td><input type="submit" value="Log in"></td>
-        </tr>
-        <tr>
-            <td><a href="/registation.jsp">Sign up</a></td>
-        </tr>
-    </table>
-</form>
+<div class="container login-form">
+    <form action="loginServlet" method="post" name="loginForm">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Autorization</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="emailInput">Email address</label>
+                    <input type="email" class="form-control" name="user" id="emailInput" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" id="passwordInput" class="form-control" placeholder="Enter password">
+                    <small id="passwordWarn" class="form-text text-muted">Never share you password with anyone else
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">Log in</button>
+                <a href="/registation.jsp">Sign up</a>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -17,6 +17,7 @@
         <log4j>1.2.17</log4j>
         <h2>1.4.196</h2>
         <tomcat-jdbc>9.0.6</tomcat-jdbc>
+        <tomcat7-maven-plugin>2.2</tomcat7-maven-plugin>
     </properties>
 
     <dependencies>

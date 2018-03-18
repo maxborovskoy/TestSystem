@@ -11,6 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Catalog</title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="wrapper">

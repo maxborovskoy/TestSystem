@@ -9,31 +9,53 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/register.css">
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Registration</h1>
-<form action="registrationServlet" method="post" name="registrationForm">
-    <table border="0">
-        <tr>
-            <td><b>Login:</b></td>
-            <td><input type="text" name="user" placeholder="User name" size="50"></td>
-        </tr>
-        <tr>
-            <td><b>Password:</b></td>
-            <td><input type="password" name="password" size="50"></td>
-        </tr>
-        <tr>
-            <td><b>Retype password:</b></td>
-            <td><input type="password" name="passwordRepeat" size="50"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Register"></td>
-        </tr>
-        <tr>
-            <td><a href="/login.jsp">Sign in</a></td>
-        </tr>
-    </table>
-</form>
+<div class="container register-form">
+    <form action="registrationServlet" method="post" name="registrationForm">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Registration</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="emailInput">Email address</label>
+                    <input type="email" class="form-control" id="emailInput" name="user" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="passwordFirst">Password</label>
+                    <input type="password" id="passwordFirst" class="form-control" placeholder="Enter password"
+                           name="password">
+                    <label for="passwordSecond"></label>
+                    <input type="password" id="passwordSecond" class="form-control pass-repeat" placeholder="Repeat password"
+                           name="passwordRepeat">
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <a href="/login.jsp">Sign in</a>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 </body>
 </html>
