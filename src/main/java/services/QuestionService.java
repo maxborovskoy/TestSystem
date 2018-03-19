@@ -1,17 +1,20 @@
 package services;
 
-import services.Question;
+import entity.Question;
+import java.util.List;
 
 public interface QuestionService {
-    void add(Question questionId);
+    void add(String text, long testId);
 
-    void remove(Long questionId);
+    void remove(long id);
 
-    void removeAllQuestionsByTestId(Long testId);
+    void update(long id, String text, long testId);
 
-    List<Question> getAllQuestionsByTestId(Long testId);
+    void removeAllQuestionsByTestId(long testId);
 
-    Question getQuestion(Long questionId);
+    List<Question> getAllQuestionsByTestId(long testId);
+
+    Question getQuestion(long id);
 
 
 }

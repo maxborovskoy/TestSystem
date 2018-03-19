@@ -1,10 +1,16 @@
 package services;
 
+import entity.Answer;
+
 public interface AnswerService {
 
-    void add(Answer answer);
+    void add(String text, Boolean isRight, long questionId);
 
-    void remove(Long answerId);
+    void remove(long id);
 
-    List<Answers> getAllAnswersByQuestionId(Long questionId);
+    void update(long id, String text, Boolean isRight);
+
+    List<Answers> getAllAnswersByQuestionId(long questionId);
+
+    void removeAllAnswersByQuestionId(long questionId);
 }
