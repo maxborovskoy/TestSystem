@@ -11,12 +11,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean authorizeUser(User user) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean registerUser(User user) {
-        return false;
+        return true;
     }
 
     @Override
