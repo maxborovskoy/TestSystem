@@ -14,6 +14,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
 
     @Override
     public void add(Answer answer) {
+
         Connection con = null;
         PreparedStatement st = null;
         try {

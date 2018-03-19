@@ -15,6 +15,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
 
     @Override
     public void add(Test test) {
+
         Connection con = null;
         PreparedStatement st = null;
         try {
