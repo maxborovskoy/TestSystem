@@ -1,5 +1,6 @@
 package dao;
 
+import config.ConnectionPool;
 import entity.User;
 
 import java.sql.Connection;
@@ -12,8 +13,8 @@ import java.util.List;
 public class UserDAO extends AbstractDAO<User, Long> {
     @Override
     public void add(User entity) {
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_USER"));
         ) {
             st.setString(1, entity.getName());
@@ -22,13 +23,19 @@ public class UserDAO extends AbstractDAO<User, Long> {
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                ConnectionPool.freeConnection(con);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     @Override
     public User get(Long id) {
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_USER"));
         ) {
             st.setLong(1, id);
@@ -46,14 +53,20 @@ public class UserDAO extends AbstractDAO<User, Long> {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                ConnectionPool.freeConnection(con);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }
 
     public List<User> getAll() {
+        Connection con = pool.getConnection();
         List<User> userList = new ArrayList<>();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_USERS"));
         ) {
             try (ResultSet rs = st.executeQuery()) {
@@ -70,20 +83,32 @@ public class UserDAO extends AbstractDAO<User, Long> {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                ConnectionPool.freeConnection(con);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return userList;
     }
 
     @Override
     public void remove(Long id) {
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_USER"));
         ) {
             st.setLong(1, id);
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                ConnectionPool.freeConnection(con);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
