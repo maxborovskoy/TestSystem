@@ -36,4 +36,10 @@ public class ConnectionPool {
         Connection con = freeConnections.remove(freeConnections.size() - 1);
         return con;
     }
+
+    public static void freeConnection(Connection con) throws SQLException{
+        if (con != null) {
+            con.close();
+        }
+    }
 }
