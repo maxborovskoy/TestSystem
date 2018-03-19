@@ -18,6 +18,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         Connection con = null;
         PreparedStatement st = null;
         try {
+
             con = pool.getConnection();
             st = con.prepareStatement(sqlQueries.getString("ADD_TEST"));
             st.setString(1, test.getName());
