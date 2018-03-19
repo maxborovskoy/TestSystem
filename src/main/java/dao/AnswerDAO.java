@@ -14,27 +14,36 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
 
     @Override
     public void add(Answer answer) {
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_ANSWER"));
-        ) {
-            st.setString(2, answer.getText());
-            st.setBoolean(3, answer.getRight());
-            st.setLong(4, answer.getQuestionId());
+
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("ADD_ANSWER"));
+            st.setString(1, answer.getText());
+            st.setBoolean(2, answer.getRight());
+            st.setLong(3, answer.getQuestionId());
             st.executeUpdate();
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
+        } finally {
+            try {
+                pool.freeConnection(con);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public Answer get(Long id) {
+        Connection con = null;
+        PreparedStatement st = null;
         ResultSet rs = null;
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER"));
-        ) {
+        try {
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("GET_ANSWER"));
             st.setLong(1, id);
             rs = st.executeQuery();
 
@@ -55,6 +64,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
             if (rs != null) {
                 try {
                     rs.close();
+                    pool.freeConnection(con);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -63,13 +73,14 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
     }
 
     public List<Answer> getAllAnswersByQuestionId(Long questionId) {
+        Connection con = null;
+        PreparedStatement st = null;
         ResultSet rs = null;
         List<Answer> answerList = new ArrayList<>();
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"));
-        ) {
-            st.setLong(4, questionId);
+        try {
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"));
+            st.setLong(1, questionId);
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -83,11 +94,14 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
-        } finally {
-            try {
-                if (rs != null) rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+        } finally  {
+            if (rs != null) {
+                try {
+                    rs.close();
+                    pool.freeConnection(con);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return answerList;
@@ -95,36 +109,51 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
 
     @Override
     public void remove(Long id) {
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_ANSWER"));
-        ) {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("REMOVE_ANSWER"));
             st.setLong(1, id);
             st.executeUpdate();
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
+        } finally {
+            try {
+                pool.freeConnection(con);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void removeAllAnswersByQuestionId(Long questionId) {
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_ALL_ANSWERS_BY_QUESTION_ID"));
-        ) {
-            st.setLong(4, questionId);
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("REMOVE_ALL_ANSWERS_BY_QUESTION_ID"));
+            st.setLong(1, questionId);
             st.executeUpdate();
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
+    } finally {
+        try {
+            pool.freeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
     }
 
     public void updateAnswerById(long id, String text, Boolean isRight) {
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("UPDATE_ANSWER_BY_ID"));
-        ) {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
+            con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("UPDATE_ANSWER_BY_ID"));
             st.setString(1, text);
             st.setBoolean(2, isRight);
             st.setLong(3, id);
@@ -132,6 +161,12 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
+        } finally {
+            try {
+                pool.freeConnection(con);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

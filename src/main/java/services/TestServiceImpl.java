@@ -7,34 +7,38 @@ import java.util.List;
 
 public class TestServiceImpl implements TestService {
 
-    private TestDAO tDao = new TestDAO();
+    private TestDAO testDAO = new TestDAO();
 
     @Override
-    public void addTest(Test test) {
+    public boolean addTest(Test test) {
         test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(test.getId()));
-        tDao.add(test);
+        testDAO.add(test);
+        return true;
+
     }
 
     @Override
     public Test getTest(Long id) {
-        Test test = tDao.get(id);
+        Test test = testDAO.get(id);
         test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(id));
         return test;
     }
 
     @Override
     public List<Test> getAllTests() {
-        //TODO REDONE
-        return tDao.getAll();
+        return testDAO.getAll();
     }
 
     @Override
-    public void removeTest(Long id) {
-        tDao.remove(id);
+    public boolean removeTest(Long id) {
+        testDAO.remove(id);
+        new QuestionServiceImpl().removeAllQuestionsByTestId(id);
+        return true;
     }
 
     @Override
-    public void changeTest(Test test) {
-        tDao.update(test);
+    public boolean updateTest(Test test) {
+        testDAO.update(test);
+        return true;
     }
 }
