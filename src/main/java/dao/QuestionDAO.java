@@ -1,5 +1,6 @@
 package dao;
 
+import config.ConnectionPool;
 import entity.Answer;
 import entity.Question;
 
@@ -14,13 +15,15 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
     @Override
     public void add(Question question) {
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_QUESTION"));
         ) {
+
             st.setString(2, question.getText());
             st.setLong(3, question.getTestId());
             st.executeUpdate();
+            ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
@@ -30,8 +33,8 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
     @Override
     public Question get(Long id) {
         ResultSet rs = null;
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_QUESTION"));
         ) {
             st.setLong(1, id);
@@ -51,8 +54,10 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
                 Question q = new Question(text, answers, testId);
                 q.setId(id);
+                ConnectionPool.freeConnection(con);
                 return q;
             } else {
+                ConnectionPool.freeConnection(con);
                 return null;
             }
         } catch (SQLException e) {
@@ -65,13 +70,14 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                 e.printStackTrace();
             }
         }
+
     }
 
     public List<Question> getAllQuestionsByTestId(Long testId) {
         ResultSet rs = null;
         List<Question> questionList = new ArrayList<>();
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS_BY_TEST_ID"));
         ) {
             st.setLong(3, testId);
@@ -79,6 +85,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             while (rs.next()) {
                 questionList.add(get(rs.getLong("Id")));
             }
+            ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -93,12 +100,13 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
     @Override
     public void remove(Long id) {
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_QUESTION"));
         ) {
             st.setLong(1, id);
             st.executeUpdate();
+            ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
@@ -107,13 +115,14 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
 
     public void updateTextById(long id, String text) {
+        Connection con = pool.getConnection();
         try (
-                Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("UPDATE_QUESTION_BY_ID"));
         ) {
             st.setString(1, text);
             st.setLong(2, id);
             st.executeUpdate();
+            ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
