@@ -30,6 +30,11 @@
     <servlet-class>controllers.RegistrationServlet</servlet-class>
   </servlet>
 
+  <servlet>
+      <servlet-name>TestServlet</servlet-name>
+      <servlet-class>controllers.TestServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
     <url-pattern>/catalog</url-pattern>
@@ -48,6 +53,11 @@
   <servlet-mapping>
     <servlet-name>RegistrationServlet</servlet-name>
     <url-pattern>/registrationServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+      <servlet-name>TestServlet</servlet-name>
+      <url-pattern>/test</url-pattern>
   </servlet-mapping>
 
 
