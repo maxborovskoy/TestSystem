@@ -11,14 +11,14 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void addTest(Test test) {
-        test.setQuest(new QuestionServiceImpl().getQuestionsByTestId(test.getId()));
+        test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(test.getId()));
         tDao.add(test);
     }
 
     @Override
     public Test getTest(Long id) {
         Test test = tDao.get(id);
-        test.setQuest(new QuestionServiceImpl().getQuestionsByTestId(id));
+        test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(id));
         return test;
     }
 

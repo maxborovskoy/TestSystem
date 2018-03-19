@@ -1,5 +1,6 @@
 package controllers;
 
+import entity.User;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -7,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import services.ValidationService;
+import services.UserService;
+import services.UserServiceImpl;
 
 //@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -22,9 +24,17 @@ public class LoginServlet extends HttpServlet {
         String credentialsUser = req.getParameter(USER);
         String credentialsPassword = req.getParameter(PASSWORD);
 
-        ValidationService validator = new ValidationService();
+        authorizeUser(req,
+            resp,
+            credentialsUser,
+            new UserServiceImpl(),
+            new User(credentialsUser, credentialsPassword, false));
 
-        if (validator.validate(credentialsUser, credentialsPassword)) {
+    }
+
+    private void authorizeUser(HttpServletRequest req, HttpServletResponse resp, String credentialsUser, UserService validator, User user)
+        throws ServletException, IOException {
+        if (validator.authorizeUser(user)) {
 
             HttpSession session = req.getSession();
             session.setAttribute(USER, credentialsUser);
@@ -35,7 +45,6 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
             requestDispatcher.forward(req, resp);
         }
-
     }
 
 

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 //@WebFilter("/AuthFilter")
 public class AuthFilter implements Filter {
 
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -24,10 +25,12 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpSession session = ((HttpServletRequest) request).getSession(false);
-        String uri = ((HttpServletRequest) request).getRequestURI();
+        redirect(request, response, chain, getHttpSession((HttpServletRequest) request));
+    }
 
-        boolean dcw = !(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"));
+    private void redirect(ServletRequest request, ServletResponse response, FilterChain chain, HttpSession session)
+        throws IOException, ServletException {
+        String uri = ((HttpServletRequest) request).getRequestURI();
 
         if (session == null &&
             !(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
@@ -35,11 +38,16 @@ public class AuthFilter implements Filter {
         } else {
             chain.doFilter(request, response);
         }
+    }
 
+    private HttpSession getHttpSession(HttpServletRequest request) {
+        return request.getSession(false);
     }
 
     @Override
     public void destroy() {
 
     }
+
+
 }
