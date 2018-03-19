@@ -15,7 +15,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
 
     @Override
     public void add(Test test) {
-        Connection con;
+        Connection con = null;
         PreparedStatement st = null;
         try {
             con = pool.getConnection();
@@ -102,7 +102,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
 
     @Override
     public void remove(Long id) {
-        Connection con;
+        Connection con = null;
         PreparedStatement st = null;
         try {
             con = pool.getConnection();
@@ -124,7 +124,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     }
 
     public void update(Test test) {
-        Connection con;
+        Connection con = null;
         PreparedStatement st = null;
         try {
             con = pool.getConnection();
