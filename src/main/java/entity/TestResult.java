@@ -1,10 +1,9 @@
 package entity;
 
 public class TestResult {
-    private Test test;
-    private int correctAnswers;
-    private int countAnswers;
-    private int score;
+    private int correctAnswers = 0;
+    private int countAnswers = 0;
+    private int score = 0;
 
     public int getCorrectAnswers() {
         return correctAnswers;
@@ -28,13 +27,5 @@ public class TestResult {
 
     public void setCountAnswers(int countAnswers) {
         this.countAnswers = countAnswers;
-    }
-
-    public Test getTest() {
-        return test;
-    }
-
-    public void setTest(Test test) {
-        this.test = test;
     }
 }

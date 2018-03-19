@@ -35,6 +35,11 @@
       <servlet-class>controllers.TestServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>TestPage</servlet-name>
+    <servlet-class>controllers.TestPageServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
     <url-pattern>/catalog</url-pattern>
@@ -58,6 +63,11 @@
   <servlet-mapping>
       <servlet-name>TestServlet</servlet-name>
       <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>TestPage</servlet-name>
+    <url-pattern>/testpage</url-pattern>
   </servlet-mapping>
 
 
