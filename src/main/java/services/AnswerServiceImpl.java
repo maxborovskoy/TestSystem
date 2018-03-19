@@ -38,7 +38,7 @@ public class AnswerServiceImpl implements AnswerService {
     public Boolean updateAnswer(Answer answer, String text, Boolean isRight) {
         Boolean hasRight = isRight;
         List<Answer> answerList = getAllAnswersByQuestionId(answer.getQuestionId());
-        for (Answer a: answerList) {
+        for (Answer a : answerList) {
             if (a.getText().equals(text) && a.getId() != answer.getId()) return false;
             if (a.getRight()) hasRight = true;
         }

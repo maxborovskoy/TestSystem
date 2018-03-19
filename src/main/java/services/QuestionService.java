@@ -1,6 +1,7 @@
 package services;
 
 import entity.Question;
+
 import java.util.List;
 
 public interface QuestionService {
@@ -15,5 +16,4 @@ public interface QuestionService {
     void removeAllQuestionsByTestId(long testId);
 
     Boolean updateText(String text, Question question);
-
 }
