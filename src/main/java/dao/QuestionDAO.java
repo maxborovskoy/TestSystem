@@ -1,8 +1,9 @@
 package dao;
 
-import controllers.ConnectionPool;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,37 +11,26 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
     @Override
     public void add(Question question) {
-
-        Connection con;
-        PreparedStatement st = null;
-        try{
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("ADD_QUESTION"));
+        try (
+                Connection con = pool.getConnection();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_QUESTION"));
+        ) {
             st.setString(2, question.getText());
             st.setLong(3, question.getTestId());
             st.executeUpdate();
-
-            con.close();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
-        }finally {
-            try {
-                if(st != null) st.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     @Override
     public Question get(Long questionId) {
-        Connection con = null;
-        PreparedStatement st = null;
         ResultSet rs = null;
-        try{
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("GET_QUESTION"));
+        try (
+                Connection con = pool.getConnection();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_QUESTION"));
+        ) {
             st.setLong(1, questionId);
             rs = st.executeQuery();
             List<Answer> answers = new ArrayList<>();
@@ -49,12 +39,12 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                 long id = rs.getLong("questions.id");
                 String text = rs.getString("questions.text");
                 long testId = rs.getLong("questions.testId");
-                do{
+                do {
                     long answerId = rs.getLong("answers.id");
                     String answerText = rs.getString("answers.text");
                     boolean isRight = rs.getBoolean("answers.isRight");
                     answers.add(new Answer(answerId, answerText, isRight, questionId));
-                }while (rs.next());
+                } while (rs.next());
 
                 return new Question(questionId, text, answers, testId);
             } else {
@@ -65,9 +55,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             throw new RuntimeException(e);
         } finally {
             try {
-                if(con != null) con.close();
-                if(st != null) st.close();
-                if(rs != null) rs.close();
+                if (rs != null) rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -76,21 +64,17 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
     @Override
     public List<Question> getAll() {
-        Connection con = null;
-        PreparedStatement st = null;
-        ResultSet rs = null;
         List<Question> questionList = new ArrayList<>();
-
-        try {
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS"));
-            rs = st.executeQuery();
-
+        try (
+                Connection con = pool.getConnection();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS"));
+                ResultSet rs = st.executeQuery();
+        ) {
             while (rs.next()) {
-                Question q = new Question(); //TODO parameters for constructors
-                q.setId(rs.getLong("id"));
-                q.setText(rs.getString("text"));
-                q.setTestId(rs.getLong("testId"));
+                long id = rs.getLong("id");
+                String text = rs.getString("text");
+                long testId = rs.getLong("testId");
+                Question q = new Question();
 
                 questionList.add(q);
             }
@@ -99,62 +83,41 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             // e.printStackTrace();
             throw new RuntimeException(e);
         }
-        finally {
-            try {
-                if(con != null) con.close();
-                if(st != null) st.close();
-                if(rs != null) rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
         return questionList;
     }
 
     @Override
     public void remove(Long id) {
-        Connection con;
-        PreparedStatement st = null;
-        try{
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("REMOVE_QUESTION"));
+        try (
+                Connection con = pool.getConnection();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_QUESTION"));
+        ) {
             st.setLong(1, id);
             st.executeUpdate();
-
-            con.close();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             //e.printStackTrace();
             throw new RuntimeException(e);
-        }finally {
-            try {
-                if(st != null) st.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
-    public List<Question> getAllQuestionsByTestId(Long testId){
-        Connection con;
-        PreparedStatement st = null;
+    public List<Question> getAllQuestionsByTestId(Long testId) {
         ResultSet rs = null;
         List<Question> questionList = new ArrayList<>();
-        try{
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS_BY_TEST_ID"));
+        try (
+                Connection con = pool.getConnection();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS_BY_TEST_ID"));
+        ) {
             st.setLong(3, testId);
             rs = st.executeQuery();
             while (rs.next()) {
                 questionList.add(get(rs.getLong("Id")));
             }
-            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            try{
-                if(st != null) st.close();
-                if(rs != null) st.close();
+        } finally {
+            try {
+                if (rs != null) rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
