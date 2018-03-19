@@ -43,8 +43,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void updateTextById(long id, String text) {
-        questionDAO.updateTextById(id, text);
+    public Boolean updateText(String text, Question question) {
+        List<Question> questionList = getAllQuestionsByTestId(question.getTestId());
+        for (Question q: questionList) {
+            if (q.getText().equals(text)) return false;
+            }
+
+        questionDAO.updateTextById(question.getId(), text);
+        return true;
     }
 
 

@@ -16,5 +16,5 @@ public interface AnswerService {
 
     void removeAllAnswersByQuestionId(long questionId);
 
-    void updateAnswerById(long id, String text, Boolean isRight);
+    Boolean updateAnswer(Answer answer, String text, Boolean isRight);
 }

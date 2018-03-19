@@ -35,7 +35,14 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void updateAnswerById(long id, String text, Boolean isRight) {
-        answerDAO.updateAnswerById(id, text, isRight);
+    public Boolean updateAnswer(Answer answer, String text, Boolean isRight) {
+        Boolean hasRight = isRight;
+        List<Answer> answerList = getAllAnswersByQuestionId(answer.getQuestionId());
+        for (Answer a: answerList) {
+            if (a.getText().equals(text) && a.getId() != answer.getId()) return false;
+            if (a.getRight()) hasRight = true;
+        }
+        answerDAO.updateAnswerById(answer.getId(), text, isRight);
+        return hasRight;
     }
 }

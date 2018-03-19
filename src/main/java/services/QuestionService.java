@@ -14,7 +14,6 @@ public interface QuestionService {
 
     void removeAllQuestionsByTestId(long testId);
 
-    void updateTextById(long id, String text);
-
+    Boolean updateText(String text, Question question);
 
 }
