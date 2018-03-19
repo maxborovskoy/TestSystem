@@ -10,13 +10,6 @@ public class Answer implements Comparable, Serializable {
     private Boolean isRight;
     private long questionId;
 
-    public Answer(long id, String text, Boolean isRight, long questionId) {
-        this.id = id;
-        this.text = text;
-        this.isRight = isRight;
-        this.questionId = questionId;
-    }
-
     public Answer(String text, Boolean isRight, long questionId) {
         this.text = text;
         this.isRight = isRight;

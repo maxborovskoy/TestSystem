@@ -4,17 +4,17 @@ import entity.Question;
 import java.util.List;
 
 public interface QuestionService {
-    void add(String text, long testId);
+    void add(Question question);
 
-    void remove(long id);
-
-    void update(long id, String text, long testId);
-
-    void removeAllQuestionsByTestId(long testId);
+    Question get(long id);
 
     List<Question> getAllQuestionsByTestId(long testId);
 
-    Question getQuestion(long id);
+    void remove(long id);
+
+    void removeAllQuestionsByTestId(long testId);
+
+    void updateTextById(long id, String text);
 
 
 }

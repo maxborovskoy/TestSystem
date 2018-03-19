@@ -1,6 +1,7 @@
 package services;
 
 import dao.QuestionDAO;
+import entity.Answer;
 import entity.Question;
 
 import java.util.List;
@@ -9,10 +10,22 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionDAO questionDAO = new QuestionDAO();
 
     @Override
-    public void add(String text, long testId) {
-        List<Answer> answers = null;
-        Question question = new Question(text, answers, testId);
+    public void add(Question question) {
         questionDAO.add(question);
+        AnswerService answerService = new AnswerServiceImpl();
+        for (Answer a : question.getAnswers()) {
+            answerService.add(a);
+        }
+    }
+
+    @Override
+    public Question get(long id) {
+        return questionDAO.get(id);
+    }
+
+    @Override
+    public List<Question> getAllQuestionsByTestId(long testId) {
+        return questionDAO.getAllQuestionsByTestId(testId);
     }
 
     @Override
@@ -22,32 +35,16 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void update(long id, String text, long testId) {
-        Question result = new Question(id, text, (questionDAO.get(id)).answers, testId);
-        questionDAO.remove(id);
-        questionDAO.add(result);
-    }
-
-    @Override
     public void removeAllQuestionsByTestId(long testId) {
-        List<Question> questionList = questionDAO.getAllQuestionsByTestId();
+        List<Question> questionList = questionDAO.getAllQuestionsByTestId(testId);
         for (Question question : questionList) {
             remove(question.getId());
         }
     }
 
     @Override
-    public List<Question> getAllQuestionsByTestId(long testId) {
-        return questionDAO.getAllQuestionsByTestId(testId);
-    }
-
-
-    // we already have this in Dao?
-    @Override
-    public Question getQuestion(long id) {
-        Question question = questionDAO.get(id);
-        question.setAnswers(new AnswerServiceImpl().getAnswersByQuestionId(id));
-        return question;
+    public void updateTextById(long id, String text) {
+        questionDAO.updateTextById(id, text);
     }
 
 

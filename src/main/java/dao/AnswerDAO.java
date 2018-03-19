@@ -1,5 +1,7 @@
 package dao;
 
+import entity.Answer;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,21 +29,22 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
     }
 
     @Override
-    public Answer get(Long answerId) {
+    public Answer get(Long id) {
         ResultSet rs = null;
         try (
                 Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER"));
         ) {
-            st.setLong(1, answerId);
+            st.setLong(1, id);
             rs = st.executeQuery();
 
             if (rs.next()) {
-                long id = rs.getLong("id");
                 String text = rs.getString("text");
                 boolean isRight = rs.getBoolean("isRight");
                 long questionId = rs.getLong("questionId");
-                return new Answer(id, text, isRight, questionId);
+                Answer a = new Answer(text, isRight, questionId);
+                a.setId(id);
+                return a;
             } else {
                 return null;
             }
@@ -59,29 +62,34 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         }
     }
 
-    @Override
-    public List<Answer> getAll() {
-        Answer a;
+    public List<Answer> getAllAnswersByQuestionId(Long questionId) {
+        ResultSet rs = null;
         List<Answer> answerList = new ArrayList<>();
         try (
                 Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS"));
-                ResultSet rs = st.executeQuery();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"));
         ) {
+            st.setLong(4, questionId);
+            rs = st.executeQuery();
+
             while (rs.next()) {
                 long id = rs.getLong("id");
                 String text = rs.getString("text");
                 boolean isRight = rs.getBoolean("isRight");
-                long questionId = rs.getLong("questionId");
-                a = new Answer(id, text, isRight, questionId);
-
+                Answer a = new Answer(text, isRight, questionId);
+                a.setId(id);
                 answerList.add(a);
             }
         } catch (SQLException e) {
-            // e.printStackTrace();
+            //e.printStackTrace();
             throw new RuntimeException(e);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return answerList;
     }
 
@@ -99,43 +107,27 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         }
     }
 
-    public List<Answer> getAllAnswersByQuestionId(Long questionId) {
-        ResultSet rs = null;
-        Answer a;
-        List<Answer> answerList = new ArrayList<>();
-        try (
-                Connection con = pool.getConnection();
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"));
-        ) {
-            st.setLong(4, questionId);
-            rs = st.executeQuery();
-
-            while (rs.next()) {
-                long id = rs.getLong("id");
-                String text = rs.getString("text");
-                boolean isRight = rs.getBoolean("isRight");
-                a = new Answer(id, text, isRight, questionId);
-                answerList.add(a);
-            }
-        } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                if (rs != null) rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return answerList;
-    }
-
     public void removeAllAnswersByQuestionId(Long questionId) {
         try (
                 Connection con = pool.getConnection();
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_ALL_ANSWERS_BY_QUESTION_ID"));
         ) {
             st.setLong(4, questionId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateAnswerById(long id, String text, Boolean isRight) {
+        try (
+                Connection con = pool.getConnection();
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("UPDATE_ANSWER_BY_ID"));
+        ) {
+            st.setString(1, text);
+            st.setBoolean(2, isRight);
+            st.setLong(3, id);
             st.executeUpdate();
         } catch (SQLException e) {
             //e.printStackTrace();

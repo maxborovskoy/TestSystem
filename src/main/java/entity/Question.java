@@ -12,13 +12,6 @@ public class Question implements Comparable, Serializable {
     private List<Answer> answers;
     private long testId;
 
-    public Question(long id, String text, List<Answer> answers, long testId) {
-        this.id = id;
-        this.text = text;
-        this.answers = answers;
-        this.testId = testId;
-    }
-
     public Question(String text, List<Answer> answers, long testId) {
         this.text = text;
         this.answers = answers;

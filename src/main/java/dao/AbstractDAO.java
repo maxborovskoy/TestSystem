@@ -1,19 +1,30 @@
 package dao;
 
 
-import controllers.ConnectionPool;
+import config.ConnectionPool;
 
-import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class AbstractDAO<E, K> {
     ResourceBundle sqlQueries = ResourceBundle.getBundle("sql_queries_dao");
-    ConnectionPool pool = ConnectionPool.getInstance("jdbc:h2:~/labmarch", "root", "root", 5);;
+    ConnectionPool pool;
+
+    {
+        try {
+            pool = ConnectionPool.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    ;
 
     public abstract void add(E entity);
+
     public abstract E get(K id);
-    public abstract List<E> getAll();
+
     public abstract void remove(K id);
 
 }

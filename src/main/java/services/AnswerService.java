@@ -2,15 +2,19 @@ package services;
 
 import entity.Answer;
 
+import java.util.List;
+
 public interface AnswerService {
 
-    void add(String text, Boolean isRight, long questionId);
+    void add(Answer answer);
+
+    Answer get(long id);
+
+    List<Answer> getAllAnswersByQuestionId(long questionId);
 
     void remove(long id);
 
-    void update(long id, String text, Boolean isRight);
-
-    List<Answers> getAllAnswersByQuestionId(long questionId);
-
     void removeAllAnswersByQuestionId(long questionId);
+
+    void updateAnswerById(long id, String text, Boolean isRight);
 }

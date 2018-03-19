@@ -11,13 +11,6 @@ public class Test implements Comparable, Serializable {
     private List<Question> quest;
     private TestTypes type;
 
-    public Test(long id, String name, List<Question> quest, TestTypes type) {
-        this.id = id;
-        this.name = name;
-        this.quest = quest;
-        this.type = type;
-    }
-
     public Test(String name, List<Question> quest, TestTypes type) {
         this.name = name;
         this.quest = quest;
