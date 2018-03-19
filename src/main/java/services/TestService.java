@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface TestService {
 
-    public void addTest(Test test);
+    public boolean addTest(Test test);
     public Test getTest(Long id);
     public List<Test> getAllTests();
-    public void removeTest(Long id);
-    public void changeTest(Test test);
+    public boolean removeTest(Long id);
+    public boolean updateTest(Test test);
 }
