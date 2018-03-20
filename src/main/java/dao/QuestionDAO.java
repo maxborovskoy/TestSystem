@@ -3,6 +3,8 @@ package dao;
 import config.ConnectionPool;
 import entity.Answer;
 import entity.Question;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionDAO extends AbstractDAO<Question, Long> {
+
+    private final static Logger log = LogManager.getLogger(QuestionDAO.class);
 
     @Override
     public void add(Question question) {
@@ -24,7 +28,9 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
             setSQLParameters(st, question.getText(), question.getTestId());
             st.executeUpdate();
+            log.info("Question " + question + " was added");
         } catch (SQLException e) {
+            log.error("Question " + question + " wasn't added", e);
             throw new RuntimeException();
         } finally {
             freeCon(con);
@@ -47,10 +53,12 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                     return getQuestionById(id, rs);
                 }
             } catch (SQLException e) {
-                throw new RuntimeException();
+                log.error("Question(id:" + id + ") cannot be gotten", e);
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.error("Question(id:" + id + ") cannot be gotten", e);
+            throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
@@ -74,10 +82,12 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                     questionList.add(get(rs.getLong("Id")));
                 }
             } catch (SQLException e) {
-                throw new RuntimeException();
+                log.error("All questions for test(id:" + testId + ") cannot be gotten", e);
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.error("All questions for test(id:" + testId + ") cannot be gotten", e);
+            throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
@@ -94,7 +104,9 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         ) {
             st.setLong(1, id);
             st.executeUpdate();
+            log.info("Question(id:" + id + ") was removed");
         } catch (SQLException e) {
+            log.error("Question(id:" + id + ") wasn't removed", e);
             throw new RuntimeException();
         } finally {
             freeCon(con);
@@ -110,7 +122,9 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         ) {
             setSQLParameters(st, text, id);
             st.executeUpdate();
+            log.info("Question(id:" + id + ") was updated");
         } catch (SQLException e) {
+            log.error("Question(id:" + id + ") wasn't updated", e);
             throw new RuntimeException();
         } finally {
             freeCon(con);
@@ -122,7 +136,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         st.setLong(2, testId);
     }
 
-    Question getQuestionById(Long id, ResultSet rs) throws SQLException {
+    private Question getQuestionById(Long id, ResultSet rs) throws SQLException {
         String text = rs.getString("questions.text");
         long testId = rs.getLong("questions.testId");
         List<Answer> answers = new ArrayList<>();
