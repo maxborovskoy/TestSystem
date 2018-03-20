@@ -1,0 +1,30 @@
+header{
+    margin-bottom: 1.5rem;
+}
+
+.jumbotron {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    bottom: 0;
+}
+
+.btn btn-danger {
+    text-align: right;
+}
+
+.form {
+    margin-bottom: 1rem;
+}
+
+.dropdown {
+    position: relative;
+    margin-bottom: 1rem;
+}
