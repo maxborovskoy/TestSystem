@@ -1,10 +1,12 @@
 package services;
 
+import entity.User;
+
 public interface UserService {
 
     boolean isAlreadyExists(User user);
 
-    boolean authrizeUser(User user);
+    boolean authorizeUser(User user);
 
     boolean registerUser(User user);
 
