@@ -22,6 +22,11 @@ public class ConnectionPool {
 
     public static ConnectionPool getInstance() throws SQLException {
         if (instancePool == null) {
+            try {
+                Class.forName ("org.h2.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             instancePool = new ConnectionPool();
             for (int i = 0; i < MAX_CONNECTION; i++) {
                 instancePool.freeConnections.add(DriverManager.getConnection(H2_URL, H2_USER, H2_PASS));

@@ -1,11 +1,16 @@
 package services;
 
+import dao.UserDAO;
 import entity.User;
 
 public class UserServiceImpl implements UserService {
 
+    private static final UserDAO userDao = new UserDAO();
+
     @Override
     public boolean isAlreadyExists(User user) {
+
+
         return false;
     }
 
