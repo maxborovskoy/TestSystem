@@ -11,19 +11,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isAlreadyExists(User user) {
-        List<User> userList = userDAO.getAll();
-
-        for (User u : userList) {
-            if(user.getName().equals(u.getName())) {
-                return true;
-            }
-        }
-        return false;
+        return true;
     }
 
     @Override
     public boolean authorizeUser(User user) {
-        return isAlreadyExists(user) && validatePassword(user);
+        List<User> userList = userDAO.getAll();
+
+        for (User u : userList) {
+            if(user.getName().equals(u.getName()) && user.getPassword().equals(u.getPassword())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -39,16 +39,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserPassword(String name, String oldPassword, String newPassword) {
 
-    }
-
-    public boolean validatePassword(User user) {
-        List<User> userList = userDAO.getAll();
-
-        for (User u : userList) {
-            if(user.getPassword().equals(u.getPassword())) {
-                return true;
-            }
-        }
-        return false;
     }
 }
