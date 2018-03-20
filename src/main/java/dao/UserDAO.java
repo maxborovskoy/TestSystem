@@ -97,6 +97,7 @@ public class UserDAO extends AbstractDAO<User, Long> {
         }
     }
 
+
     private void freeCon(Connection con) {
         try {
             ConnectionPool.freeConnection(con);

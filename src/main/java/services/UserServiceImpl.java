@@ -3,15 +3,22 @@ package services;
 import dao.UserDAO;
 import entity.User;
 
+import java.util.List;
+import java.util.Optional;
+
 public class UserServiceImpl implements UserService {
 
     private static final UserDAO userDao = new UserDAO();
 
     @Override
-    public boolean isAlreadyExists(User user) {
+    public boolean isAlreadyExists(String username) {
+        List<User> allUsers = userDao.getAll();
 
+        Optional<User> existingUser = allUsers.stream()
+                .filter(someUser -> username.equals(someUser.getName()))
+                .findAny();
 
-        return false;
+        return existingUser.isPresent();
     }
 
     @Override
@@ -20,17 +27,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerUser(User user) {
-        return true;
+    public void registerUser(User user) {
+        userDao.add(user);
     }
 
     @Override
     public User get(long id) {
-        return null;
+        return userDao.get(id);
     }
 
-    @Override
-    public void updateUserPassword(String name, String oldPassword, String newPassword) {
 
-    }
 }

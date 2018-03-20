@@ -4,15 +4,12 @@ import entity.User;
 
 public interface UserService {
 
-    boolean isAlreadyExists(User user);
+    boolean isAlreadyExists(String username);
 
     boolean authorizeUser(User user);
 
-    boolean registerUser(User user);
+    void registerUser(User user);
 
     User get(long id);
-
-    void updateUserPassword(String name, String oldPassword, String newPassword);
-
 
 }
