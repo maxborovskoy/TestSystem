@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.Collator;
 import java.util.Locale;
 
-public class User implements Comparable, Serializable {
+public class User implements Serializable {
     private long id;
     private String name;
     private String password;
@@ -53,12 +53,5 @@ public class User implements Comparable, Serializable {
         return "User{" +
                 "name='" + name + '\'' +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Collator c = Collator.getInstance(new Locale("ru"));
-        c.setStrength(Collator.PRIMARY);
-        return c.compare(this.toString(), o.toString());
     }
 }
