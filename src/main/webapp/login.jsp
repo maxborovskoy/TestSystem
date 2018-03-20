@@ -39,7 +39,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="passwordInput">Password</label>
-                    <input type="password" id="passwordInput" class="form-control" placeholder="Enter password">
+                    <input type="password" id="passwordInput" name="password" class="form-control" placeholder="Enter password">
                     <small id="passwordWarn" class="form-text text-muted">Never share you password with anyone else
                     </small>
                 </div>
