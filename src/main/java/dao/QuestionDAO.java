@@ -15,117 +15,136 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
 
     @Override
     public void add(Question question) {
+
         Connection con = pool.getConnection();
+
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_QUESTION"));
         ) {
 
-            st.setString(2, question.getText());
-            st.setLong(3, question.getTestId());
+            setSQLParameters(st, question.getText(), question.getTestId());
             st.executeUpdate();
-            ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException();
+        } finally {
+            freeCon(con);
         }
     }
 
     @Override
     public Question get(Long id) {
-        ResultSet rs = null;
+
         Connection con = pool.getConnection();
+
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_QUESTION"));
         ) {
             st.setLong(1, id);
-            rs = st.executeQuery();
-            List<Answer> answers = new ArrayList<>();
-            if (rs.next()) {
-                String text = rs.getString("questions.text");
-                long testId = rs.getLong("questions.testId");
-                do {
-                    long answerId = rs.getLong("answers.id");
-                    String answerText = rs.getString("answers.text");
-                    boolean isRight = rs.getBoolean("answers.isRight");
-                    Answer a = new Answer(answerText, isRight, id);
-                    a.setId(answerId);
-                    answers.add(a);
-                } while (rs.next());
-
-                Question q = new Question(text, answers, testId);
-                q.setId(id);
-                ConnectionPool.freeConnection(con);
-                return q;
-            } else {
-                ConnectionPool.freeConnection(con);
-                return null;
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return getQuestionById(id, rs);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException();
             }
         } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException();
         } finally {
-            try {
-                if (rs != null) rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            freeCon(con);
         }
-
+        return null;
     }
 
+
     public List<Question> getAllQuestionsByTestId(Long testId) {
-        ResultSet rs = null;
+
         List<Question> questionList = new ArrayList<>();
         Connection con = pool.getConnection();
+
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_QUESTIONS_BY_TEST_ID"));
         ) {
-            st.setLong(3, testId);
-            rs = st.executeQuery();
-            while (rs.next()) {
-                questionList.add(get(rs.getLong("Id")));
-            }
-            ConnectionPool.freeConnection(con);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
+            st.setLong(1, testId);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                while (rs.next()) {
+                    questionList.add(get(rs.getLong("Id")));
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new RuntimeException();
             }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            freeCon(con);
         }
         return questionList;
     }
 
     @Override
     public void remove(Long id) {
+
         Connection con = pool.getConnection();
+
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_QUESTION"));
         ) {
             st.setLong(1, id);
             st.executeUpdate();
-            ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException();
+        } finally {
+            freeCon(con);
         }
     }
 
-
     public void updateTextById(long id, String text) {
+
         Connection con = pool.getConnection();
+
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("UPDATE_QUESTION_BY_ID"));
         ) {
-            st.setString(1, text);
-            st.setLong(2, id);
+            setSQLParameters(st, text, id);
             st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        } finally {
+            freeCon(con);
+        }
+    }
+
+    private void setSQLParameters(PreparedStatement st, String text, long testId) throws SQLException {
+        st.setString(1, text);
+        st.setLong(2, testId);
+    }
+
+    Question getQuestionById(Long id, ResultSet rs) throws SQLException {
+        String text = rs.getString("questions.text");
+        long testId = rs.getLong("questions.testId");
+        List<Answer> answers = new ArrayList<>();
+        do {
+            long answerId = rs.getLong("answers.id");
+            String answerText = rs.getString("answers.text");
+            boolean isRight = rs.getBoolean("answers.isRight");
+            Answer a = new Answer(answerText, isRight, id);
+            a.setId(answerId);
+            answers.add(a);
+        } while (rs.next());
+
+        Question q = new Question(text, answers, testId);
+        q.setId(id);
+        return q;
+    }
+
+    private void freeCon(Connection con) {
+        try {
             ConnectionPool.freeConnection(con);
         } catch (SQLException e) {
-            //e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException();
         }
     }
 }
