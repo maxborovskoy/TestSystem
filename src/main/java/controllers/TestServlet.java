@@ -1,5 +1,9 @@
 package controllers;
 
+import entity.Test;
+import services.TestService;
+import services.TestServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +20,9 @@ public class TestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-
-        System.out.println(id);
-
-        req.getRequestDispatcher("/catalog").forward(req, resp);
+        TestService testService = new TestServiceImpl();
+        Test particularTest = testService.getTest(Long.parseLong(id));         
+        req.setAttribute("test", particularTest);
+        req.getRequestDispatcher("/test.jsp").forward(req, resp);
     }
 }
