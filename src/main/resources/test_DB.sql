@@ -3,9 +3,11 @@ CREATE TABLE IF NOT EXISTS tests (id BIGINT NOT NULL auto_increment PRIMARY KEY,
 CREATE TABLE IF NOT EXISTS questions (id BIGINT NOT NULL auto_increment PRIMARY KEY, text VARCHAR(1000) NOT NULL, testId BIGINT NOT NULL, FOREIGN KEY (testId) REFERENCES tests (Id) ON DELETE CASCADE ON UPDATE CASCADE);
 CREATE TABLE IF NOT EXISTS answers (id BIGINT NOT NULL auto_increment PRIMARY KEY, text VARCHAR(100) NOT NULL , isRight BOOLEAN, questionId BIGINT NOT NULL, FOREIGN KEY (questionId) REFERENCES questions(id) ON DELETE CASCADE ON UPDATE CASCADE);
 
-INSERT INTO users(name, pass, isTutor) VALUES('dima', 'dima', FALSE);
-INSERT INTO users(name, pass, isTutor) VALUES('andrey', 'andrey', FALSE);
-INSERT INTO users(name, pass, isTutor) VALUES('max', 'max', FALSE);
+INSERT INTO users(name, pass, isTutor) VALUES('dima@dima', 'dima', FALSE);
+INSERT INTO users(name, pass, isTutor) VALUES('andrey@andrey', 'andrey', FALSE);
+INSERT INTO users(name, pass, isTutor) VALUES('max@max', 'max', FALSE);
+INSERT INTO users(name, pass, isTutor) VALUES('tutor@tutor', 'tutor', TRUE);
+
 
 INSERT INTO tests(id, name, type) VALUES(1, 'mathTest', 'Math');
 INSERT INTO tests(id, name, type) VALUES(2, 'physicsTest', 'Physics');
