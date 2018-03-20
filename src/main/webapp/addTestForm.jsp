@@ -27,25 +27,25 @@
         </div>
     </header>
     <main role="main" class="container">
+    <form action="addTestForm" method="post" name="loginForm">
     <div class="jumbotron">
         <h2>Add test form</h2>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Test title:</label>
-                    <input type="question" class="form-control" placeholder="Enter text">
+                <label for="testNameInput">Test title:</label>
+                <input type="testName" class="form-control" id="testNameInput" placeholder="Enter text">
             </div>
         </form>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Choose theme
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Math</a>
-                <a class="dropdown-item" href="#">Physics</a>
-                <a class="dropdown-item" href="#">English</a>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary" href="../addQuestionForm">Add question</button>
+        <form>
+             <label for="theme">Choose theme:</label>
+             <select class="form-control" id="theme">
+                <option>Math</option>
+                <option>Physics</option>
+                <option>English</option>
+             </select>
+        </form>
+
+        <button type="submit" class="btn btn-primary" href="/addQuestionForm">Add question</button>
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-danger">Cancel</button>
     </div>
