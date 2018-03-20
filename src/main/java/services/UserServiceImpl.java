@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(long id) {
-        return userDAO.get(id);
+        return null;
     }
 
     @Override
