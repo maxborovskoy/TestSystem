@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
-    private static final UserDAO userDao = new UserDAO();
+    private static final UserDAO userDAO = new UserDAO();
 
     @Override
     public boolean isAlreadyExists(String username) {
-        List<User> allUsers = userDao.getAll();
+        List<User> allUsers = userDAO.getAll();
 
         Optional<User> existingUser = allUsers.stream()
                 .filter(someUser -> username.equals(someUser.getName()))
@@ -23,17 +23,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean authorizeUser(User user) {
-        return true;
+        List<User> userList = userDAO.getAll();
+
+        for (User u : userList) {
+            if(user.getName().equals(u.getName()) && user.getPassword().equals(u.getPassword())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public void registerUser(User user) {
-        userDao.add(user);
+        userDAO.add(user);
     }
 
     @Override
     public User get(long id) {
-        return userDao.get(id);
+        return userDAO.get(id);
     }
 
 

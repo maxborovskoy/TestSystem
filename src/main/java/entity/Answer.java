@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.Collator;
 import java.util.Locale;
 
-public class Answer implements Comparable, Serializable {
+public class Answer implements Serializable {
     private long id;
     private String text;
     private Boolean isRight;
@@ -53,12 +53,5 @@ public class Answer implements Comparable, Serializable {
         return "Answer{" +
                 "text='" + text + '\'' +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Collator c = Collator.getInstance(new Locale("ru"));
-        c.setStrength(Collator.PRIMARY);
-        return c.compare(this.toString(), o.toString());
     }
 }

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class Question implements Comparable, Serializable {
+public class Question implements Serializable {
     private long id;
     private String text;
     private List<Answer> answers;
@@ -56,12 +56,5 @@ public class Question implements Comparable, Serializable {
         return "Question{" +
                 "text='" + text + '\'' +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Collator c = Collator.getInstance(new Locale("ru"));
-        c.setStrength(Collator.PRIMARY);
-        return c.compare(this.toString(), o.toString());
     }
 }

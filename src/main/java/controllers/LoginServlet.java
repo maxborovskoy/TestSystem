@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
             resp,
             credentialsUser,
             new UserServiceImpl(),
-            new User(credentialsUser, credentialsPassword, false));
+                new User(credentialsUser, credentialsPassword, false));
 
     }
 
