@@ -1,5 +1,6 @@
 package dao;
 
+import config.ConnectionPool;
 import entity.Question;
 import entity.Test;
 import entity.TestTypes;
@@ -31,21 +32,23 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (st != null) st.close();
-                pool.freeConnection(con);
+                closeStatement(st);
+                ConnectionPool.freeConnection(con);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
+
     @Override
     public Test get(Long id) {
-        Connection con = null;
         ResultSet rs = null;
-        try (PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TEST"))
-        ) {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
             con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("GET_TEST"));
             st.setLong(1, id);
             rs = st.executeQuery();
             if (rs.next()) {
@@ -53,8 +56,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
                 String name = rs.getString("name");
                 TestTypes type = TestTypes.getType(rs.getString("type"));
                 List<Question> questionList = new ArrayList<>();
-                Test test = new Test(name, questionList, type);
-                return test;
+                return new Test(name, questionList, type);
             } else {
                 return null;
             }
@@ -63,21 +65,24 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (con != null) con.close();
-                pool.freeConnection(con);
-                if (rs != null) rs.close();
+                ConnectionPool.freeConnection(con);
+                closeResultSet(rs);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
+
     public List<Test> getAll() {
-        Connection con = null;
+
         ResultSet rs = null;
         List<Test> testList = new ArrayList<>();
-        try (PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_TESTS"))) {
+        Connection con = null;
+        PreparedStatement st = null;
+        try {
             con = pool.getConnection();
+            st = con.prepareStatement(sqlQueries.getString("GET_ALL_TESTS"));
             rs = st.executeQuery();
             while (rs.next()) {
                 long testId = rs.getLong("id");
@@ -92,9 +97,8 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (con != null) con.close();
-                pool.freeConnection(con);
-                if (rs != null) rs.close();
+                closeStatement(st);
+                ConnectionPool.freeConnection(con);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -117,8 +121,8 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (st != null) st.close();
-                pool.freeConnection(con);
+                closeStatement(st);
+                ConnectionPool.freeConnection(con);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -141,11 +145,25 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (st != null) st.close();
-                pool.freeConnection(con);
+                closeStatement(st);
+                ConnectionPool.freeConnection(con);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+
+    private void closeStatement(PreparedStatement st) throws SQLException {
+        if (st != null) {
+            st.close();
+        }
+    }
+
+
+    private void closeResultSet(ResultSet rs) throws SQLException {
+        if (rs != null) {
+            rs.close();
         }
     }
 }
