@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
         String credentialsUser = req.getParameter(USER);
         String credentialsPassword = req.getParameter(PASSWORD);
 
+
         authorizeUser(req,
             resp,
             credentialsUser,
