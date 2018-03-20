@@ -20,7 +20,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question get(long id) {
-        return questionDAO.getById(id);
+        return questionDAO.get(id);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void remove(long id) {
-        questionDAO.removeById(id);
+        questionDAO.remove(id);
         new AnswerServiceImpl().removeAllAnswersByQuestionId(id);
     }
 

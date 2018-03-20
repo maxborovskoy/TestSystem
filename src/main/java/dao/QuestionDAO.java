@@ -32,7 +32,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
     }
 
     @Override
-    public Question getById(Long id) {
+    public Question get(Long id) {
 
         Connection con = pool.getConnection();
 
@@ -71,7 +71,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
                     ResultSet rs = st.executeQuery()
             ) {
                 while (rs.next()) {
-                    questionList.add(getById(rs.getLong("Id")));
+                    questionList.add(get(rs.getLong("Id")));
                 }
             } catch (SQLException e) {
                 throw new RuntimeException();
@@ -85,7 +85,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
     }
 
     @Override
-    public void removeById(Long id) {
+    public void remove(Long id) {
 
         Connection con = pool.getConnection();
 

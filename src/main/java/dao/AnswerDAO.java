@@ -31,13 +31,17 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
     }
 
     @Override
-    public Answer getById(Long id) {
+    public Answer get(Long id) {
 
         Connection con = pool.getConnection();
 
-        try (PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER"))) {
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER"))
+        ) {
             st.setLong(1, id);
-            try (ResultSet rs = st.executeQuery()) {
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
                 if (rs.next()) {
                     return getAnswerById(id, rs);
                 }
@@ -57,9 +61,13 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         Connection con = pool.getConnection();
         List<Answer> answerList = new ArrayList<>();
 
-        try (PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"))) {
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_ANSWERS_BY_QUESTION_ID"))
+        ) {
             st.setLong(1, questionId);
-            try (ResultSet rs = st.executeQuery()) {
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
                 while (rs.next()) {
                     Answer a = getAnswerByQuestionId(questionId, rs);
                     answerList.add(a);
@@ -76,7 +84,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
     }
 
     @Override
-    public void removeById(Long id) {
+    public void remove(Long id) {
 
         Connection con = pool.getConnection();
 

@@ -16,14 +16,13 @@ import java.util.stream.Collectors;
 
 public class TestPageServlet extends HttpServlet {
 
-    private final TestServiceImpl testService = new TestServiceImpl();
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
+        TestServiceImpl testService = new TestServiceImpl();
         Test test = testService.getTest(Long.parseLong(req.getParameter("testid")));
         Map<Long, List<Long>> answers = new HashMap<>();
-        for (Question q : test.getQuest()) {
+        for (Question q : test.getQuest())
+        {
             List<Long> answerList = Arrays.stream(req.getParameterValues("q"+q.getId()))
                     .mapToLong(Long::parseLong)
                     .boxed()

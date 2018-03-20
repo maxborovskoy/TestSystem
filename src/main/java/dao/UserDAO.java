@@ -29,7 +29,7 @@ public class UserDAO extends AbstractDAO<User, Long> {
     }
 
     @Override
-    public User getById(Long id) {
+    public User get(Long id) {
 
         Connection con = pool.getConnection();
 
@@ -81,7 +81,7 @@ public class UserDAO extends AbstractDAO<User, Long> {
     }
 
     @Override
-    public void removeById(Long id) {
+    public void remove(Long id) {
 
         Connection con = pool.getConnection();
 

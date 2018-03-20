@@ -32,7 +32,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     }
 
     @Override
-    public Test getById(Long id) {
+    public Test get(Long id) {
 
         Connection con = pool.getConnection();
 
@@ -81,7 +81,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     }
 
     @Override
-    public void removeById(Long id) {
+    public void remove(Long id) {
 
         Connection con = pool.getConnection();
 

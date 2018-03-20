@@ -23,8 +23,8 @@ public abstract class AbstractDAO<E, K> {
 
     public abstract void add(E entity);
 
-    public abstract E getById(K id);
+    public abstract E get(K id);
 
-    public abstract void removeById(K id);
+    public abstract void remove(K id);
 
 }

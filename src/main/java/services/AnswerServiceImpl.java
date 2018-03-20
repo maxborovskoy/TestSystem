@@ -15,7 +15,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer get(long id) {
-        return answerDAO.getById(id);
+        return answerDAO.get(id);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void remove(long id) {
-        answerDAO.removeById(id);
+        answerDAO.remove(id);
     }
 
     @Override
