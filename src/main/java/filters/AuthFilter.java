@@ -58,13 +58,17 @@ public class AuthFilter implements Filter {
                     chain.doFilter(request, response);
                 }
             } else {
-                ((HttpServletResponse) response).sendRedirect("login.jsp");
+                if (!(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
+                    ((HttpServletResponse) response).sendRedirect("login.jsp");
+                } else {
+                    chain.doFilter(request, response);
+                }
             }
         }
     }
 
     private HttpSession getHttpSession(HttpServletRequest request) {
-        return request.getSession(false);
+        return request.getSession();
     }
 
     @Override
