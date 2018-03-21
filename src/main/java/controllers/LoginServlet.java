@@ -1,6 +1,7 @@
 package controllers;
 
 import entity.User;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import services.UserService;
 import services.UserServiceImpl;
 
@@ -24,31 +26,32 @@ public class LoginServlet extends HttpServlet {
         String credentialsUser = req.getParameter(USER);
         String credentialsPassword = req.getParameter(PASSWORD);
 
-
         authorizeUser(req,
-            resp,
-            credentialsUser,
-            new UserServiceImpl(),
+                resp,
+                credentialsUser,
+                new UserServiceImpl(),
                 new User(credentialsUser, credentialsPassword, false));
+
 
     }
 
     private void authorizeUser(HttpServletRequest req, HttpServletResponse resp, String credentialsUser, UserService validator, User user)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
+
         if (validator.authorizeUser(user)) {
 
-            if("tutor@tutor".equals(user.getName())){
+            if ("tutor@tutor".equals(user.getName())) {
                 user.setTutor(true);
             }
             HttpSession session = req.getSession();
             session.setAttribute(USER, user);
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/catalog");
-            requestDispatcher.forward(req, resp);
+            resp.sendRedirect("/catalog");
+
         } else {
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
-            requestDispatcher.forward(req, resp);
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
+
     }
 
 

@@ -12,11 +12,11 @@
 <html>
 <head>
     <title>Login</title>
-    <%--<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">--%>
-    <%--<script src="js/bootstrap.min.js" type="text/javascript"></script>--%>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     <c:if test="${not empty param.language}">
         <c:set var="locale" scope="session" value="${param.language}"/>
     </c:if>
@@ -31,9 +31,7 @@
     </c:if>
     <fmt:setBundle basename="internationalization"/>
     <title><fmt:message key="login.login"/></title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/changeLanguage.js"></script>
 
 </head>
@@ -58,7 +56,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="emailInput"><fmt:message key="login.email"/></label>
-                    <input type="email" class="form-control" name="user" id="emailInput" placeholder="<fmt:message key="login.enteremail"/>">
+                    <input type="email" class="form-control" name="user" id="emailInput"
+                           placeholder="<fmt:message key="login.enteremail"/>">
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -69,13 +68,10 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="passwordInput"><fmt:message key="login.password"/></label>
-                    <input type="password" id="passwordInput" class="form-control" placeholder="<fmt:message key="login.enterpassword"/>">
-                    <small id="passwordWarn" class="form-text text-muted"><fmt:message key="login.passwordAdvice"/>
-                    <label for="passwordInput">Password</label>
-                    <input type="password" id="passwordInput" name="password" class="form-control"
-                           placeholder="Enter password">
-                    <small id="passwordWarn" class="form-text text-muted">Never share you password with anyone else
-                    </small>
+                    <input type="password" name="password" id="passwordInput" class="form-control"
+                           placeholder="<fmt:message key="login.enterpassword"/>">
+                    <small id="passwordWarn" class="form-text text-muted">
+                        <fmt:message key="login.passwordAdvice"/>
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -83,10 +79,8 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary"><fmt:message key="login.login"/> </button>
-                <a href="/registation.jsp"><fmt:message key="login.singup"/> </a>
-                <button type="submit" class="btn btn-primary">Log in</button>
-                <a href="/registration.jsp">Sign up</a>
+                <button type="submit" class="btn btn-primary" id="loginBtn"><fmt:message key="login.login"/></button>
+                <a href="/registration.jsp"><fmt:message key="login.singup"/> </a>
             </div>
         </div>
     </form>

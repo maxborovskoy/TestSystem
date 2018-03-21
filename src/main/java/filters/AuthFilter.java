@@ -37,9 +37,8 @@ public class AuthFilter implements Filter {
             throws IOException, ServletException {
         String uri = ((HttpServletRequest) request).getRequestURI();
 
-        if (session == null &&
-                !(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
-            ((HttpServletResponse) response).sendRedirect("login.jsp");
+        if (uri.startsWith("/css") || uri.startsWith("/js") || uri.startsWith("/language") || uri.startsWith("/images")) {
+            chain.doFilter(request, response);
         } else {
             User user = null;
             if (session != null && (user = (User) session.getAttribute("user")) != null) {
@@ -69,7 +68,6 @@ public class AuthFilter implements Filter {
             }
         }
     }
-
     private HttpSession getHttpSession(HttpServletRequest request) {
         return request.getSession();
     }

@@ -25,15 +25,14 @@
 
     <fmt:setBundle basename="internationalization"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><fmt:message key="catalog.catalog"/> </title>
+    <title><fmt:message key="catalog.catalog"/></title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/changeLanguage.js"></script>
-    <%--<link rel="stylesheet" href="./css/bootstrap.min.css">--%>
-    <%--<script src="js/bootstrap.min.js"></script>--%>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -42,12 +41,12 @@
     <div class="bg-dark" id="navbarHeader">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white"><fmt:message key="catalog.tts"/> </h4>
-                    <p class="text-muted"><fmt:message key="catalog.description"/> </p>
+                <div class="col-md-9 py-4">
+                    <h4 class="text-white"><fmt:message key="catalog.tts"/></h4>
+                    <p class="text-muted"><fmt:message key="catalog.description"/></p>
                 </div>
                 <c:if test="${sessionScope.user.getTutor()}">
-                    <div class="col-md-5">
+                    <div class="col-md-2">
                         <form action="addTestForm" method="get" name="createTestForm">
                             <button type="submit" class="btn btn-primary">Create test</button>
                         </form>
@@ -104,7 +103,7 @@
                                     <h5 class="card-title">${test.getName()}</h5>
                                     <p class="card-text">This is a wider card with supporting text below as a
                                         natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
+                                        additional content. This content is a little bit longer.@</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
                                             test</a>
@@ -112,67 +111,20 @@
                                     </div>
                                 </div>
                             </div>
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/math.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><fmt:message key="catalog.math"/></h5>
-                        <p class="card-text"><fmt:message key="catalog.typedescription"/></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=1" class="btn btn-primary"><fmt:message key="catalog.start"/></a>
-                            <small class="text-muted">9 <fmt:message key="catalog.mins"/></small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/physics.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><fmt:message key="catalog.phisics"/> </h5>
-                        <p class="card-text"><fmt:message key="catalog.typedescription"/></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=2" class="btn btn-primary"><fmt:message key="catalog.start"/></a>
-                            <small class="text-muted">9 <fmt:message key="catalog.mins"/></small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/russian.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><fmt:message key="catalog.russian"/> </h5>
-                        <p class="card-text"><fmt:message key="catalog.typedescription"/></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=3" class="btn btn-primary"><fmt:message key="catalog.start"/></a>
-                            <small class="text-muted">9 <fmt:message key="catalog.mins"/></small>
                         </div>
                     </c:forEach>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/english.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><fmt:message key="catalog.english"/> </h5>
-                        <p class="card-text"><fmt:message key="catalog.typedescription"/></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=4" class="btn btn-primary"><fmt:message key="catalog.start"/></a>
-                            <small class="text-muted">9 <fmt:message key="catalog.mins"/></small>
-                        </div>
-                    </div>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div class="container">
+            <div class="row">
+                <div class="<col-md-3"></div>
+                <div class="<col-md-6">
+                    <h1 class="mt-5">There is no tests yet</h1>
+                    <p class="lead">We haven't created any test yet. Please come later, may be something will
+                        change soon.</p>
                 </div>
                 <div class="<col-md-3"></div>
             </div>
@@ -186,9 +138,9 @@
         <p class="float-right">
             <a href="#"><fmt:message key="catalog.back"/> </a>
         </p>
-        <p><fmt:message key="catalog.developdescription"/> </p>
-        <p><fmt:message key="catalog.students"/> </p>
-        <p><fmt:message key="catalog.mentors"/> </p>
+        <p><fmt:message key="catalog.developdescription"/></p>
+        <p><fmt:message key="catalog.students"/></p>
+        <p><fmt:message key="catalog.mentors"/></p>
     </div>
 </footer>
 
