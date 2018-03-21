@@ -63,6 +63,31 @@ public class UserDAO extends AbstractDAO<User, Long> {
         return null;
     }
 
+    public User get(String name) {
+
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_USER_BY_NAME"));
+        ) {
+            st.setString(1, name);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return getUserByName(name, rs);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+        return null;
+    }
+
     public List<User> getAll() {
 
         Connection con = pool.getConnection();
@@ -110,6 +135,7 @@ public class UserDAO extends AbstractDAO<User, Long> {
         }
     }
 
+
     private void freeCon(Connection con) {
         try {
             ConnectionPool.freeConnection(con);
@@ -126,6 +152,15 @@ public class UserDAO extends AbstractDAO<User, Long> {
 
     private User getUserById(Long id, ResultSet rs) throws SQLException {
         String name = rs.getString("name");
+        String pass = rs.getString("pass");
+        boolean tutor = rs.getBoolean("isTutor");
+        User user = new User(name, pass, tutor);
+        user.setId(id);
+        return user;
+    }
+
+    private User getUserByName(String name, ResultSet rs) throws SQLException  {
+        long id = rs.getLong("id");
         String pass = rs.getString("pass");
         boolean tutor = rs.getBoolean("isTutor");
         User user = new User(name, pass, tutor);
