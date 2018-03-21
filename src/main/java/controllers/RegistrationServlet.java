@@ -30,7 +30,7 @@ public class RegistrationServlet extends HttpServlet {
         } else {
             User user = new User(userNameCred, userPassCred, false);
             userService.registerUser(user);
-            req.getRequestDispatcher("/catalog").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
 }
