@@ -19,7 +19,7 @@ public class TestPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         TestServiceImpl testService = new TestServiceImpl();
-        Test test = testService.getTest(Long.parseLong(req.getParameter("testid")));
+        Test test = testService.getTest(Long.parseLong(req.getParameter("testId")));
         Map<Long, List<Long>> answers = new HashMap<>();
         for (Question q : test.getQuest())
         {
@@ -37,7 +37,7 @@ public class TestPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Test test = new TestServiceImpl().getTest(Long.parseLong(req.getParameter("testid")));
+        Test test = new TestServiceImpl().getTest(Long.parseLong(req.getParameter("testId")));
         req.setAttribute("test", test);
         req.getRequestDispatcher("test.jsp").forward(req, resp);
     }
