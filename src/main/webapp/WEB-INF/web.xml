@@ -40,6 +40,21 @@
     <servlet-class>controllers.TestPageServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>addTestForm</servlet-name>
+    <servlet-class>controllers.addTestServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>addQuestionForm</servlet-name>
+    <servlet-class>controllers.addQuestionServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>addAnswerForm</servlet-name>
+    <servlet-class>controllers.addAnswerServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
     <url-pattern>/catalog</url-pattern>
@@ -68,6 +83,21 @@
   <servlet-mapping>
     <servlet-name>TestPage</servlet-name>
     <url-pattern>/testpage</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>addTestForm</servlet-name>
+    <url-pattern>/addTestForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>addQuestionForm</servlet-name>
+    <url-pattern>/addQuestionForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>addAnswerForm</servlet-name>
+    <url-pattern>/addAnswerForm</url-pattern>
   </servlet-mapping>
 
 
