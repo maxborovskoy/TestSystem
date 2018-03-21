@@ -4,6 +4,8 @@ import config.ConnectionPool;
 import entity.Question;
 import entity.Test;
 import entity.TestTypes;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestDAO extends AbstractDAO<Test, Long> {
+
+    private final static Logger log = LogManager.getLogger(TestDAO.class);
 
     @Override
     public void add(Test test) {
@@ -24,7 +28,9 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         ) {
             setSQLParameters(test, st);
             st.executeUpdate();
+            log.info("Test " + test + " was added");
         } catch (SQLException e) {
+            log.error("Test " + test + " wasn't added", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
@@ -49,9 +55,11 @@ public class TestDAO extends AbstractDAO<Test, Long> {
                     return null;
                 }
             } catch (SQLException e) {
-                throw new RuntimeException();
+                log.error("Test(id:" + id + ") cannot be gotten", e);
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
+            log.error("Test(id:" + id + ") cannot be gotten", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
@@ -73,6 +81,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
                 testList.add(test);
             }
         } catch (SQLException e) {
+            log.error("All tests cannot be gotten", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
@@ -90,7 +99,9 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         ) {
             st.setLong(1, id);
             st.executeUpdate();
+            log.info("Test(id:" + id + ") was removed");
         } catch (SQLException e) {
+            log.error("Test(id:" + id + ") wasn't removed", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
@@ -107,7 +118,9 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             setSQLParameters(test, st);
             st.setLong(3, test.getId());
             st.executeUpdate();
+            log.info("Test " + test + " was updated");
         } catch (SQLException e) {
+            log.error("Test " + test + " wasn't updated", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);

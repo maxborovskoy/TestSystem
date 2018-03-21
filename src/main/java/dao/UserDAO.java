@@ -2,6 +2,8 @@ package dao;
 
 import config.ConnectionPool;
 import entity.User;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO extends AbstractDAO<User, Long> {
+
+    private final static Logger log = LogManager.getLogger(UserDAO.class);
+
     @Override
     public void add(User entity) {
 
@@ -21,7 +26,9 @@ public class UserDAO extends AbstractDAO<User, Long> {
         ) {
             setSQLParameters(entity, st);
             st.executeUpdate();
+            log.info("User " + entity + " was added");
         } catch (SQLException e) {
+            log.error("User " + entity + " wasn't added", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
@@ -42,6 +49,33 @@ public class UserDAO extends AbstractDAO<User, Long> {
             ) {
                 if (rs.next()) {
                     return getUserById(id, rs);
+                }
+            } catch (SQLException e) {
+                log.error("User(id:" + id + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            log.error("User(id:" + id + ") cannot be gotten", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+        return null;
+    }
+
+    public User get(String name) {
+
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_USER_BY_NAME"));
+        ) {
+            st.setString(1, name);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return getUserByName(name, rs);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -70,9 +104,11 @@ public class UserDAO extends AbstractDAO<User, Long> {
                     userList.add(user);
                 }
             } catch (SQLException e) {
+                log.error("All users cannot be gotten", e);
                 throw new RuntimeException(e);
             }
         } catch (SQLException e) {
+            log.error("All users cannot be gotten", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
@@ -90,12 +126,15 @@ public class UserDAO extends AbstractDAO<User, Long> {
         ) {
             st.setLong(1, id);
             st.executeUpdate();
+            log.info("User(id:" + id + ") was added");
         } catch (SQLException e) {
+            log.error("User(id:" + id + ") wasn't added", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
     }
+
 
     private void freeCon(Connection con) {
         try {
@@ -113,6 +152,15 @@ public class UserDAO extends AbstractDAO<User, Long> {
 
     private User getUserById(Long id, ResultSet rs) throws SQLException {
         String name = rs.getString("name");
+        String pass = rs.getString("pass");
+        boolean tutor = rs.getBoolean("isTutor");
+        User user = new User(name, pass, tutor);
+        user.setId(id);
+        return user;
+    }
+
+    private User getUserByName(String name, ResultSet rs) throws SQLException  {
+        long id = rs.getLong("id");
         String pass = rs.getString("pass");
         boolean tutor = rs.getBoolean("isTutor");
         User user = new User(name, pass, tutor);

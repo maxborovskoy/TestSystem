@@ -97,7 +97,7 @@
                             <a href="/test?id=3" class="btn btn-primary"><fmt:message key="catalog.start"/></a>
                             <small class="text-muted">9 <fmt:message key="catalog.mins"/></small>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
             <div class="col-md-4">
@@ -114,10 +114,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="<col-md-3"></div>
             </div>
         </div>
-    </div>
-</div>
+    </c:otherwise>
+</c:choose>
 
 
 <footer class="text-muted">

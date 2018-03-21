@@ -20,6 +20,7 @@
     <title><fmt:message key="result.result"/></title>
     <script src="js/changeLanguage.js"></script>
 </head>
+
 <body>
 <form>
     <select id="lan" onchange="changeLanguage()">
@@ -31,5 +32,17 @@
 <div><fmt:message key="result.res1"/> ${result.getCorrectAnswers()} <fmt:message key="result.res2"/> ${result.getCountAnswers()} <fmt:message key="result.res3"/></div>
 <div><fmt:message key="result.yourresult"/> ${result.getScore()}%</div>
 
+<footer class="text-muted footer">
+    <div class="container">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>Test tutor system has been developed by: </p>
+        <p>Students: Dmitrii Guba, Elena Okhrimenko, Maksim Borovskoi,
+            Dmitrii Dementev, Andrei Zakomornyi,
+            Boris Korotetskii </p>
+        <p>Mentors: Evgenii Aleksandrov, Arsenii Nazarov, Konstantin Evstafev </p>
+    </div>
+</footer>
 </body>
 </html>
