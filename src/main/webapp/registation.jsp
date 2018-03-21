@@ -31,7 +31,7 @@
 </head>
 <body>
 <form>
-    <select id="language" name="language" onchange="changeLanguage()">
+    <select id="lan"onchange="changeLanguage()">
         <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
         <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
     </select>
@@ -49,7 +49,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="emailInput"><fmt:message key="registration.email"/> </label>
-                    <input type="email" class="form-control" id="emailInput" name="user" placeholder="Enter email">
+                    <input type="email" class="form-control" id="emailInput" name="user" placeholder="<fmt:message key="registration.enteremail"/>">
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -59,10 +59,10 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="passwordFirst"><fmt:message key="registration.password"/> </label>
-                    <input type="password" id="passwordFirst" class="form-control" placeholder="Enter password"
+                    <input type="password" id="passwordFirst" class="form-control" placeholder="<fmt:message key="registration.enterpassword"/>"
                            name="password">
                     <label for="passwordSecond"></label>
-                    <input type="password" id="passwordSecond" class="form-control pass-repeat" placeholder="Repeat password"
+                    <input type="password" id="passwordSecond" class="form-control pass-repeat" placeholder="<fmt:message key="registration.repeatpassword"/>"
                            name="passwordRepeat">
                 </div>
             </div>

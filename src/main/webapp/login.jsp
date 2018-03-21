@@ -33,7 +33,7 @@
 </head>
 <body>
 <form>
-    <select id="language" name="language" onchange="changeLanguage()">
+    <select id="lan" onchange="changeLanguage()">
         <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
         <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
     </select>
@@ -52,7 +52,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="emailInput"><fmt:message key="login.email"/></label>
-                    <input type="email" class="form-control" name="user" id="emailInput" placeholder="Enter email">
+                    <input type="email" class="form-control" name="user" id="emailInput" placeholder="<fmt:message key="login.enteremail"/>">
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -63,7 +63,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="passwordInput"><fmt:message key="login.password"/></label>
-                    <input type="password" id="passwordInput" class="form-control" placeholder="Enter password">
+                    <input type="password" id="passwordInput" class="form-control" placeholder="<fmt:message key="login.enterpassword"/>">
                     <small id="passwordWarn" class="form-text text-muted"><fmt:message key="login.passwordAdvice"/>
                     </small>
                 </div>

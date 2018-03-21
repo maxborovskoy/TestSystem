@@ -23,7 +23,7 @@
 </head>
 <body>
 <form>
-    <select id="language" name="language" onchange="changeLanguage()">
+    <select id="lan" onchange="changeLanguage()">
         <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
         <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
     </select>
@@ -47,7 +47,6 @@
     </c:forEach>
 </ul>
 <input type="hidden" name="testId" value="${test.getId()}">
-<p><input type="submit" value="Отправить"></p>
 <button type="submit"><fmt:message key="test.send"/></button>
 
 </form>

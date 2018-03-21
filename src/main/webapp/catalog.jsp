@@ -46,7 +46,7 @@
     </div>
 </header>
 <form>
-    <select id="language" name="language" onchange="changeLanguage()">
+    <select id="lan" onchange="changeLanguage()">
         <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
         <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
     </select>
