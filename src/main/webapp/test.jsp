@@ -73,7 +73,7 @@
                 <div class="col-md-4">
                     <input type="hidden" name="testId" value="${test.getId()}">
                     <button class="btn btn-primary" type="submit">Finish</button>
-                    <a href="/catalog.jsp">Close without saving</a>
+                    <a href="/catalog">Close without saving</a>
                 </div>
             </div>
         </form>

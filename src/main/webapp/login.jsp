@@ -1,17 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: El
-  Date: 14.03.2018
-  Time: 16:57
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/login.css">
-    <script src="js/bootstrap.min.js"></script>
+    <%--<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">--%>
+    <%--<script src="js/bootstrap.min.js" type="text/javascript"></script>--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/login.css" type="text/css">
 </head>
 <body>
 <div class="container login-form">
@@ -39,7 +34,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="passwordInput">Password</label>
-                    <input type="password" id="passwordInput" name="password" class="form-control" placeholder="Enter password">
+                    <input type="password" id="passwordInput" name="password" class="form-control"
+                           placeholder="Enter password">
                     <small id="passwordWarn" class="form-text text-muted">Never share you password with anyone else
                     </small>
                 </div>
