@@ -37,6 +37,9 @@ public class LoginServlet extends HttpServlet {
         throws ServletException, IOException {
         if (validator.authorizeUser(user)) {
 
+            if("tutor@tutor".equals(user.getName())){
+                user.setTutor(true);
+            }
             HttpSession session = req.getSession();
             session.setAttribute(USER, user);
 

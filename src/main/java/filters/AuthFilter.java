@@ -46,9 +46,9 @@ public class AuthFilter implements Filter {
                 if(uri.endsWith("addTestForm.jsp")
                         || uri.endsWith("addQuestionForm.jsp")
                         || uri.endsWith("addAnswerForm.jsp")
-                        || uri.endsWith("addAnswerServlet")
-                        || uri.endsWith("addQuestionServlet")
-                        || uri.endsWith("addTestServlet")){
+                        || uri.endsWith("addAnswerForm")
+                        || uri.endsWith("addQuestionForm")
+                        || uri.endsWith("addTestForm")){
                     if(user.getTutor()){
                         chain.doFilter(request, response);
                     } else {

@@ -28,6 +28,16 @@
                         help you find yourself in one of provided spheres and of course fill enormous satisfaction from
                         your excellent knowledge.</p>
                 </div>
+                <div class="col-sm-4 col-md-3">
+                    <form action="logoutServlet" method="post" name="LogoutForm">
+                    <button type="submit" class="btn btn-primary">Log out</button>
+                    </form>
+                </div>
+                <div class="col-sm-4 col-md-3">
+                                    <form action="addTestForm" method="get" name="createTestForm">
+                                    <button type="submit" class="btn btn-primary">Create test</button>
+                                    </form>
+                                </div>
             </div>
         </div>
     </div>
