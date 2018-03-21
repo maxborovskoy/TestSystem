@@ -27,27 +27,24 @@
         </div>
     </header>
     <main role="main" class="container">
-    <form action="addTestForm" method="post" name="loginForm">
     <div class="jumbotron">
+    <form action="addTestForm" method="post" name="addTestForm">
         <h2>Add test form</h2>
-        <form>
             <div class="form-group">
                 <label for="testNameInput">Test title:</label>
                 <input type="testName" class="form-control" id="testNameInput" placeholder="Enter text">
             </div>
-        </form>
-        <form>
              <label for="theme">Choose theme:</label>
              <select class="form-control" id="theme">
                 <option>Math</option>
                 <option>Physics</option>
                 <option>English</option>
              </select>
-        </form>
-
-        <button type="submit" class="btn btn-primary" href="/addQuestionForm">Add question</button>
+        <button type="submit" class="btn btn-primary">Add question</button>
         <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger">Cancel</button>
+        <button type="submit" class="btn btn-danger">Cancel</button>
+    </form>
+
     </div>
     </main>
 

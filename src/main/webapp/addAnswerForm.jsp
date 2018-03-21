@@ -28,14 +28,13 @@
     </header>
     <main role="main" class="container">
     <div class="jumbotron">
+        <form action="addAnswerForm" method="post" name="addAnswerForm">
         <h2>Add answer form</h2>
-        <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Answer text:</label>
                     <input type="question" class="form-control" placeholder="Enter text">
                 <small id="emailHelp" class="form-text text-muted"></small>
             </div>
-        </form>
         <div class="form-check">
           <label class="form-check-label">
             <input class="form-check-input" type="checkbox" value="">
@@ -43,7 +42,8 @@
           </label>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger">Cancel</button>
+        <button type="submit" class="btn btn-danger">Cancel</button>
+        </form>
     </div>
     </main>
 
