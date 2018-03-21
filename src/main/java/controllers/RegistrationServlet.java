@@ -22,15 +22,19 @@ public class RegistrationServlet extends HttpServlet {
         String userNameCred = req.getParameter(USER);
         String userPassCred = req.getParameter(PASSWORD);
         String userRePassCred = req.getParameter(REPASSWORD);
-        User user = new User(userNameCred, userPassCred, false);
-
-        if(userService.isAlreadyExists(user)){
-            req.getRequestDispatcher("/registation.jsp").forward(req, resp);
-        } else if(!userPassCred.equals(userRePassCred)){
-            req.getRequestDispatcher("/registation.jsp").forward(req, resp);
+        if(userNameCred.isEmpty() || userPassCred.isEmpty() || userRePassCred.isEmpty()){
+            req.getRequestDispatcher("/registration.jsp").forward(req, resp);
         } else {
-            userService.registerUser(user);
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            User user = new User(userNameCred, userPassCred, false);
+
+            if(userService.isAlreadyExists(user)){
+                req.getRequestDispatcher("/registration.jsp").forward(req, resp);
+            } else if(!userPassCred.equals(userRePassCred)){
+                req.getRequestDispatcher("/registration.jsp").forward(req, resp);
+            } else {
+                userService.registerUser(user);
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            }
         }
     }
 }

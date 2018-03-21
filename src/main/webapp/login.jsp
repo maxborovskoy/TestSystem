@@ -50,7 +50,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-primary">Log in</button>
-                <a href="/registation.jsp">Sign up</a>
+                <a href="/registration.jsp">Sign up</a>
             </div>
         </div>
     </form>

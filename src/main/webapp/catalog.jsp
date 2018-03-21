@@ -22,22 +22,24 @@
     <div class="bg-dark" id="navbarHeader">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
+                <div class="col-md-6 py-4">
                     <h4 class="text-white">TUTOR TEST SYSTEM</h4>
                     <p class="text-muted">Tutor test system has been developed to improve your skills,
                         help you find yourself in one of provided spheres and of course fill enormous satisfaction from
                         your excellent knowledge.</p>
                 </div>
-                <div class="col-sm-4 col-md-3">
+                <c:if test="${sessionScope.user.getTutor()}">
+                    <div class="col-md-5">
+                        <form action="addTestForm" method="get" name="createTestForm">
+                            <button type="submit" class="btn btn-primary">Create test</button>
+                        </form>
+                    </div>
+                </c:if>
+                <div class="col-md-1">
                     <form action="logoutServlet" method="post" name="LogoutForm">
-                    <button type="submit" class="btn btn-primary">Log out</button>
+                        <button type="submit" class="btn btn-primary">Log out</button>
                     </form>
                 </div>
-                <div class="col-sm-4 col-md-3">
-                                    <form action="addTestForm" method="get" name="createTestForm">
-                                    <button type="submit" class="btn btn-primary">Create test</button>
-                                    </form>
-                                </div>
             </div>
         </div>
     </div>
@@ -52,9 +54,28 @@
                     <c:forEach items="${requestScope.allTests}" var="test">
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top test-img"
-                                     src="images/math.png"
-                                     alt="Card image cap">
+                                <c:choose>
+                                    <c:when test="${test.getType().getName() eq 'Math'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/math.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                    <c:when test="${test.getType().getName() eq 'Physics'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/physics.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                    <c:when test="${test.getType().getName() eq 'Russian'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/russian.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                    <c:when test="${test.getType().getName() eq 'English'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/english.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                </c:choose>
                                 <div class="card-body">
                                     <h5 class="card-title">${test.getName()}</h5>
                                     <p class="card-text">This is a wider card with supporting text below as a

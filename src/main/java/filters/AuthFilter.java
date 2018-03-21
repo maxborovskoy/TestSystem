@@ -43,13 +43,13 @@ public class AuthFilter implements Filter {
         } else {
             User user = null;
             if (session != null && (user = (User) session.getAttribute("user")) != null) {
-                if(uri.endsWith("addTestForm.jsp")
+                if (uri.endsWith("addTestForm.jsp")
                         || uri.endsWith("addQuestionForm.jsp")
                         || uri.endsWith("addAnswerForm.jsp")
                         || uri.endsWith("addAnswerForm")
                         || uri.endsWith("addQuestionForm")
-                        || uri.endsWith("addTestForm")){
-                    if(user.getTutor()){
+                        || uri.endsWith("addTestForm")) {
+                    if (user.getTutor()) {
                         chain.doFilter(request, response);
                     } else {
                         ((HttpServletResponse) response).sendRedirect("forbidden.jsp");
@@ -58,7 +58,10 @@ public class AuthFilter implements Filter {
                     chain.doFilter(request, response);
                 }
             } else {
-                if (!(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
+                if (!(uri.endsWith("login.jsp")
+                        || uri.endsWith("loginServlet")
+                        || uri.endsWith("registration.jsp")
+                        || uri.endsWith("registrationServlet"))) {
                     ((HttpServletResponse) response).sendRedirect("login.jsp");
                 } else {
                     chain.doFilter(request, response);

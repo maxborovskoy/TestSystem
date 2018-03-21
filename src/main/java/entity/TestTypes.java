@@ -3,6 +3,7 @@ package entity;
 public enum TestTypes {
     MATH("Math"),
     PHYSICS("Physics"),
+    RUSSIAN("Russian"),
     ENGLISH("English");
 
     private String name;
@@ -19,6 +20,7 @@ public enum TestTypes {
         switch (name) {
             case "Math": return TestTypes.MATH;
             case "Physics": return TestTypes.PHYSICS;
+            case "Russian": return TestTypes.RUSSIAN;
             case "English": return TestTypes.ENGLISH;
         }
         return null;
