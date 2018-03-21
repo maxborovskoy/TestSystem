@@ -1,5 +1,9 @@
 package filters;
 
+import entity.User;
+import services.UserService;
+import services.UserServiceImpl;
+
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,6 +21,7 @@ import javax.servlet.http.HttpSession;
 //@WebFilter("/AuthFilter")
 public class AuthFilter implements Filter {
 
+    private UserService userService = new UserServiceImpl();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,14 +34,23 @@ public class AuthFilter implements Filter {
     }
 
     private void redirect(ServletRequest request, ServletResponse response, FilterChain chain, HttpSession session)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
         String uri = ((HttpServletRequest) request).getRequestURI();
 
         if (session == null &&
-            !(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
+                !(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
             ((HttpServletResponse) response).sendRedirect("login.jsp");
         } else {
-            chain.doFilter(request, response);
+            User user = (User) session.getAttribute("user");
+            if(uri.endsWith()){
+                if(user.getTutor()){
+                    chain.doFilter(request, response);
+                } else {
+                    ((HttpServletResponse) response).sendRedirect("forbiden.jsp");
+                }
+            } else {
+                chain.doFilter(request, response);
+            }
         }
     }
 
