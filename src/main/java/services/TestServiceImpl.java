@@ -1,20 +1,23 @@
 package services;
 
 import dao.TestDAO;
+import entity.Question;
 import entity.Test;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TestServiceImpl implements TestService {
 
     private TestDAO testDAO = new TestDAO();
 
     @Override
-    public boolean addTest(Test test) {
+    public void addTest(Test test) {
         test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(test.getId()));
         testDAO.add(test);
-        return true;
-
     }
 
     @Override
@@ -30,15 +33,13 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public boolean removeTest(Long id) {
+    public void removeTest(Long id) {
         testDAO.remove(id);
         new QuestionServiceImpl().removeAllQuestionsByTestId(id);
-        return true;
     }
 
     @Override
-    public boolean updateTest(Test test) {
+    public void updateTest(Test test) {
         testDAO.update(test);
-        return true;
     }
 }

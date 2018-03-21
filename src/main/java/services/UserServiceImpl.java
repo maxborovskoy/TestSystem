@@ -1,31 +1,41 @@
 package services;
 
+import dao.UserDAO;
 import entity.User;
+
+import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
+    private static final UserDAO userDAO = new UserDAO();
+
     @Override
     public boolean isAlreadyExists(User user) {
+        if (userDAO.get(user.getName()) != null) {
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean authorizeUser(User user) {
-        return true;
+        User u = userDAO.get(user.getName());
+        if (u != null) {
+            return user.getPassword().equals(u.getPassword());
+        }
+        return false;
     }
 
     @Override
-    public boolean registerUser(User user) {
-        return true;
+    public void registerUser(User user) {
+        userDAO.add(user);
     }
 
     @Override
     public User get(long id) {
-        return null;
+        return userDAO.get(id);
     }
 
-    @Override
-    public void updateUserPassword(String name, String oldPassword, String newPassword) {
 
-    }
 }

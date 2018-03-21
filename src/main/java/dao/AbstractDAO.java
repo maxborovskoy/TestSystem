@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class AbstractDAO<E, K> {
-    ResourceBundle sqlQueries = ResourceBundle.getBundle("sql_queries_dao");
-    ConnectionPool pool;
+    protected ResourceBundle sqlQueries = ResourceBundle.getBundle("sql_queries_dao");
+    protected ConnectionPool pool;
 
     {
         try {

@@ -46,7 +46,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Boolean updateText(String text, Question question) {
         List<Question> questionList = getAllQuestionsByTestId(question.getTestId());
         for (Question q : questionList) {
-            if (q.getText().equals(text)) return false;
+            if (q.getText().equals(text)) {
+                return false;
+            }
         }
 
         questionDAO.updateTextById(question.getId(), text);

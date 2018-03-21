@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,83 +34,53 @@
 </header>
 
 
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/math.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Test Math</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=1" class="btn btn-primary">Start test</a>
-                            <small class="text-muted">9 mins</small>
+<c:choose>
+    <c:when test="${(requestScope.allTests ne null) && (not empty requestScope.allTests)}">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <c:forEach items="${requestScope.allTests}" var="test">
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top test-img"
+                                     src="images/math.png"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">${test.getName()}</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a
+                                        natural lead-in to
+                                        additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
+                                            test</a>
+                                        <small class="text-muted">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/physics.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Test Physics</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=2" class="btn btn-primary">Start test</a>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/russian.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Test Russian</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=3" class="btn btn-primary">Start test</a>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top test-img"
-                         src="images/english.png"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Test English</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="/test?id=4" class="btn btn-primary">Start test</a>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </c:when>
+    <c:otherwise>
+        <div class="container">
+            <div class="row">
+                <div class="<col-md-3"></div>
+                <div class="<col-md-6">
+                    <h1 class="mt-5">There is no tests yet</h1>
+                    <p class="lead">We haven't created any test yet. Please come later, may be something will
+                        change soon.</p>
+                </div>
+                <div class="<col-md-3"></div>
+            </div>
+        </div>
+    </c:otherwise>
+</c:choose>
 
 
 <footer class="text-muted">
     <div class="container">
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
         <p>Test tutor system has been developed by: </p>
         <p>Students: Dmitrii Guba, Elena Okhrimenko, Maksim Borovskoi,
             Dmitrii Dementev, Andrei Zakomornyi,

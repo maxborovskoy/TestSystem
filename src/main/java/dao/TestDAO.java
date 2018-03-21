@@ -1,8 +1,11 @@
 package dao;
 
+import config.ConnectionPool;
 import entity.Question;
 import entity.Test;
 import entity.TestTypes;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,139 +16,139 @@ import java.util.List;
 
 public class TestDAO extends AbstractDAO<Test, Long> {
 
+    private final static Logger log = LogManager.getLogger(TestDAO.class);
+
     @Override
     public void add(Test test) {
 
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
+        Connection con = pool.getConnection();
 
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("ADD_TEST"));
-            st.setString(1, test.getName());
-            st.setString(2, test.getType().getName());
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_TEST"));
+        ) {
+            setSQLParameters(test, st);
             st.executeUpdate();
-            con.close();
+            log.info("Test " + test + " was added");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Test " + test + " wasn't added", e);
             throw new RuntimeException(e);
         } finally {
-            try {
-                if (st != null) st.close();
-                pool.freeConnection(con);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            freeCon(con);
         }
     }
 
     @Override
     public Test get(Long id) {
-        Connection con = null;
-        ResultSet rs = null;
-        try (PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TEST"))
+
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TEST"))
         ) {
-            con = pool.getConnection();
             st.setLong(1, id);
-            rs = st.executeQuery();
-            if (rs.next()) {
-                long testId = rs.getLong("id");
-                String name = rs.getString("name");
-                TestTypes type = TestTypes.getType(rs.getString("type"));
-                List<Question> questionList = new ArrayList<>();
-                Test test = new Test(name, questionList, type);
-                return test;
-            } else {
-                return null;
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return getTestById(id, rs);
+                } else {
+                    return null;
+                }
+            } catch (SQLException e) {
+                log.error("Test(id:" + id + ") cannot be gotten", e);
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Test(id:" + id + ") cannot be gotten", e);
             throw new RuntimeException(e);
         } finally {
-            try {
-                if (con != null) con.close();
-                pool.freeConnection(con);
-                if (rs != null) rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            freeCon(con);
         }
     }
 
     public List<Test> getAll() {
-        Connection con = null;
-        ResultSet rs = null;
+
+        Connection con = pool.getConnection();
         List<Test> testList = new ArrayList<>();
-        try (PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_TESTS"))) {
-            con = pool.getConnection();
-            rs = st.executeQuery();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_TESTS"));
+                ResultSet rs = st.executeQuery()
+        ) {
             while (rs.next()) {
                 long testId = rs.getLong("id");
-                String name = rs.getString("name");
-                TestTypes type = TestTypes.getType(rs.getString("type"));
-                List<Question> questionList = new ArrayList<>();
-                Test test = new Test(name, questionList, type);
+                Test test = getTestById(testId, rs);
                 testList.add(test);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("All tests cannot be gotten", e);
             throw new RuntimeException(e);
         } finally {
-            try {
-                if (con != null) con.close();
-                pool.freeConnection(con);
-                if (rs != null) rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            freeCon(con);
         }
         return testList;
     }
 
     @Override
     public void remove(Long id) {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("REMOVE_TEST"));
+
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("REMOVE_TEST"))
+        ) {
             st.setLong(1, id);
             st.executeUpdate();
-            con.close();
+            log.info("Test(id:" + id + ") was removed");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Test(id:" + id + ") wasn't removed", e);
             throw new RuntimeException(e);
         } finally {
-            try {
-                if (st != null) st.close();
-                pool.freeConnection(con);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            freeCon(con);
         }
     }
 
     public void update(Test test) {
-        Connection con = null;
-        PreparedStatement st = null;
-        try {
-            con = pool.getConnection();
-            st = con.prepareStatement(sqlQueries.getString("UPDATE_TEST"));
-            st.setString(1, test.getName());
-            st.setString(2, test.getType().getName());
+
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("UPDATE_TEST"))
+        ) {
+            setSQLParameters(test, st);
             st.setLong(3, test.getId());
             st.executeUpdate();
-            con.close();
+            log.info("Test " + test + " was updated");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Test " + test + " wasn't updated", e);
             throw new RuntimeException(e);
         } finally {
-            try {
-                if (st != null) st.close();
-                pool.freeConnection(con);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            freeCon(con);
         }
+    }
+
+    private void freeCon(Connection con) {
+        try {
+            ConnectionPool.freeConnection(con);
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    private void setSQLParameters(Test test, PreparedStatement st) throws SQLException {
+        st.setString(1, test.getName());
+        st.setString(2, test.getType().getName());
+    }
+
+    private Test getTestById(Long id, ResultSet rs) throws SQLException {
+        String name = rs.getString("name");
+        TestTypes type = TestTypes.getType(rs.getString("type"));
+
+        QuestionDAO help = new QuestionDAO();
+        List<Question> questionList = help.getAllQuestionsByTestId(id);
+
+        Test test = new Test(name, questionList, type);
+        test.setId(id);
+        return test;
     }
 }
