@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         if (validator.authorizeUser(user)) {
 
             HttpSession session = req.getSession();
-            session.setAttribute(USER, credentialsUser);
+            session.setAttribute(USER, user);
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/catalog");
             requestDispatcher.forward(req, resp);
