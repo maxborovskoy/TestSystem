@@ -4,7 +4,7 @@ import entity.User;
 
 public interface UserService {
 
-    boolean isAlreadyExists(String username);
+    boolean isAlreadyExists(User user);
 
     boolean authorizeUser(User user);
 

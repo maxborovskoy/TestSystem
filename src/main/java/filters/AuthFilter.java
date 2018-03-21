@@ -41,15 +41,24 @@ public class AuthFilter implements Filter {
                 !(uri.endsWith("login.jsp") || uri.endsWith("loginServlet"))) {
             ((HttpServletResponse) response).sendRedirect("login.jsp");
         } else {
-            User user = (User) session.getAttribute("user");
-            if(uri.endsWith()){
-                if(user.getTutor()){
-                    chain.doFilter(request, response);
+            User user = null;
+            if (session != null && (user = (User) session.getAttribute("user")) != null) {
+                if(uri.endsWith("addTestForm.jsp")
+                        || uri.endsWith("addQuestionForm.jsp")
+                        || uri.endsWith("addAnswerForm.jsp")
+                        || uri.endsWith("addAnswerServlet")
+                        || uri.endsWith("addQuestionServlet")
+                        || uri.endsWith("addTestServlet")){
+                    if(user.getTutor()){
+                        chain.doFilter(request, response);
+                    } else {
+                        ((HttpServletResponse) response).sendRedirect("forbidden.jsp");
+                    }
                 } else {
-                    ((HttpServletResponse) response).sendRedirect("forbiden.jsp");
+                    chain.doFilter(request, response);
                 }
             } else {
-                chain.doFilter(request, response);
+                ((HttpServletResponse) response).sendRedirect("login.jsp");
             }
         }
     }

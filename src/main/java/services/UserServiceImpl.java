@@ -11,16 +11,20 @@ public class UserServiceImpl implements UserService {
     private static final UserDAO userDAO = new UserDAO();
 
     @Override
-    public boolean isAlreadyExists(String username) {
-        return userDAO.getAll().stream()
-                .anyMatch(someUser -> username.equals(someUser.getName()));
+    public boolean isAlreadyExists(User user) {
+        if (userDAO.get(user.getName()) != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean authorizeUser(User user) {
-        return userDAO.getAll().stream()
-                .anyMatch(someUser -> user.getName().equals(someUser.getName())
-                        && user.getPassword().equals(someUser.getPassword()));
+        User u = userDAO.get(user.getName());
+        if (u != null) {
+            return user.getPassword().equals(u.getPassword());
+        }
+        return false;
     }
 
     @Override
