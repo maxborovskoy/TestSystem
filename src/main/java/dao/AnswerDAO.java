@@ -2,6 +2,8 @@ package dao;
 
 import config.ConnectionPool;
 import entity.Answer;
+import org.apache.log4j.Logger;
+import org.apache.log4j.LogManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,7 @@ import java.util.List;
 
 public class AnswerDAO extends AbstractDAO<Answer, Long> {
 
+    private final static Logger log = LogManager.getLogger(AnswerDAO.class);
 
     @Override
     public void add(Answer answer) {
@@ -23,8 +26,10 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         ) {
             setSQLParameters(answer, st);
             st.executeUpdate();
+            log.info("Answer " + answer + " was added");
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.error("Answer " + answer + " wasn't added", e);
+            throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
@@ -46,10 +51,12 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
                     return getAnswerById(id, rs);
                 }
             } catch (SQLException e) {
+                log.error("Answer(id:" + id + ") cannot be gotten", e);
                 throw new RuntimeException(e);
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.error("Answer(id:" + id + ") cannot be gotten", e);
+            throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
@@ -73,10 +80,12 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
                     answerList.add(a);
                 }
             } catch (SQLException e) {
-                throw new RuntimeException();
+                log.error("All answers for question(id:" + questionId + ") cannot be gotten", e);
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.error("All answers for question(id:" + questionId + ") cannot be gotten", e);
+            throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
@@ -93,7 +102,9 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         ) {
             st.setLong(1, id);
             st.executeUpdate();
+            log.info("Answer(id:" + id + ") was removed");
         } catch (SQLException e) {
+            log.error("Answer(id:" + id + ") wasn't removed", e);
             throw new RuntimeException();
         } finally {
             freeCon(con);
@@ -109,7 +120,9 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         ) {
             st.setLong(1, questionId);
             st.executeUpdate();
+            log.info("All answers for question(id:" + questionId + ") were removed");
         } catch (SQLException e) {
+            log.error("All answers for question(id:" + questionId + ") weren't removed", e);
             throw new RuntimeException();
         } finally {
             freeCon(con);
@@ -125,7 +138,9 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         ) {
             setSQLParametersForUpdate(id, text, isRight, st);
             st.executeUpdate();
+            log.info("Answer(id:" + id + ") was updated");
         } catch (SQLException e) {
+            log.error("Answer(id:" + id + ") wasn't updated", e);
             throw new RuntimeException();
         } finally {
             freeCon(con);
