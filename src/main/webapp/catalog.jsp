@@ -30,6 +30,11 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/changeLanguage.js"></script>
+    <%--<link rel="stylesheet" href="./css/bootstrap.min.css">--%>
+    <%--<script src="js/bootstrap.min.js"></script>--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -40,6 +45,18 @@
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4 class="text-white"><fmt:message key="catalog.tts"/> </h4>
                     <p class="text-muted"><fmt:message key="catalog.description"/> </p>
+                </div>
+                <c:if test="${sessionScope.user.getTutor()}">
+                    <div class="col-md-5">
+                        <form action="addTestForm" method="get" name="createTestForm">
+                            <button type="submit" class="btn btn-primary">Create test</button>
+                        </form>
+                    </div>
+                </c:if>
+                <div class="col-md-1">
+                    <form action="logoutServlet" method="post" name="LogoutForm">
+                        <button type="submit" class="btn btn-primary">Log out</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -52,6 +69,49 @@
     </select>
 </form>
 
+
+<c:choose>
+    <c:when test="${(requestScope.allTests ne null) && (not empty requestScope.allTests)}">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <c:forEach items="${requestScope.allTests}" var="test">
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <c:choose>
+                                    <c:when test="${test.getType().getName() eq 'Math'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/math.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                    <c:when test="${test.getType().getName() eq 'Physics'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/physics.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                    <c:when test="${test.getType().getName() eq 'Russian'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/russian.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                    <c:when test="${test.getType().getName() eq 'English'}">
+                                        <img class="card-img-top test-img"
+                                             src="images/english.png"
+                                             alt="Card image cap">
+                                    </c:when>
+                                </c:choose>
+                                <div class="card-body">
+                                    <h5 class="card-title">${test.getName()}</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a
+                                        natural lead-in to
+                                        additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
+                                            test</a>
+                                        <small class="text-muted">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">

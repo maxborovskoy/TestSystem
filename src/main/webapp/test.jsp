@@ -22,6 +22,13 @@
     <title><fmt:message key="test.testpage"/></title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
+    <title>${test.getName()}</title>
+    <link rel="stylesheet" href="css/test.css" type="text/css">
+    <%--<link rel="stylesheet" href="./css/bootstrap.min.css">--%>
+    <%--<script src="js/bootstrap.min.js"></script>--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <form>
@@ -83,7 +90,7 @@
                 <div class="col-md-4">
                     <input type="hidden" name="testId" value="${test.getId()}">
                     <button class="btn btn-primary" type="submit">Finish</button>
-                    <a href="/catalog.jsp">Close without saving</a>
+                    <a href="/catalog">Close without saving</a>
                 </div>
             </div>
         </form>

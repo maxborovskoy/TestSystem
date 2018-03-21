@@ -30,11 +30,13 @@ public class TestPageServlet extends HttpServlet {
         Map<Long, List<Long>> answers = new HashMap<>();
         for (Question q : test.getQuest())
         {
-            List<Long> answerList = Arrays.stream(req.getParameterValues("q"+q.getId()))
-                    .mapToLong(Long::parseLong)
-                    .boxed()
-                    .collect(Collectors.toList());
-            answers.put(q.getId(), answerList);
+            if(req.getParameterValues("q" + q.getId()) != null) {
+                List<Long> answerList = Arrays.stream(req.getParameterValues("q" + q.getId()))
+                        .mapToLong(Long::parseLong)
+                        .boxed()
+                        .collect(Collectors.toList());
+                answers.put(q.getId(), answerList);
+            }
         }
         TestResult result = new TestCheckerServiceImpl().CheckTest(test, answers);
 
