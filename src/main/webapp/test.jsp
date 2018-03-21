@@ -1,44 +1,54 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
+    <c:if test="${not empty param.language}">
+        <c:set var="locale" scope="session" value="${param.language}"/>
+    </c:if>
+    <c:if test="${empty sessionScope.locale}">
+        <fmt:setLocale value="en"/>
+    </c:if>
+    <c:if test="${sessionScope.locale eq 'en'}">
+        <fmt:setLocale value="en"/>
+    </c:if>
+    <c:if test="${sessionScope.locale eq 'ru'}">
+        <fmt:setLocale value="ru"/>
+    </c:if>
+    <fmt:setBundle basename="internationalization"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>${test.getName()}</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/test.css" type="text/css">
-    <script src="js/bootstrap.min.js"></script>
+    <title><fmt:message key="test.testpage"/></title>
+    <link rel="stylesheet" href="css/catalog.css" type="text/css">
+    <script src="js/changeLanguage.js"></script>
 </head>
 <body>
-<div class="mainContent">
-    <header>
-        <div class="bg-dark">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 col-md-10 py-4">
-                        <h4 class="text-white">${test.getName()}</h4>
-                        <p class="text-muted">
-                            The test consists of questions with with choice of answer. There can be one or more right answers. Pay attention to wordings.
-                            After the test don't close browser or redirect into another web-site.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-    <div class="container">
-        <form action="testpage" method="POST" name="testpageForm">
-            <c:set var="qNumber" value="0"/>
-            <c:forEach items="${test.getQuest()}" var="q">
-                <c:set var="qNumber" value="${qNumber+1}"/>
-                <c:set var="correctAnswers" value="0"/>
+<form>
+    <select id="lan" onchange="changeLanguage()">
+        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
+        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
+    </select>
+</form>
+<h1>${test.getName()}</h1>
+<form action="" method="POST">
+<ul>
+    <c:forEach items="${test.getQuest()}" var="q">
+        <c:set var="correctAnswers" value="0"/><c:forEach items="${q.getAnswers()}" var="a"><c:if test="${a.getRight()}"><c:set var="correctAnswers" value="${correctAnswers+1}"/></c:if></c:forEach>
+        <li>
+            <p><b>${q.getText()}</b></p>
                 <c:forEach items="${q.getAnswers()}" var="a">
                     <c:if test="${a.getRight()}">
                         <c:set var="correctAnswers" value="${correctAnswers+1}"/>
                     </c:if>
                 </c:forEach>
+        </li>
+    </c:forEach>
+</ul>
+<input type="hidden" name="testId" value="${test.getId()}">
+<button type="submit"><fmt:message key="test.send"/></button>
+
+</form>
 
                 <div class="row justify-content-md-center">
                     <div class="col-6.col-md-1 order-first">
