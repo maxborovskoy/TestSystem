@@ -27,6 +27,7 @@ public class RegistrationServlet extends HttpServlet {
         } else {
             User user = new User(userNameCred, userPassCred, false);
 
+
             if(userService.isAlreadyExists(user)){
                 req.getRequestDispatcher("/registration.jsp").forward(req, resp);
             } else if(!userPassCred.equals(userRePassCred)){
