@@ -10,11 +10,20 @@ public class Test implements Serializable {
     private String name;
     private List<Question> quest;
     private TestTypes type;
+    private String description;
 
     public Test(String name, List<Question> quest, TestTypes type) {
         this.name = name;
         this.quest = quest;
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getId() {
