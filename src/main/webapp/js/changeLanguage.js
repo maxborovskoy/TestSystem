@@ -12,3 +12,15 @@ function changeLanguage()
         document.location.href = url + "&language=" + language;
 }
 
+function changeTheme() {
+    var select = document.getElementById("theme");
+    var theme = select.options[select.selectedIndex].value;
+    var url = document.URL;
+    if(!url.includes("?"))
+        document.location.href = document.URL + "?theme=" + theme;
+    else if(url.match("theme=")) {
+        document.location.href = url.replace(/theme=../, "theme=" + theme);
+    }
+    else
+        document.location.href = url + "&theme=" + theme;
+}

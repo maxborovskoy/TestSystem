@@ -9,6 +9,7 @@
     </c:if>
     <c:if test="${empty sessionScope.locale}">
         <fmt:setLocale value="en"/>
+        <c:set var="locale" scope="session" value="en"/>
     </c:if>
     <c:if test="${sessionScope.locale eq 'en'}">
         <fmt:setLocale value="en"/>

@@ -6,8 +6,25 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <head>
+    <c:if test="${not empty param.language}">
+        <c:set var="locale" scope="session" value="${param.language}"/>
+    </c:if>
+    <c:if test="${empty sessionScope.locale}">
+        <fmt:setLocale value="en"/>
+        <c:set var="locale" scope="session" value="en"/>
+    </c:if>
+    <c:if test="${sessionScope.locale eq 'en'}">
+        <fmt:setLocale value="en"/>
+    </c:if>
+    <c:if test="${sessionScope.locale eq 'ru'}">
+        <fmt:setLocale value="ru"/>
+    </c:if>
+
+    <fmt:setBundle basename="internationalization"/>
     <title>Login</title>
     <script src="js/changeLanguage.js"></script>
     <link rel="stylesheet" href="css/language.css">
