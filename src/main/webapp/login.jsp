@@ -38,9 +38,11 @@
 <body>
 <form>
     <select id="lan" onchange="changeLanguage()">
-        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
-        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
+        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/><img src="images/en.ico"></option>
+        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/><img src="images/ru.ico"></option>
     </select>
+    <img src="images/en.ico" data-lang="en" id="lang en" class="img-circle" onclick="changeImage()" width="304" height="236">
+
 </form>
 <div class="container login-form">
     <form action="loginServlet" method="post" name="loginForm">
