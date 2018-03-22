@@ -25,6 +25,7 @@
     </c:if>
     <c:if test="${empty sessionScope.locale}">
         <fmt:setLocale value="en"/>
+        <c:set var="locale" scope="session" value="en"/>
     </c:if>
     <c:if test="${sessionScope.locale eq 'en'}">
         <fmt:setLocale value="en"/>
@@ -35,16 +36,14 @@
     <fmt:setBundle basename="internationalization"/>
     <title><fmt:message key="login.login"/></title>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/language.css">
     <script src="js/changeLanguage.js"></script>
 
 </head>
 <body>
-<form>
-    <select id="lan" onchange="changeLanguage()">
-        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
-        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
-    </select>
-</form>
+
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+
 <div class="container login-form">
     <form action="loginServlet" method="post" name="loginForm">
         <div class="row">

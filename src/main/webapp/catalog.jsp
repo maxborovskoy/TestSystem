@@ -15,6 +15,7 @@
     </c:if>
     <c:if test="${empty sessionScope.locale}">
         <fmt:setLocale value="en"/>
+        <c:set var="locale" scope="session" value="en"/>
     </c:if>
     <c:if test="${sessionScope.locale eq 'en'}">
         <fmt:setLocale value="en"/>
@@ -24,10 +25,18 @@
     </c:if>
 
     <fmt:setBundle basename="internationalization"/>
+
+    <c:if test="${not empty param.theme}">
+        <c:set var="theme" scope="session" value="${param.theme}"/>
+    </c:if>
+    <c:if test="${empty sessionScope.theme}">
+        <c:set var="theme" scope="session" value="all"/>
+    </c:if>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="catalog.catalog"/></title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
+    <link rel="stylesheet" href="css/language.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
 
 <header>
     <div class="bg-dark" id="navbarHeader">
@@ -61,14 +71,16 @@
         </div>
     </div>
 </header>
+
 <form>
-    <select id="lan" onchange="changeLanguage()">
-        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
-        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
+    <select id="theme" onchange="changeTheme()">
+        <option value="all" ${sessionScope.locale == 'all' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
+        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="catalog.english"/></option>
+        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="catalog.russian"/></option>
+        <option value="math" ${sessionScope.locale == 'math' ? 'selected' : ''}><fmt:message key="catalog.math"/></option>
+        <option value="phisics" ${sessionScope.locale == 'phisics' ? 'selected' : ''}><fmt:message key="catalog.phisics"/></option>
     </select>
 </form>
-
-
 <c:choose>
     <c:when test="${(requestScope.allTests ne null) && (not empty requestScope.allTests)}">
         <div class="album py-5 bg-light">
@@ -79,21 +91,41 @@
                             <div class="card mb-4 box-shadow">
                                 <c:choose>
                                     <c:when test="${test.getType().getName() eq 'Math'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                        <div class="d-flex justify-content-end align-items-baseline">
+                                          <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
+                                        </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/math.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'Physics'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                      <div class="d-flex justify-content-end align-items-baseline">
+                                          <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
+                                      </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/physics.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'Russian'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                       <div class="d-flex justify-content-end align-items-baseline">
+                                         <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
+                                       </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/russian.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'English'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                       <div class="d-flex justify-content-end align-items-baseline">
+                                         <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
+                                       </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/english.png"
                                              alt="Card image cap">
