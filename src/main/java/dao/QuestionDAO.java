@@ -18,7 +18,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
     private final static Logger log = LogManager.getLogger(QuestionDAO.class);
 
     @Override
-    public void add(Question question) {
+    public Question add(Question question) {
 
         Connection con = pool.getConnection();
 
@@ -29,6 +29,8 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             setSQLParameters(st, question.getText(), question.getTestId());
             st.executeUpdate();
             log.info("Question " + question + " was added");
+            question.setId(getQuestionsIdByTextAndTestId(question.getText(), question.getTestId()));
+            return question;
         } catch (SQLException e) {
             log.error("Question " + question + " wasn't added", e);
             throw new RuntimeException();
@@ -36,6 +38,35 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
             freeCon(con);
         }
     }
+
+    private long getQuestionsIdByTextAndTestId(String text, long testId) {
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_QUESTION_BY_TEXT_AND_TEST_ID"));
+        ) {
+            st.setString(2, text);
+            st.setLong(3, testId);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                } else{
+                    return -1;
+                }
+            } catch (SQLException e) {
+                log.error("Question(text: " + text + ", testId: " + testId + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            log.error("Question(text: " + text + ", testId: " + testId + ") cannot be gotten", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+    }
+
 
     @Override
     public Question get(Long id) {

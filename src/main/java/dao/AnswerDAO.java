@@ -17,7 +17,7 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
     private final static Logger log = LogManager.getLogger(AnswerDAO.class);
 
     @Override
-    public void add(Answer answer) {
+    public Answer add(Answer answer) {
 
         Connection con = pool.getConnection();
 
@@ -27,12 +27,41 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
             setSQLParameters(answer, st);
             st.executeUpdate();
             log.info("Answer " + answer + " was added");
+
+            return get(answer.getText(), answer.getQuestionId());
         } catch (SQLException e) {
             log.error("Answer " + answer + " wasn't added", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);
         }
+    }
+
+    private Answer get(String text, long questionId) {
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER_BY_TEXT_AND_QUESTION_ID"))
+        ) {
+            st.setString(2, text);
+            st.setLong(4, questionId);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return getAnswerByTextAndQuestionId(text, questionId, rs);
+                }
+            } catch (SQLException e) {
+                log.error("Answer(text:" + text + ", questionId:" + questionId + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            log.error("Answer(text:" + text + ", questionId:" + questionId + ") cannot be gotten", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+        return null;
     }
 
     @Override
@@ -179,6 +208,14 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
     private Answer getAnswerByQuestionId(Long questionId, ResultSet rs) throws SQLException {
         long id = rs.getLong("id");
         String text = rs.getString("text");
+        boolean isRight = rs.getBoolean("isRight");
+        Answer a = new Answer(text, isRight, questionId);
+        a.setId(id);
+        return a;
+    }
+
+    private Answer getAnswerByTextAndQuestionId(String text, Long questionId, ResultSet rs) throws SQLException {
+        long id = rs.getLong("id");
         boolean isRight = rs.getBoolean("isRight");
         Answer a = new Answer(text, isRight, questionId);
         a.setId(id);
