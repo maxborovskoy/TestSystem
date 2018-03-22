@@ -8,15 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class addAnswerServlet extends HttpServlet {
+
+    public static final String ADD_QUESTION_FORM_JSP = "/addQuestionForm.jsp";
+    public static final String ADD_ANSWER_FORM_JSP = "/addAnswerForm.jsp";
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/addQuestionForm.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher(ADD_QUESTION_FORM_JSP);
         dispatcher.forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/addAnswerForm.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher(ADD_ANSWER_FORM_JSP);
         dispatcher.forward(req, resp);
     }
 }

@@ -5,8 +5,8 @@ import entity.Test;
 import entity.TestResult;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import services.TestCheckerServiceImpl;
-import services.TestServiceImpl;
+import services.impl.TestCheckerServiceImpl;
+import services.impl.TestServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,15 +22,19 @@ import java.util.stream.Collectors;
 public class TestPageServlet extends HttpServlet {
 
     private final static Logger log = LogManager.getLogger(TestPageServlet.class);
+    public static final String RESULT = "result";
+    public static final String TEST = "test";
+    public static final String RESULT_JSP = "result.jsp";
+    public static final String TEST_JSP = "test.jsp";
+    public static final String TEST_ID = "testId";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         TestServiceImpl testService = new TestServiceImpl();
-        Test test = testService.getTest(Long.parseLong(req.getParameter("testId")));
+        Test test = testService.getTest(Long.parseLong(req.getParameter(TEST_ID)));
         Map<Long, List<Long>> answers = new HashMap<>();
-        for (Question q : test.getQuest())
-        {
-            if(req.getParameterValues("q" + q.getId()) != null) {
+        for (Question q : test.getQuest()) {
+            if (req.getParameterValues("q" + q.getId()) != null) {
                 List<Long> answerList = Arrays.stream(req.getParameterValues("q" + q.getId()))
                         .mapToLong(Long::parseLong)
                         .boxed()
@@ -40,9 +44,9 @@ public class TestPageServlet extends HttpServlet {
         }
         TestResult result = new TestCheckerServiceImpl().CheckTest(test, answers);
 
-        req.setAttribute("result", result);
-        req.setAttribute("test", test);
-        req.getRequestDispatcher("result.jsp").forward(req, resp);
+        req.setAttribute(RESULT, result);
+        req.setAttribute(TEST, test);
+        req.getRequestDispatcher(RESULT_JSP).forward(req, resp);
         log.info("Test " + test + " was solved. " +
                 "Score: " + result.getScore() + ". " +
                 "Correct answers: " + result.getCorrectAnswers() + "/" + result.getCountAnswers() + ".");
@@ -50,9 +54,9 @@ public class TestPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Test test = new TestServiceImpl().getTest(Long.parseLong(req.getParameter("testId")));
-        req.setAttribute("test", test);
-        req.getRequestDispatcher("test.jsp").forward(req, resp);
+        Test test = new TestServiceImpl().getTest(Long.parseLong(req.getParameter(TEST_ID)));
+        req.setAttribute(TEST, test);
+        req.getRequestDispatcher(TEST_JSP).forward(req, resp);
         log.info("Test " + test + " is solving");
     }
 }

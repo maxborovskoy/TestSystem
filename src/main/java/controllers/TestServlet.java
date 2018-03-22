@@ -1,8 +1,8 @@
 package controllers;
 
 import entity.Test;
-import services.TestService;
-import services.TestServiceImpl;
+import services.api.TestService;
+import services.impl.TestServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +12,10 @@ import java.io.IOException;
 
 public class TestServlet extends HttpServlet {
 
+    public static final String TEST_JSP = "/test.jsp";
+    public static final String TEST = "test";
+    public static final String ID = "id";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -19,10 +23,10 @@ public class TestServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
+        String id = req.getParameter(ID);
         TestService testService = new TestServiceImpl();
         Test particularTest = testService.getTest(Long.parseLong(id));         
-        req.setAttribute("test", particularTest);
-        req.getRequestDispatcher("/test.jsp").forward(req, resp);
+        req.setAttribute(TEST, particularTest);
+        req.getRequestDispatcher(TEST_JSP).forward(req, resp);
     }
 }
