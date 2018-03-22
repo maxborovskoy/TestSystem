@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+a {
+    outline: none;
+}
+
+body {
+    height: 100%;
+    background-color: white;
+}
+
+
+.question-container {
+}
+
+.question {
+}
+
+.answer-container {
+}
+
+.answer {
+}
+
+.create-question-button{
+    margin: 15px;
+}
+
+.create-answer-button{
+    margin: 15px;
+}
