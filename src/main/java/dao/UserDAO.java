@@ -17,7 +17,7 @@ public class UserDAO extends AbstractDAO<User, Long> {
     private final static Logger log = LogManager.getLogger(UserDAO.class);
 
     @Override
-    public void add(User entity) {
+    public User add(User entity) {
 
         Connection con = pool.getConnection();
 
@@ -27,6 +27,8 @@ public class UserDAO extends AbstractDAO<User, Long> {
             setSQLParameters(entity, st);
             st.executeUpdate();
             log.info("User " + entity + " was added");
+
+            return get(entity.getName());
         } catch (SQLException e) {
             log.error("User " + entity + " wasn't added", e);
             throw new RuntimeException(e);
