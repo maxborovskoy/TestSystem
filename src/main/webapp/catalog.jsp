@@ -25,6 +25,13 @@
     </c:if>
 
     <fmt:setBundle basename="internationalization"/>
+
+    <c:if test="${not empty param.theme}">
+        <c:set var="theme" scope="session" value="${param.theme}"/>
+    </c:if>
+    <c:if test="${empty sessionScope.theme}">
+        <c:set var="theme" scope="session" value="all"/>
+    </c:if>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="catalog.catalog"/></title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
@@ -65,7 +72,15 @@
     </div>
 </header>
 
-
+<form>
+    <select id="theme" onchange="changeTheme()">
+        <option value="all" ${sessionScope.locale == 'all' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
+        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="catalog.english"/></option>
+        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="catalog.russian"/></option>
+        <option value="math" ${sessionScope.locale == 'math' ? 'selected' : ''}><fmt:message key="catalog.math"/></option>
+        <option value="phisics" ${sessionScope.locale == 'phisics' ? 'selected' : ''}><fmt:message key="catalog.phisics"/></option>
+    </select>
+</form>
 <c:choose>
     <c:when test="${(requestScope.allTests ne null) && (not empty requestScope.allTests)}">
         <div class="album py-5 bg-light">
