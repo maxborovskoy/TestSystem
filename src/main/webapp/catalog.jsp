@@ -79,21 +79,41 @@
                             <div class="card mb-4 box-shadow">
                                 <c:choose>
                                     <c:when test="${test.getType().getName() eq 'Math'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                        <div class="d-flex justify-content-end align-items-baseline">
+                                          <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-primary">X</a>
+                                        </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/math.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'Physics'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                      <div class="d-flex justify-content-end align-items-baseline">
+                                          <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-primary">X</a>
+                                      </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/physics.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'Russian'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                       <div class="d-flex justify-content-end align-items-baseline">
+                                         <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-primary">X</a>
+                                       </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/russian.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'English'}">
+                                    <c:if test="${sessionScope.user.getTutor()}">
+                                       <div class="d-flex justify-content-end align-items-baseline">
+                                         <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-primary">X</a>
+                                       </div>
+                                    </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/english.png"
                                              alt="Card image cap">
