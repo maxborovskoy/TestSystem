@@ -6,7 +6,7 @@ public interface UserService {
 
     boolean isAlreadyExists(User user);
 
-    boolean authorizeUser(User user);
+    User authorizeUser(String name, String pass);
 
     void registerUser(User user);
 
