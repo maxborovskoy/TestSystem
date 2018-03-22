@@ -18,6 +18,7 @@ public class InitDB extends HttpServlet {
     private static final String H2_CREATE_TEST = "h2.create.test";
     private static final String H2_CREATE_QUESTION = "h2.create.question";
     private static final String H2_CREATE_ANSWER = "h2.create.answer";
+    private static final String H2_CREATE_USER_TUTOR = "h2.create.user.tutor";
 
     @Override
     public void init() throws ServletException {
@@ -31,7 +32,8 @@ public class InitDB extends HttpServlet {
             String[] sqls = {res.getString(H2_CREATE_USER),
                     res.getString(H2_CREATE_TEST),
                     res.getString(H2_CREATE_QUESTION),
-                    res.getString(H2_CREATE_ANSWER)};
+                    res.getString(H2_CREATE_ANSWER),
+                    res.getString(H2_CREATE_USER_TUTOR)};
             st = con.createStatement();
             for (String sql : sqls) {
                 st.executeUpdate(sql);
