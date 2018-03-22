@@ -40,6 +40,12 @@
     <servlet-class>controllers.TestPageServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>InitDB</servlet-name>
+    <servlet-class>config.InitDB</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
     <url-pattern>/catalog</url-pattern>
