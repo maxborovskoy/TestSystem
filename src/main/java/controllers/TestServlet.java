@@ -12,9 +12,9 @@ import java.io.IOException;
 
 public class TestServlet extends HttpServlet {
 
-    public static final String TEST_JSP = "/test.jsp";
-    public static final String TEST = "test";
-    public static final String ID = "id";
+    private static final String TEST_JSP = "/test.jsp";
+    private static final String TEST = "test";
+    private static final String ID = "id";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

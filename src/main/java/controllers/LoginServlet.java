@@ -17,9 +17,9 @@ public class LoginServlet extends HttpServlet {
 
     private static final String USER = "user";
     private static final String PASSWORD = "password";
-    public static final String TUTOR_EMAIL = "tutor@tutor";
-    public static final String CATALOG = "/catalog";
-    public static final String LOGIN_JSP = "login.jsp";
+    private static final String TUTOR_EMAIL = "tutor@tutor";
+    private static final String CATALOG = "/catalog";
+    private static final String LOGIN_JSP = "login.jsp";
 
 
     @Override

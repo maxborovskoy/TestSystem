@@ -16,8 +16,8 @@ public class RegistrationServlet extends HttpServlet {
     private static final String PASSWORD = "password";
     private static final String REPASSWORD = "passwordRepeat";
     private static final UserService userService = new UserServiceImpl();
-    public static final String REGISTRATION_JSP = "/registration.jsp";
-    public static final String LOGIN_JSP = "/login.jsp";
+    private static final String REGISTRATION_JSP = "/registration.jsp";
+    private static final String LOGIN_JSP = "/login.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

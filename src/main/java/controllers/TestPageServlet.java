@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 public class TestPageServlet extends HttpServlet {
 
     private final static Logger log = LogManager.getLogger(TestPageServlet.class);
-    public static final String RESULT = "result";
-    public static final String TEST = "test";
-    public static final String RESULT_JSP = "result.jsp";
-    public static final String TEST_JSP = "test.jsp";
-    public static final String TEST_ID = "testId";
+    private static final String RESULT = "result";
+    private static final String TEST = "test";
+    private static final String RESULT_JSP = "result.jsp";
+    private static final String TEST_JSP = "test.jsp";
+    private static final String TEST_ID = "testId";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

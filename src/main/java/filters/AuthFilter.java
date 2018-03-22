@@ -19,9 +19,9 @@ import javax.servlet.http.HttpSession;
 //@WebFilter("/AuthFilter")
 public class AuthFilter implements Filter {
 
-    public static final String FORBIDDEN_JSP = "forbidden.jsp";
-    public static final String LOGIN_JSP = "login.jsp";
-    public static final String USER = "user";
+    private static final String FORBIDDEN_JSP = "forbidden.jsp";
+    private static final String LOGIN_JSP = "login.jsp";
+    private static final String USER = "user";
     private UserService userService = new UserServiceImpl();
 
     @Override

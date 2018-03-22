@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet {
 
 
-    public static final String LOGIN_JSP = "/login.jsp";
+    private static final String LOGIN_JSP = "/login.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

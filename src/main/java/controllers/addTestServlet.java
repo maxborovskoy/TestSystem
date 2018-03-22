@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class addTestServlet extends HttpServlet {
 
-    public static final String ADD_QUESTION_FORM_JSP = "/addQuestionForm.jsp";
-    public static final String ADD_TEST_FORM_JSP = "/addTestForm.jsp";
+    private static final String ADD_QUESTION_FORM_JSP = "/addQuestionForm.jsp";
+    private static final String ADD_TEST_FORM_JSP = "/addTestForm.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

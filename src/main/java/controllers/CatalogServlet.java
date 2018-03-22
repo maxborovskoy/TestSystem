@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/Catalog")
 public class CatalogServlet extends HttpServlet {
 
-    public static final String CATALOG_JSP = "catalog.jsp";
-    public static final String ALL_TESTS = "allTests";
+    private static final String CATALOG_JSP = "catalog.jsp";
+    private static final String ALL_TESTS = "allTests";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
