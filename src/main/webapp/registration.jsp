@@ -18,6 +18,7 @@
     <fmt:setBundle basename="internationalization"/>
     <title><fmt:message key="registration.registration"/></title>
     <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/language.css">
     <script src="js/changeLanguage.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -27,12 +28,8 @@
 
 </head>
 <body>
-<form>
-    <select id="lan" onchange="changeLanguage()">
-        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="english"/></option>
-        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>
-    </select>
-</form>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+
 <div class="container register-form">
     <form action="registrationServlet" method="post" name="registrationForm">
         <div class="row">

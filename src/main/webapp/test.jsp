@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -22,6 +21,7 @@
     <title><fmt:message key="test.testpage"/></title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
+    <link rel="stylesheet" href="css/language.css">
     <title>${test.getName()}</title>
     <link rel="stylesheet" href="css/test.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -32,7 +32,8 @@
 
 </head>
 <body>
-<body>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+
 <div class="mainContent">
     <header>
         <div class="bg-dark">
