@@ -1,10 +1,8 @@
-package services;
+package services.impl;
 
 import dao.UserDAO;
 import entity.User;
-
-import java.util.List;
-import java.util.Optional;
+import services.api.UserService;
 
 public class UserServiceImpl implements UserService {
 
