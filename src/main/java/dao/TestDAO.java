@@ -68,6 +68,37 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         }
     }
 
+    public List<Test> getAllByTheme(String theme) {
+
+        Connection con = pool.getConnection();
+        List<Test> testList = new ArrayList<>();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_TESTS_BY_THEME"));
+        ) {
+            st.setString(1, theme);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                while (rs.next()) {
+                    long testId = rs.getLong("id");
+                    Test test = getTestById(testId, rs);
+                    testList.add(test);
+                }
+            } catch (SQLException e) {
+                log.error("Test(theme:" + theme + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            log.error("Test(theme:" + theme + ") cannot be gotten", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+        return testList;
+    }
+
     @Override
     public Test get(Long id) {
 

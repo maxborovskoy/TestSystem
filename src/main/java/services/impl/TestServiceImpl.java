@@ -31,6 +31,11 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    public List<Test> getAllTestsByTheme(String theme) {
+        return testDAO.getAllByTheme(theme);
+    }
+
+    @Override
     public void removeTest(Long id) {
         testDAO.remove(id);
         new QuestionServiceImpl().removeAllQuestionsByTestId(id);

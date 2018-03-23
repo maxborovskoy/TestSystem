@@ -19,6 +19,7 @@
         <tomcat-jdbc>9.0.6</tomcat-jdbc>
         <tomcat7-maven-plugin>2.2</tomcat7-maven-plugin>
         <jackson>2.0.2</jackson>
+        <jbcrypt>0.4</jbcrypt>
     </properties>
 
     <dependencies>
@@ -55,6 +56,12 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
             <version>${tomcat-jdbc}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>${jbcrypt}</version>
         </dependency>
 
         <dependency>

@@ -2,6 +2,7 @@ package services.impl;
 
 import dao.UserDAO;
 import entity.User;
+import org.mindrot.jbcrypt.BCrypt;
 import services.api.UserService;
 
 public class UserServiceImpl implements UserService {
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User authorizeUser(String name, String pass) {
         User u = userDAO.get(name);
-        if (u != null && pass.equals(u.getPassword())) {
+        if (u != null && BCrypt.checkpw(pass, u.getPassword())) {
             return u;
         }
         return null;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(User user) {
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         userDAO.add(user);
     }
 

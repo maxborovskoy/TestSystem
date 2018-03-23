@@ -14,6 +14,8 @@ public interface TestService {
 
     List<Test> getAllTests();
 
+    List<Test> getAllTestsByTheme(String theme);
+
     void removeTest(Long id);
 
     void updateTest(Test test);
