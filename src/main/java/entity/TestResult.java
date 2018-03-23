@@ -1,16 +1,39 @@
 package entity;
 
 public class TestResult {
-    private int correctAnswers = 0;
-    private int countAnswers = 0;
-    private int score = 0;
+    private long id;
+    private long userId;
+    private long testId;
+    private int score;
 
-    public int getCorrectAnswers() {
-        return correctAnswers;
+    public TestResult(long userId, long testId, int score) {
+        this.userId = userId;
+        this.testId = testId;
+        this.score = score;
     }
 
-    public void setCorrectAnswers(int correctAnswers) {
-        this.correctAnswers = correctAnswers;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getTestId() {
+        return testId;
+    }
+
+    public void setTestId(long testId) {
+        this.testId = testId;
     }
 
     public int getScore() {
@@ -19,13 +42,5 @@ public class TestResult {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public int getCountAnswers() {
-        return countAnswers;
-    }
-
-    public void setCountAnswers(int countAnswers) {
-        this.countAnswers = countAnswers;
     }
 }
