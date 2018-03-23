@@ -136,13 +136,26 @@
                                 </c:choose>
                                 <div class="card-body">
                                     <h5 class="card-title">${test.getName()}</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a
-                                        natural lead-in to
-                                        additional content. This content is a little bit longer.@</p>
+                                    <p class="card-text">
+                                    <c:if test="${test.getType().getName() eq 'Math'}">
+                                    This is test for checking if your knowledges in Math is wide enough to become a Jedi Knight.
+                                    </c:if>
+                                    <c:if test="${test.getType().getName() eq 'Physics'}">
+                                     This is test for checking if your knowledges in Physics is wide enough to become a Jedi Knight.
+                                    </c:if>
+                                    <c:if test="${test.getType().getName() eq 'Russian'}">
+                                     This is test for checking if your knowledges in Russian is wide enough to become a Jedi Knight.
+                                    </c:if>
+                                    <c:if test="${test.getType().getName() eq 'English'}">
+                                      This is test for checking if your knowledges in English is wide enough to become a Jedi Knight.
+                                    </c:if>
+                                    </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
                                             test</a>
-                                        <small class="text-muted">9 mins</small>
+                                        <small class="text-muted">
+                                        <c:out value="${test.getCreationDate().toString()}"/>
+                                        </small>
                                     </div>
                                 </div>
                             </div>
