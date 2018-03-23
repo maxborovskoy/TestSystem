@@ -15,6 +15,11 @@ import java.util.List;
 public class TestDAO extends AbstractDAO<Test, Long> {
 
     private final static Logger log = LogManager.getLogger(TestDAO.class);
+    private final static String ID = "id";
+    private final static String NAME = "name";
+    private final static String TYPE = "type";
+    private final static String DATE = "creationDate";
+    private final static LocalDate DATE_NOW = LocalDate.now();
 
     @Override
     public Test add(Test test) {
@@ -105,7 +110,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
                 ResultSet rs = st.executeQuery()
         ) {
             while (rs.next()) {
-                long testId = rs.getLong("id");
+                long testId = rs.getLong(ID);
                 Test test = getTestById(testId, rs);
                 testList.add(test);
             }
@@ -167,13 +172,13 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     private void setSQLParameters(Test test, PreparedStatement st) throws SQLException {
         st.setString(1, test.getName());
         st.setString(2, test.getType().getName());
-        st.setDate(3, Date.valueOf(LocalDate.now()));
+        st.setDate(3, Date.valueOf(DATE_NOW));
     }
 
     private Test getTestById(Long id, ResultSet rs) throws SQLException {
-        String name = rs.getString("name");
-        TestTypes type = TestTypes.getType(rs.getString("type"));
-        Date creationDate = rs.getDate("creationDate");
+        String name = rs.getString(NAME);
+        TestTypes type = TestTypes.getType(rs.getString(TYPE));
+        Date creationDate = rs.getDate(DATE);
 
         QuestionDAO help = new QuestionDAO();
         List<Question> questionList = help.getAllQuestionsByTestId(id);
