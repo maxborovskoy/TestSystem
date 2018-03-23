@@ -18,4 +18,6 @@ public interface QuestionService {
     Boolean updateText(String text, Question question);
 
     Question addEmptyQuestion(Question question);
+
+    long getQuestionsIdByTextAndTestId(String text, long testId);
 }

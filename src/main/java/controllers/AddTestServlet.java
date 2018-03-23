@@ -21,14 +21,16 @@ public class AddTestServlet extends HttpServlet {
 
     private static final String TEST = "test";
     private static final TestService testService = new TestServiceImpl();
-    private static final QuestionService questionService = new QuestionServiceImpl();
-    private static final AnswerService answerService = new AnswerServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String test = req.getParameter(TEST);
-        createNewTest(convertJson(test));
-        resp.sendRedirect("/catalog");
+        String result = createNewTest(convertJson(test));
+        if("OK".equals(result)){
+            resp.sendRedirect("/catalog");
+        } else {
+            resp.sendRedirect("/forbidden.jsp");
+        }
     }
 
     private Test convertJson(String test) throws IOException {
@@ -36,17 +38,7 @@ public class AddTestServlet extends HttpServlet {
         return mapper.readValue(test, Test.class);
     }
 
-    private void createNewTest(Test test) {
-
-        Test testWithId = testService.addEmptyTest(test);
-
-        for(Question quest : test.getQuest()){
-            quest.setTestId(testWithId.getId());
-            Question questionWithId = questionService.addEmptyQuestion(quest);
-            for(Answer answer : quest.getAnswers()){
-                answer.setQuestionId(questionWithId.getId());
-                answerService.add(answer);
-            }
-        }
+    private String createNewTest(Test test) {
+        return testService.addTestFromForm(test);
     }
 }

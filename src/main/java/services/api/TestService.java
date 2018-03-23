@@ -17,5 +17,5 @@ public interface TestService {
 
     void updateTest(Test test);
 
-    Test addEmptyTest(Test test);
+    String addTestFromForm(Test test);
 }

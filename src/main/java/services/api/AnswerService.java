@@ -18,4 +18,5 @@ public interface AnswerService {
 
     Boolean updateAnswer(Answer answer, String text, Boolean isRight);
 
+    long getAnswerByTextAndQuestionId(String text, long questionId);
 }

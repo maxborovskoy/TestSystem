@@ -39,7 +39,7 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         }
     }
 
-    private long getQuestionsIdByTextAndTestId(String text, long testId) {
+    public long getQuestionsIdByTextAndTestId(String text, long testId) {
         Connection con = pool.getConnection();
 
         try (

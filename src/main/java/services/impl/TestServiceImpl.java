@@ -1,6 +1,8 @@
 package services.impl;
 
 import dao.TestDAO;
+import entity.Answer;
+import entity.Question;
 import entity.Test;
 import services.api.TestService;
 
@@ -40,7 +42,41 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Test addEmptyTest(Test test) {
-        return testDAO.add(test);
+    public String addTestFromForm(Test test) {
+        if (testDAO.getTestsIdByNameAndType(test.getName(), test.getType()) != -1) {
+            return "TEST_EXISTS";
+        } else {
+            if(test.getName().isEmpty()){
+               return "EMPTY_NAME";
+            }
+            if(test.getQuest().isEmpty()){
+                return "EMPTY_QUESTIONS";
+            }
+            QuestionServiceImpl questionService = new QuestionServiceImpl();
+            AnswerServiceImpl answerService = new AnswerServiceImpl();
+            Test testWithId = testDAO.add(test);
+            for (Question quest : test.getQuest()) {
+                if (questionService.getQuestionsIdByTextAndTestId(quest.getText(), testWithId.getId()) != -1) {
+                    testDAO.remove(testWithId.getId());
+                    return "QUESTION_EXISTS";
+                } else {
+                    if(quest.getText().isEmpty()){
+                        return "QUESTION_NO_TEXT";
+                    }
+                    quest.setTestId(testWithId.getId());
+                    Question questionWithId = questionService.addEmptyQuestion(quest);
+                    for (Answer answer : quest.getAnswers()) {
+                        if (answerService.getAnswerByTextAndQuestionId(answer.getText(), questionWithId.getId()) != -1) {
+                            testDAO.remove(testWithId.getId());
+                            return "ANSWER_EXISTS";
+                        } else {
+                            answer.setQuestionId(questionWithId.getId());
+                            answerService.add(answer);
+                        }
+                    }
+                }
+            }
+            return "OK";
+        }
     }
 }

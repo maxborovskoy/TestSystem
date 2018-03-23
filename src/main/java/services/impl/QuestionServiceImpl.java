@@ -63,4 +63,10 @@ public class QuestionServiceImpl implements QuestionService {
     public Question addEmptyQuestion(Question question) {
         return questionDAO.add(question);
     }
+
+
+    @Override
+    public long getQuestionsIdByTextAndTestId(String text, long testId) {
+        return questionDAO.getQuestionsIdByTextAndTestId(text, testId);
+    }
 }

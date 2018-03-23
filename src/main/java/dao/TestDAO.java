@@ -40,7 +40,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         }
     }
 
-    private long getTestsIdByNameAndType(String name, TestTypes type) {
+    public long getTestsIdByNameAndType(String name, TestTypes type) {
         Connection con = pool.getConnection();
 
         try (

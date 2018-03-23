@@ -47,7 +47,7 @@
                 </div>
                 <c:if test="${sessionScope.user.getTutor()}">
                     <div class="col-md-2">
-                        <form action="addTestForm" method="get" name="createTestForm">
+                        <form action="/editor.jsp" method="get" name="createTestForm">
                             <button type="submit" class="btn btn-primary">Create test</button>
                         </form>
                     </div>

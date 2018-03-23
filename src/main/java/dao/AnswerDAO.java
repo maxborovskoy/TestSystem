@@ -92,6 +92,34 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         return null;
     }
 
+    public long getAnswerByTextAndQuestionId(String text, long questionId){
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER_BY_TEXT_AND_QUESTION_ID"));
+        ) {
+            st.setString(1, text);
+            st.setLong(2, questionId);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                } else{
+                    return -1;
+                }
+            } catch (SQLException e) {
+                log.error("Question(text: " + text + ", questionId: " + questionId + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            log.error("Question(text: " + text + ", questionId: " + questionId + ") cannot be gotten", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+    }
+
     public List<Answer> getAllAnswersByQuestionId(Long questionId) {
 
         Connection con = pool.getConnection();
