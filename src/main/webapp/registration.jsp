@@ -69,6 +69,9 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
+            <c:if test="${not empty requestScope.flag}">
+             <p class="text-danger"> <c:out value="${requestScope.flag}"/> </p>
+            </c:if>
                 <button type="submit" class="btn btn-primary"><fmt:message key="registration.register"/></button>
                 <a href="/login.jsp"><fmt:message key="registration.login"/> </a>
             </div>
