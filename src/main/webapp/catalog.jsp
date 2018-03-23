@@ -129,7 +129,7 @@
                                         <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
                                         test</a>
                                         <c:if test="${sessionScope.user.getTutor()}">
-                                          <a href="<c:url value="/addTestForm"/>" class="btn btn-primary btn-xs">Edit test</a>
+                                          <a href="<c:url value="/editor?id=${test.getId()}"/>" class="btn btn-primary btn-xs">Edit test</a>
                                         </c:if>
                                         <small class="text-muted">9 mins</small>
                                     </div>

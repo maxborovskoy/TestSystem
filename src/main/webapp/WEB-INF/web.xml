@@ -58,6 +58,11 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>EditorServlet</servlet-name>
+        <servlet-class>controllers.EditorServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Catalog</servlet-name>
         <url-pattern>/catalog</url-pattern>
@@ -97,6 +102,11 @@
     <servlet-mapping>
         <servlet-name>Editor</servlet-name>
         <url-pattern>/addTest</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EditorServlet</servlet-name>
+        <url-pattern>/editor</url-pattern>
     </servlet-mapping>
 
     <filter>
