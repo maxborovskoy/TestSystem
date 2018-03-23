@@ -52,6 +52,7 @@
                         </form>
                     </div>
                 </c:if>
+
                 <div class="col-md-1">
                     <form action="logoutServlet" method="post" name="LogoutForm">
                         <button type="submit" class="btn btn-primary">Log out</button>
@@ -80,7 +81,7 @@
                                 <c:choose>
                                     <c:when test="${test.getType().getName() eq 'Math'}">
                                     <c:if test="${sessionScope.user.getTutor()}">
-                                        <div class="d-flex justify-content-end align-items-baseline">
+                                        <div class="d-flex justify-content-between align-items-baseline">
                                           <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
                                         </div>
                                     </c:if>
@@ -126,7 +127,10 @@
                                         additional content. This content is a little bit longer.@</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
-                                            test</a>
+                                        test</a>
+                                        <c:if test="${sessionScope.user.getTutor()}">
+                                          <a href="<c:url value="/addTestForm"/>" class="btn btn-primary btn-xs">Edit test</a>
+                                        </c:if>
                                         <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
