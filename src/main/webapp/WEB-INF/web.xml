@@ -36,8 +36,8 @@
   </servlet>
 
   <servlet>
-    <servlet-name>TestPage</servlet-name>
-    <servlet-class>controllers.TestPageServlet</servlet-class>
+    <servlet-name>ResultServlet</servlet-name>
+    <servlet-class>controllers.ResultServlet</servlet-class>
   </servlet>
 
   <servlet>
@@ -97,8 +97,8 @@
   </servlet-mapping>
 
   <servlet-mapping>
-    <servlet-name>TestPage</servlet-name>
-    <url-pattern>/testpage</url-pattern>
+    <servlet-name>ResultServlet</servlet-name>
+    <url-pattern>/result</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>

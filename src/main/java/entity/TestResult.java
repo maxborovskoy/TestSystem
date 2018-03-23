@@ -1,15 +1,21 @@
 package entity;
 
+import java.time.LocalDateTime;
+
 public class TestResult {
     private long id;
     private long userId;
     private long testId;
-    private int score;
+    private int correctAnswers;
+    private int countAnswers;
+    private LocalDateTime date;
 
-    public TestResult(long userId, long testId, int score) {
+    public TestResult(long userId, long testId, int correctAnswers, int allAnswers, LocalDateTime date) {
         this.userId = userId;
         this.testId = testId;
-        this.score = score;
+        this.correctAnswers = correctAnswers;
+        this.countAnswers = allAnswers;
+        this.date = date;
     }
 
     public long getId() {
@@ -36,11 +42,27 @@ public class TestResult {
         this.testId = testId;
     }
 
-    public int getScore() {
-        return score;
+    public int getCorrectAnswers() {
+        return correctAnswers;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setCorrectAnswers(int correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    public int getCountAnswers() {
+        return countAnswers;
+    }
+
+    public void setCountAnswers(int countAnswers) {
+        this.countAnswers = countAnswers;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }

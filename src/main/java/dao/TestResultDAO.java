@@ -5,10 +5,8 @@ import entity.TestResult;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,25 +16,31 @@ public class TestResultDAO extends AbstractDAO<TestResult, Long> {
     private final static String ID = "id";
     private final static String TESTID = "testId";
     private final static String USERID = "userId";
-    private final static String SCORE = "score";
+    private final static String CORRECTANSWERS = "correctAnswers";
+    private final static String COUNTANSWERS = "countAnswers";
+    private final static String DATE = "date";
 
     @Override
     public TestResult add(TestResult testResult) {
 
-        if (get(testResult.getUserId(), testResult.getTestId()) != null) {
-            update(testResult);
-            return testResult;
-        }
-
         Connection con = pool.getConnection();
 
         try (
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_TESTRESULT"));
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("ADD_TESTRESULT"), Statement.RETURN_GENERATED_KEYS);
         ) {
             st.setLong(1, testResult.getUserId());
             st.setLong(2, testResult.getTestId());
-            st.setInt(3, testResult.getScore());
+            st.setInt(3, testResult.getCorrectAnswers());
+            st.setInt(4, testResult.getCountAnswers());
+            st.setObject(5, testResult.getDate());
             st.executeUpdate();
+            try (ResultSet id = st.getGeneratedKeys()) {
+                if (!id.next()) {
+                    log.error("Cannot get inserted id for TestResult " + testResult);
+                } else {
+                    testResult.setId(id.getLong(1));
+                }
+            }
             log.info("TestResult " + testResult + " was added");
             return testResult;
         } catch (SQLException e) {
@@ -76,22 +80,21 @@ public class TestResultDAO extends AbstractDAO<TestResult, Long> {
         }
     }
 
-    public TestResult get(long userId, long testId) {
+    public List<TestResult> get(long userId, long testId) {
 
         Connection con = pool.getConnection();
+        List<TestResult> testResultList = new ArrayList<>();
 
         try (
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TESTRESULT_BY_USER_AND_TEST"))
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TESTRESULT_BY_USER_AND_TEST"));
         ) {
             st.setLong(1, userId);
             st.setLong(2, testId);
             try (
                     ResultSet rs = st.executeQuery()
             ) {
-                if (rs.next()) {
-                    return getTestResult(rs);
-                } else {
-                    return null;
+                while (rs.next()) {
+                    testResultList.add(getTestResult(rs));
                 }
             } catch (SQLException e) {
                 log.error("TestResult(userId:" + userId + ";testid:" + testId + ") cannot be gotten", e);
@@ -103,6 +106,7 @@ public class TestResultDAO extends AbstractDAO<TestResult, Long> {
         } finally {
             freeCon(con);
         }
+        return testResultList;
     }
 
     public List<TestResult> getAllTestResultsByUserId(long userId) {
@@ -152,25 +156,6 @@ public class TestResultDAO extends AbstractDAO<TestResult, Long> {
         }
     }
 
-    private void update(TestResult testResult) {
-
-        Connection con = pool.getConnection();
-
-        try (
-                PreparedStatement st = con.prepareStatement(sqlQueries.getString("UPDATE_TESTRESULT"))
-        ) {
-            st.setLong(1, testResult.getUserId());
-            st.setLong(2, testResult.getTestId());
-            st.executeUpdate();
-            log.info("TestResult " + testResult + " was updated");
-        } catch (SQLException e) {
-            log.error("TestResult " + testResult + " wasn't updated", e);
-            throw new RuntimeException(e);
-        } finally {
-            freeCon(con);
-        }
-    }
-
     private void freeCon(Connection con) {
         try {
             ConnectionPool.freeConnection(con);
@@ -180,7 +165,7 @@ public class TestResultDAO extends AbstractDAO<TestResult, Long> {
     }
 
     private TestResult getTestResult(ResultSet rs) throws SQLException {
-        TestResult testResult = new TestResult(rs.getLong(USERID), rs.getLong(TESTID), rs.getInt(SCORE));
+        TestResult testResult = new TestResult(rs.getLong(USERID), rs.getLong(TESTID), rs.getInt(CORRECTANSWERS), rs.getInt(COUNTANSWERS), rs.getObject(DATE, LocalDateTime.class));
         testResult.setId(rs.getLong(ID));
         return testResult;
     }

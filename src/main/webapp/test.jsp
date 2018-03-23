@@ -60,7 +60,7 @@
     </form>
 
     <div class="container">
-        <form action="testpage" method="POST" name="testpageForm">
+        <form action="result" method="POST" name="testpageForm">
             <c:set var="qNumber" value="0"/>
             <c:forEach items="${test.getQuest()}" var="q">
                 <c:set var="qNumber" value="${qNumber+1}"/>

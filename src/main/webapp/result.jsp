@@ -61,7 +61,7 @@
                 key="result.res2"/> ${result.getCountAnswers()} <fmt:message key="result.res3"/>
         </div>
         <div class="row">
-            <fmt:message key="result.yourresult"/> ${result.getScore()}%
+            <fmt:message key="result.yourresult"/> ${score}%
         </div>
     </div>
 </div>
