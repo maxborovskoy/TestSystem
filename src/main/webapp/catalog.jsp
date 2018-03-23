@@ -81,7 +81,7 @@
                                 <c:choose>
                                     <c:when test="${test.getType().getName() eq 'Math'}">
                                     <c:if test="${sessionScope.user.getTutor()}">
-                                        <div class="d-flex justify-content-between align-items-baseline">
+                                        <div class="d-flex justify-content-end align-items-baseline">
                                           <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
                                         </div>
                                     </c:if>
