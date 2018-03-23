@@ -3,6 +3,8 @@ package controllers;
 import entity.User;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +46,15 @@ public class LoginServlet extends HttpServlet {
 
         User user = validator.authorizeUser(name, pass);
         HttpSession session = req.getSession();
+        Locale locale;
 
+        String language = (String) session.getAttribute("locale");
+        if(language == null) {
+            language = "en";
+        }
+        req.setAttribute("locale", language);
+        locale = new Locale(language);
+        ResourceBundle r = ResourceBundle.getBundle("internationalization", locale);
         if (user != null) {
 
             session.setAttribute(USER, user);
@@ -52,7 +62,9 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect(CATALOG);
 
         } else {
-            session.setAttribute(FLAG, "Login/email combination not found");
+            //session.setAttribute(FLAG, "Login/email combination not found");
+            req.setAttribute(FLAG, r.getString("loginservlet.notfound"));
+
             req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
         }
 
@@ -61,6 +73,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
+
     }
 }

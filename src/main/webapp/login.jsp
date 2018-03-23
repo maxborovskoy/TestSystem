@@ -79,9 +79,8 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-            <c:if test="${not empty sessionScope.flag}">
-            <p class="text-danger"> <c:out value="${sessionScope.flag}"/> </p>
-            <c:set var = "flag" scope = "session" value = "${null}"/>
+            <c:if test="${not empty requestScope.flag}">
+            <p class="text-danger"> <c:out value="${requestScope.flag}"/> </p>
             </c:if>
                 <button type="submit" class="btn btn-primary" id="loginBtn"><fmt:message key="login.login"/></button>
                 <a href="/registration.jsp"><fmt:message key="login.singup"/> </a>
