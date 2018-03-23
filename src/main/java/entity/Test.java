@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.text.Collator;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +20,7 @@ public class Test implements Serializable {
     private List<Question> quest;
     @JsonProperty("type")
     private TestTypes type;
+    private Date creationDate;
 
     public Test(String name, List<Question> quest, TestTypes type) {
         this.name = name;
@@ -59,6 +62,14 @@ public class Test implements Serializable {
 
     public void setType(TestTypes type) {
         this.type = type;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
     }
 
     @Override
