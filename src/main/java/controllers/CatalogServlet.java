@@ -20,9 +20,6 @@ public class CatalogServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        TestService testService = new TestServiceImpl();
-        List<Test> allTests = testService.getAllTests();
-        req.setAttribute(ALL_TESTS, allTests);
         req.getRequestDispatcher(CATALOG_JSP).forward(req, resp);
     }
 

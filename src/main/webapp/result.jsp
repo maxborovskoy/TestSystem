@@ -8,6 +8,7 @@
     </c:if>
     <c:if test="${empty sessionScope.locale}">
         <fmt:setLocale value="en"/>
+        <c:set var="locale" scope="session" value="en"/>
     </c:if>
     <c:if test="${sessionScope.locale eq 'en'}">
         <fmt:setLocale value="en"/>
@@ -19,6 +20,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="result.result"/></title>
     <script src="js/changeLanguage.js"></script>
+    <link rel="stylesheet" href="css/language.css">
     <title>Result</title>
     <link rel="stylesheet" href="css/test.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -30,6 +32,7 @@
 </head>
 
 <body>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
 
 <div class="mainContent">
     <header>
