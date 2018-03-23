@@ -1,6 +1,24 @@
 var questionId = 0;
 var answerId = 0;
 
+var testObject = {
+    name: "",
+    type: "",
+    quest: [
+        {
+            text: "",
+            answer: [
+                {
+                    text: "",
+                    isRight: true
+                }
+            ]
+        }
+
+    ]
+};
+
+
 function addQuestionField() {
     console.log("addQuestion");
 
@@ -17,6 +35,7 @@ function addQuestionField() {
     questionInput.placeholder = "Enter question";
     questionDiv.classList.add("form-control");
     questionInput.classList.add("form-control");
+    questionInput.classList.add("question-text");
 
     questionDiv.appendChild(questionLabel);
     questionDiv.appendChild(questionInput);
@@ -41,6 +60,7 @@ function addQuestionField() {
         answerInput.type = "question";
         answerInput.placeholder = "Enter answer";
         answerInput.classList.add("form-control");
+        answerInput.classList.add("answer-text");
         answerDiv.appendChild(answerInput);
 
         var answerCheckBoxDiv = document.createElement("div");
@@ -57,10 +77,16 @@ function addQuestionField() {
 
         var hr = document.createElement("hr");
 
+        var answerGroup = document.createElement("div");
+        answerGroup.className = "answer-group";
+        answerGroup.appendChild(answerDiv);
+        answerGroup.appendChild(answerCheckBoxDiv);
+        answerGroup.appendChild(hr);
+
+
         var answerContainer = document.getElementById("answer-container".concat(containerId));
-        answerContainer.appendChild(answerDiv);
-        answerContainer.appendChild(answerCheckBoxDiv);
-        answerContainer.appendChild(hr);
+        answerContainer.appendChild(answerGroup);
+
     };
     answerContainer.appendChild(addAnswerButton);
 
@@ -69,6 +95,26 @@ function addQuestionField() {
 
 }
 
+
+function getQuestionById(id) {
+    for (var i = 0; i < questions.length; i++) {
+        console.log(questions[i]);
+        if (questions[i]["id"] === id.toString()) {
+            console.log(questions[i]);
+            return questions[i];
+        }
+    }
+    console.log("no such question");
+    return null;
+}
+
+function getAnswerById() {
+
+}
+
+function getAnswerByQuestionId(id) {
+
+}
 
 function generateNextQuestionId() {
     console.log("next question id =", questionId);
@@ -79,5 +125,32 @@ function generateNextQuestionId() {
 function generateNextAnswerId() {
     console.log("next answer id =", answerId);
     return answerId++;
+}
+
+
+function biuldTest() {
+    var test = {};
+    test.name = $("#testNameInput").val();
+    test.type = $("#testTheme").val();
+    test.quest = [];
+    var questions = $(".question");
+    Array.from(questions).forEach(function (question) {
+        var newQuestion = {};
+        newQuestion.text = question.childNodes.item(1).value;
+        newQuestion.answer = [];
+        var answerGroups = question.getElementsByClassName("answer-container")[0].getElementsByClassName("answer-group");
+        Array.from(answerGroups).forEach(function (answer) {
+            var newAnswer = {};
+            newAnswer.text = answer.getElementsByClassName("answer-text")[0].value;
+            newAnswer.isRight = answer.getElementsByClassName("form-check-input")[0].checked;
+            newQuestion.answer.push(newAnswer);
+        });
+        test.quest.push(newQuestion);
+    });
+
+    console.log(test);
+
+
+    $.redirect("/addTest", {test: JSON.stringify(test)});
 }
 

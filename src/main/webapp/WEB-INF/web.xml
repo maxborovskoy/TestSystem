@@ -54,6 +54,12 @@
     <servlet-name>addAnswerForm</servlet-name>
     <servlet-class>controllers.addAnswerServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+    <servlet-name>Editor</servlet-name>
+    <servlet-class>controllers.AddTestServlet</servlet-class>
+  </servlet>
+  
 
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
@@ -100,6 +106,10 @@
     <url-pattern>/addAnswerForm</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>Editor</servlet-name>
+    <url-pattern>/addTest</url-pattern>
+  </servlet-mapping>
 
   <filter>
     <filter-name>AuthFilter</filter-name>

@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: root
-  Date: 22.03.18
-  Time: 1:33
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!doctype html>
+<html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -27,6 +20,8 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="js/jquery.redirect.js"></script>
+
 </head>
 <body>
 <div class="mainContent">
@@ -50,10 +45,10 @@
             <h2>Add test form</h2>
             <div class="form-group">
                 <label for="testNameInput">Test title:</label>
-                <input type="testName" class="form-control" id="testNameInput" placeholder="Enter text">
+                <input type="text" class="form-control" id="testNameInput" placeholder="Enter text">
             </div>
-            <label for="theme">Choose theme:</label>
-            <select class="form-control" id="theme">
+            <label for="testTheme">Choose theme:</label>
+            <select class="form-control" id="testTheme">
                 <option>Math</option>
                 <option>Physics</option>
                 <option>Russian</option>
@@ -67,8 +62,7 @@
 
             </div>
 
-
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" onclick="biuldTest()">Save</button>
             <button type="submit" class="btn btn-danger">Cancel</button>
             <!--</form>-->
 
