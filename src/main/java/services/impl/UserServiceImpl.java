@@ -1,10 +1,9 @@
-package services;
+package services.impl;
 
 import dao.UserDAO;
 import entity.User;
-
-import java.util.List;
-import java.util.Optional;
+import org.mindrot.jbcrypt.BCrypt;
+import services.api.UserService;
 
 public class UserServiceImpl implements UserService {
 
@@ -19,16 +18,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean authorizeUser(User user) {
-        User u = userDAO.get(user.getName());
-        if (u != null) {
-            return user.getPassword().equals(u.getPassword());
+    public User authorizeUser(String name, String pass) {
+        User u = userDAO.get(name);
+        if (u != null && BCrypt.checkpw(pass, u.getPassword())) {
+            return u;
         }
-        return false;
+        return null;
     }
 
     @Override
     public void registerUser(User user) {
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         userDAO.add(user);
     }
 

@@ -13,13 +13,14 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet {
 
 
+    private static final String LOGIN_JSP = "/login.jsp";
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
     }
 }

@@ -21,7 +21,7 @@ public abstract class AbstractDAO<E, K> {
 
     ;
 
-    public abstract void add(E entity);
+    public abstract E add(E entity);
 
     public abstract E get(K id);
 
