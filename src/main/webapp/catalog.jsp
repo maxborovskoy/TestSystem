@@ -138,7 +138,9 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
                                             test</a>
-                                        <small class="text-muted">9 mins</small>
+                                        <small class="text-muted">
+                                        <c:out value="${test.getCreationDate().toString()}"/>
+                                        </small>
                                     </div>
                                 </div>
                             </div>

@@ -7,10 +7,8 @@ import entity.TestTypes;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,17 +167,20 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     private void setSQLParameters(Test test, PreparedStatement st) throws SQLException {
         st.setString(1, test.getName());
         st.setString(2, test.getType().getName());
+        st.setDate(3, Date.valueOf(LocalDate.now()));
     }
 
     private Test getTestById(Long id, ResultSet rs) throws SQLException {
         String name = rs.getString("name");
         TestTypes type = TestTypes.getType(rs.getString("type"));
+        Date creationDate = rs.getDate("creationDate");
 
         QuestionDAO help = new QuestionDAO();
         List<Question> questionList = help.getAllQuestionsByTestId(id);
 
         Test test = new Test(name, questionList, type);
         test.setId(id);
+        test.setCreationDate(creationDate);
         return test;
     }
 }
