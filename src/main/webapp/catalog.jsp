@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="f" uri="/WEB-INF/tld/tags" %>
+
 <html>
 <head>
     <c:if test="${not empty param.language}">
@@ -30,8 +32,9 @@
         <c:set var="theme" scope="session" value="${param.theme}"/>
     </c:if>
     <c:if test="${empty sessionScope.theme}">
-        <c:set var="theme" scope="session" value="all"/>
+        <c:set var="theme" scope="session" value="All"/>
     </c:if>
+    <c:set var="tests" scope="session" value="${f:getAllTestsByTheme(sessionScope.theme)}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="catalog.catalog"/></title>
     <link rel="stylesheet" href="css/catalog.css" type="text/css">
@@ -74,19 +77,19 @@
 
 <form>
     <select id="theme" onchange="changeTheme()">
-        <option value="all" ${sessionScope.locale == 'all' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
-        <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}><fmt:message key="catalog.english"/></option>
-        <option value="ru" ${sessionScope.locale == 'ru' ? 'selected' : ''}><fmt:message key="catalog.russian"/></option>
-        <option value="math" ${sessionScope.locale == 'math' ? 'selected' : ''}><fmt:message key="catalog.math"/></option>
-        <option value="phisics" ${sessionScope.locale == 'phisics' ? 'selected' : ''}><fmt:message key="catalog.phisics"/></option>
+        <option value="All" ${sessionScope.theme == 'All' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
+        <option value="English" ${sessionScope.theme == 'English' ? 'selected' : ''}><fmt:message key="catalog.english"/></option>
+        <option value="Russian" ${sessionScope.theme == 'Russian' ? 'selected' : ''}><fmt:message key="catalog.russian"/></option>
+        <option value="Math" ${sessionScope.theme == 'Math' ? 'selected' : ''}><fmt:message key="catalog.math"/></option>
+        <option value="Physics" ${sessionScope.theme == 'Physics' ? 'selected' : ''}><fmt:message key="catalog.phisics"/></option>
     </select>
 </form>
 <c:choose>
-    <c:when test="${(requestScope.allTests ne null) && (not empty requestScope.allTests)}">
+    <c:when test="${(sessionScope.tests ne null) && (not empty sessionScope.tests)}">
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
-                    <c:forEach items="${requestScope.allTests}" var="test">
+                    <c:forEach items="${sessionScope.tests}" var="test">
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
                                 <c:choose>

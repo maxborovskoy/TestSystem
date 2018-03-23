@@ -4,9 +4,8 @@
   <short-name>tags</short-name>
   <uri>/WEB-INF/tld/tags</uri>
   <function>
-    <name>getCurrentDate</name>
+    <name>getAllTestsByTheme</name>
     <function-class>config.Utils</function-class>
-    <function-signature>String getCurrentDate()</function-signature>
+    <function-signature>java.util.List getAllTestsByTheme(java.lang.String)</function-signature>
   </function>
-
 </taglib>

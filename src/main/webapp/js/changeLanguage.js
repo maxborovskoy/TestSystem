@@ -19,7 +19,7 @@ function changeTheme() {
     if(!url.includes("?"))
         document.location.href = document.URL + "?theme=" + theme;
     else if(url.match("theme=")) {
-        document.location.href = url.replace(/theme=../, "theme=" + theme);
+        document.location.href = url.replace(/theme=\w*/, "theme=" + theme);
     }
     else
         document.location.href = url + "&theme=" + theme;
