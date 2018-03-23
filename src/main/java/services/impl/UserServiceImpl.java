@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean authorizeUser(User user) {
-        User u = userDAO.get(user.getName());
-        if (u != null) {
-            return user.getPassword().equals(u.getPassword());
+    public User authorizeUser(String name, String pass) {
+        User u = userDAO.get(name);
+        if (u != null && pass.equals(u.getPassword())) {
+            return u;
         }
-        return false;
+        return null;
     }
 
     @Override

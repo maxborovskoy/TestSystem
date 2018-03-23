@@ -19,7 +19,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     private final static Logger log = LogManager.getLogger(TestDAO.class);
 
     @Override
-    public void add(Test test) {
+    public Test add(Test test) {
 
         Connection con = pool.getConnection();
 
@@ -29,8 +29,39 @@ public class TestDAO extends AbstractDAO<Test, Long> {
             setSQLParameters(test, st);
             st.executeUpdate();
             log.info("Test " + test + " was added");
+
+            test.setId(getTestsIdByNameAndType(test.getName(), test.getType()));
+            return test;
         } catch (SQLException e) {
             log.error("Test " + test + " wasn't added", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+    }
+
+    private long getTestsIdByNameAndType(String name, TestTypes type) {
+        Connection con = pool.getConnection();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TEST_BY_NAME_AND_TYPE"));
+        ) {
+            st.setString(2, name);
+            st.setString(3, type.getName());
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                } else{
+                    return -1;
+                }
+            } catch (SQLException e) {
+                log.error("Test(name: " + name + ", type: " + type + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            log.error("Test(name: " + name + ", type: " + type + ") cannot be gotten", e);
             throw new RuntimeException(e);
         } finally {
             freeCon(con);

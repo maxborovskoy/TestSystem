@@ -32,19 +32,18 @@ public class LoginServlet extends HttpServlet {
                 resp,
                 credentialsUser,
                 new UserServiceImpl(),
-                new User(credentialsUser, credentialsPassword, false));
+                credentialsUser,
+                credentialsPassword);
 
 
     }
 
-    private void authorizeUser(HttpServletRequest req, HttpServletResponse resp, String credentialsUser, UserService validator, User user)
+    private void authorizeUser(HttpServletRequest req, HttpServletResponse resp, String credentialsUser, UserService validator, String name, String pass)
             throws ServletException, IOException {
 
-        if (validator.authorizeUser(user)) {
+        User user = validator.authorizeUser(name, pass);
+        if (user != null) {
 
-            if (TUTOR_EMAIL.equals(user.getName())) {
-                user.setTutor(true);
-            }
             HttpSession session = req.getSession();
             session.setAttribute(USER, user);
 

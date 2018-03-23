@@ -41,6 +41,11 @@
   </servlet>
 
   <servlet>
+    <servlet-name>deleteTestServlet</servlet-name>
+    <servlet-class>controllers.deleteTestServlet</servlet-class>
+  </servlet>
+
+  <servlet>
     <servlet-name>addTestForm</servlet-name>
     <servlet-class>controllers.addTestServlet</servlet-class>
   </servlet>
@@ -60,6 +65,12 @@
     <servlet-class>controllers.AddTestServlet</servlet-class>
   </servlet>
   
+
+  <servlet>
+    <servlet-name>InitDB</servlet-name>
+    <servlet-class>config.InitDB</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
@@ -84,6 +95,11 @@
   <servlet-mapping>
       <servlet-name>TestServlet</servlet-name>
       <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>deleteTestServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
