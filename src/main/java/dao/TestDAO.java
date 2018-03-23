@@ -46,8 +46,8 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TEST_BY_NAME_AND_TYPE"));
         ) {
-            st.setString(2, name);
-            st.setString(3, type.getName());
+            st.setString(1, name);
+            st.setString(2, type.getName());
             try (
                     ResultSet rs = st.executeQuery()
             ) {

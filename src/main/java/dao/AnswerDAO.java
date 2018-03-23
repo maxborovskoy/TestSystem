@@ -43,8 +43,8 @@ public class AnswerDAO extends AbstractDAO<Answer, Long> {
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ANSWER_BY_TEXT_AND_QUESTION_ID"))
         ) {
-            st.setString(2, text);
-            st.setLong(4, questionId);
+            st.setString(1, text);
+            st.setLong(2, questionId);
             try (
                     ResultSet rs = st.executeQuery()
             ) {

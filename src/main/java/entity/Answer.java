@@ -1,19 +1,29 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.Locale;
 
 public class Answer implements Serializable {
+    @JsonIgnore
     private long id;
+    @JsonProperty("Atext")
     private String text;
+    @JsonProperty("isRight")
     private Boolean isRight;
+    @JsonIgnore
     private long questionId;
 
     public Answer(String text, Boolean isRight, long questionId) {
         this.text = text;
         this.isRight = isRight;
         this.questionId = questionId;
+    }
+
+    public Answer() {
     }
 
     public long getId() {

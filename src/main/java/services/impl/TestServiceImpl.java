@@ -11,9 +11,9 @@ public class TestServiceImpl implements TestService {
     private TestDAO testDAO = new TestDAO();
 
     @Override
-    public void addTest(Test test) {
+    public Test addTest(Test test) {
         test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(test.getId()));
-        testDAO.add(test);
+        return testDAO.add(test);
     }
 
     @Override
@@ -37,5 +37,10 @@ public class TestServiceImpl implements TestService {
     @Override
     public void updateTest(Test test) {
         testDAO.update(test);
+    }
+
+    @Override
+    public Test addEmptyTest(Test test) {
+        return testDAO.add(test);
     }
 }

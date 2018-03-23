@@ -136,14 +136,14 @@ function biuldTest() {
     var questions = $(".question");
     Array.from(questions).forEach(function (question) {
         var newQuestion = {};
-        newQuestion.text = question.childNodes.item(1).value;
-        newQuestion.answer = [];
+        newQuestion.Qtext = question.childNodes.item(1).value;
+        newQuestion.answers = [];
         var answerGroups = question.getElementsByClassName("answer-container")[0].getElementsByClassName("answer-group");
         Array.from(answerGroups).forEach(function (answer) {
             var newAnswer = {};
-            newAnswer.text = answer.getElementsByClassName("answer-text")[0].value;
+            newAnswer.Atext = answer.getElementsByClassName("answer-text")[0].value;
             newAnswer.isRight = answer.getElementsByClassName("form-check-input")[0].checked;
-            newQuestion.answer.push(newAnswer);
+            newQuestion.answers.push(newAnswer);
         });
         test.quest.push(newQuestion);
     });

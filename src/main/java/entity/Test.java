@@ -1,20 +1,32 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class Test implements Serializable {
+    @JsonIgnore
     private long id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("quest")
     private List<Question> quest;
+    @JsonProperty("type")
     private TestTypes type;
 
     public Test(String name, List<Question> quest, TestTypes type) {
         this.name = name;
         this.quest = quest;
         this.type = type;
+    }
+
+    public Test() {
+        quest = new ArrayList<>();
     }
 
     public long getId() {

@@ -45,8 +45,8 @@ public class QuestionDAO extends AbstractDAO<Question, Long> {
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_QUESTION_BY_TEXT_AND_TEST_ID"));
         ) {
-            st.setString(2, text);
-            st.setLong(3, testId);
+            st.setString(1, text);
+            st.setLong(2, testId);
             try (
                     ResultSet rs = st.executeQuery()
             ) {

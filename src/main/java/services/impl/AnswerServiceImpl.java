@@ -10,8 +10,8 @@ public class AnswerServiceImpl implements AnswerService {
     private AnswerDAO answerDAO = new AnswerDAO();
 
     @Override
-    public void add(Answer answer) {
-        answerDAO.add(answer);
+    public Answer add(Answer answer) {
+        return answerDAO.add(answer);
     }
 
     @Override
