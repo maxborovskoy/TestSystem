@@ -1,5 +1,6 @@
 package services.impl;
 
+import dao.TestResultDAO;
 import entity.TestResult;
 import services.api.TestResultService;
 
