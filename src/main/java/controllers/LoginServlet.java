@@ -20,6 +20,7 @@ public class LoginServlet extends HttpServlet {
     private static final String TUTOR_EMAIL = "tutor@tutor";
     private static final String CATALOG = "/catalog";
     private static final String LOGIN_JSP = "login.jsp";
+    private static final String FLAG = "flag";
 
 
     @Override
@@ -42,14 +43,16 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         User user = validator.authorizeUser(name, pass);
+        HttpSession session = req.getSession();
+
         if (user != null) {
 
-            HttpSession session = req.getSession();
             session.setAttribute(USER, user);
 
             resp.sendRedirect(CATALOG);
 
         } else {
+            session.setAttribute(FLAG, "Login/email combination not found");
             req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
         }
 
