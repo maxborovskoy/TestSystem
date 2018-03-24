@@ -150,7 +150,11 @@ function biuldTest() {
 
     console.log(test);
 
-
-    $.redirect("/addTest", {test: JSON.stringify(test)});
+    if ($("#edit").val() != 1) {
+        $.redirect("/addTest", {test: JSON.stringify(test)});
+    }
+    else {
+        $.redirect("/editor", {test: JSON.stringify(test)});
+    }
 }
 

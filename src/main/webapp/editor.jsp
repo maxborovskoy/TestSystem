@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -31,7 +32,7 @@
                 <div class="row">
                     <div class="col-sm-8 col-md-7 py-2">
                         <h4 class="text-white">TUTOR TEST EDITOR</h4>
-                        <p class="text-muted">Add test</p>
+                        <p class="text-muted">Edit test</p>
                     </div>
                 </div>
             </div>
@@ -42,10 +43,10 @@
     <main role="main" class="container">
         <div class="jumbotron">
             <!--<form action="addTestForm" method="post" name="addTestForm">-->
-            <h2>Add test form</h2>
+            <h2>Edit test form</h2>
             <div class="form-group">
-                <label for="testNameInput">Test title:</label>
-                <input type="text" class="form-control" id="testNameInput" placeholder="Enter text">
+                <label for="testNameInput">Test title: </label>
+                <input type="text" class="form-control" id="testNameInput" value="${test.getName()}">
             </div>
             <label for="testTheme">Choose theme:</label>
             <select class="form-control" id="testTheme">
@@ -59,16 +60,46 @@
                 question
             </button>
             <div class="question-container" id="question-parent">
-
+                <c:if test="${not empty test}">
+                <c:forEach items="${test.getQuest()}" var="q">
+                <div class="question form-group form-control">
+                    <input type="question" placeholder = "Enter question" class="form-control question-text" value="${q.getText()}">
+                    <div class="answer-container col-md-8" id="answer-container">
+                        <button value="Add button" class="btn btn-primary create-answer-button">Add answer</button>
+                        <c:forEach items="${q.getAnswers()}" var="a">
+                            <div class="answer-group">
+                                    <div class="answer form-group">
+                                        <label></label>
+                                        <input type="question" placeholder = "Enter answer" class="form-control answer-text" value="${a.getText()}">
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <c:if test="${a.getRight()}">
+                                                <input class="form-check-input" type="checkbox" checked>
+                                            </c:if>
+                                            <c:if test="${not a.getRight()}">
+                                                <input class="form-check-input" type="checkbox">
+                                            </c:if>
+                                                "It's right answer?"
+                                        </label>
+                                    </div>
+                                    <hr>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+                </c:forEach>
+                    <input type="hidden" id="edit" value="1">
+                </c:if>
             </div>
-
             <button type="submit" class="btn btn-primary" onclick="biuldTest()">Save</button>
             <button type="submit" class="btn btn-danger">Cancel</button>
             <!--</form>-->
-
         </div>
     </main>
+
 </div>
+
 <footer class="text-muted">
     <div class="container">
         <p>Test tutor system has been developed by: </p>

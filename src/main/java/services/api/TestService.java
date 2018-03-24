@@ -18,4 +18,6 @@ public interface TestService {
     void updateTest(Test test);
 
     String addTestFromForm(Test test);
+
+    String editThroughForm(Test test);
 }

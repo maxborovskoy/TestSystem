@@ -79,4 +79,31 @@ public class TestServiceImpl implements TestService {
             return "OK";
         }
     }
+
+    @Override
+    public String editThroughForm(Test test) {
+        // TODO: edit service
+            if(test.getName().isEmpty()){
+                return "EMPTY_NAME";
+            }
+            if(test.getQuest().isEmpty()){
+                return "EMPTY_QUESTIONS";
+            }
+            QuestionServiceImpl questionService = new QuestionServiceImpl();
+            AnswerServiceImpl answerService = new AnswerServiceImpl();
+
+            for (Question quest : test.getQuest()) {
+                    if(quest.getText().isEmpty()){
+                        return "QUESTION_NO_TEXT";
+                    }
+
+                    Question questionWithId = questionService.addEmptyQuestion(quest);
+                    for (Answer answer : quest.getAnswers()) {
+                            answer.setQuestionId(questionWithId.getId());
+                            answerService.add(answer);
+                        }
+                    }
+            return "OK";
+        }
+
 }
