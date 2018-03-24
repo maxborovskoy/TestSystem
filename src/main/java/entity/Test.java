@@ -61,6 +61,8 @@ public class Test implements Serializable {
         this.type = type;
     }
 
+    public void setTestIdForQuest(Long testId) {quest.forEach(a -> a.setTestId(testId));}
+
     @Override
     public String toString() {
         return "Test{" +
