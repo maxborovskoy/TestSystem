@@ -17,27 +17,35 @@ public class EditorServlet extends HttpServlet {
     private static final String EDITOR_JSP = "editor.jsp";
     private static final String TEST = "test";
     private static final String ID = "id";
+    private static final String TEST_ID = "testId";
     private static final TestService testService = new TestServiceImpl();
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String testId = String.valueOf(session.getAttribute(TEST_ID));
         String test = req.getParameter(TEST);
-        String result = changeTest(convertJson(test));
+        Test editableTest = convertJson(test);
+        editableTest.setId(Long.parseLong(testId));
+        String result = changeTest(editableTest);
         if("OK".equals(result)){
+            session.setAttribute(TEST_ID, null);
             resp.sendRedirect("/catalog");
         } else {
-            resp.sendRedirect(EDITOR_JSP);
+            req.setAttribute(TEST, editableTest);
+            req.getRequestDispatcher(EDITOR_JSP).forward(req, resp);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //HttpSession session = req.getSession();
+        HttpSession session = req.getSession();
         TestService testService = new TestServiceImpl();
         Long testID = Long.parseLong(req.getParameter(ID));
         Test test = testService.getTest(testID);
         req.setAttribute(TEST, test);
+        session.setAttribute(TEST_ID, testID);
         req.getRequestDispatcher(EDITOR_JSP).forward(req, resp);
     }
 
