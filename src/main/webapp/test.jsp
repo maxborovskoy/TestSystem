@@ -1,6 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
@@ -20,7 +19,6 @@
     <fmt:setBundle basename="internationalization"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="test.testpage"/></title>
-    <link rel="stylesheet" href="css/catalog.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
     <link rel="stylesheet" href="css/language.css">
     <title>${test.getName()}</title>
