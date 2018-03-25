@@ -62,37 +62,47 @@
             <c:if test="${not empty problem}">
                 <c:choose>
                     <c:when test="${problem eq 'TEST_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">Test with same name and type is already exists</small>
+                        <small id="editorWarn" class="form-text text-danger">Test with same name and type is already
+                            exists
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'TEST_NO_NAME'}">
                         <small id="editorWarn" class="form-text text-danger">You forgot set test name</small>
                     </c:when>
                     <c:when test="${problem eq 'EMPTY_QUESTIONS'}">
-                        <small id="editorWarn" class="form-text text-danger">You didn't add any question to you test</small>
+                        <small id="editorWarn" class="form-text text-danger">You didn't add any question to you test
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">There is duplicate question in that test</small>
+                        <small id="editorWarn" class="form-text text-danger">There is duplicate question in that test
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_NO_TEXT'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some question fields without text</small>
+                        <small id="editorWarn" class="form-text text-danger">You left some question fields without
+                            text
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_NO_ANSWERS'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some questions without answers</small>
+                        <small id="editorWarn" class="form-text text-danger">You left some questions without answers
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'ANSWER_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">Some of your questions have duplicate answers</small>
+                        <small id="editorWarn" class="form-text text-danger">Some of your questions have duplicate
+                            answers
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'ANSWER_NO_TEXT'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some answer fields without text</small>
+                        <small id="editorWarn" class="form-text text-danger">You left some answer fields without text
+                        </small>
                     </c:when>
                 </c:choose>
             </c:if>
             <div class="question-container" id="question-parent">
                 <c:if test="${not empty test}">
-                    <c:set var="contId" value="10"/>
+                    <c:set var="contId" value="1000"/>
                     <c:forEach items="${test.getQuest()}" var="q">
-                        <div class="question form-group form-control">
-                            <button type="button" class="close" aria-label="Close">
+                        <div class="question form-group form-control" id="question${contId}">
+                            <button type="button" class="close" aria-label="Close" onclick="deleteQuestion(${contId})">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <input type="question" placeholder="Enter question" class="form-control question-text"
@@ -103,9 +113,11 @@
                                 </button>
                                 <c:set var="contId" value="${contId+1}"/>
                                 <c:forEach items="${q.getAnswers()}" var="a">
-                                    <div class="answer-group">
+                                    <c:set var="ansId" value="${contId*100}"/>
+                                    <div class="answer-group" id="answ${ansId}">
                                         <div class="answer form-group">
-                                            <button type="button" class="close" aria-label="Close">
+                                            <button type="button" class="close" aria-label="Close"
+                                                    onclick="deleteAnswer(${ansId})">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                             <label></label>
@@ -125,6 +137,7 @@
                                         </div>
                                         <hr>
                                     </div>
+                                    <c:set var="ansId" value="${ansId+1}"/>
                                 </c:forEach>
                             </div>
                         </div>

@@ -196,6 +196,14 @@ function generateNextAnswerId() {
     return answerId++;
 }
 
+function getNextAnswerId() {
+    return "answer-container".concat(generateNextAnswerId())
+}
+
+function getCurrentAnswerId() {
+    return answerId;
+}
+
 
 function deleteQuestion(id) {
     var currentQuestion = document.getElementById("question".concat(id));
