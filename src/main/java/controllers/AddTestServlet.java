@@ -30,7 +30,7 @@ public class AddTestServlet extends HttpServlet {
         if(result == CreationStatus.OK){
             resp.sendRedirect("/catalog");
         } else {
-            resp.sendRedirect("/forbidden.jsp");
+            resp.sendRedirect("/catalog.jsp");
         }
     }
 

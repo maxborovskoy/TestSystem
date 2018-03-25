@@ -21,4 +21,6 @@ public interface TestService {
     void updateTest(Test test);
 
     CreationStatus addTestFromForm(Test test);
+
+    String editThroughForm(Test test);
 }

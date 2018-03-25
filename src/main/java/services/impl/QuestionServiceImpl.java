@@ -41,7 +41,7 @@ public class QuestionServiceImpl implements QuestionService {
     public void removeAllQuestionsByTestId(long testId) {
         List<Question> questionList = questionDAO.getAllQuestionsByTestId(testId);
         for (Question question : questionList) {
-            remove(question.getId());
+            questionDAO.remove(question.getId());
         }
     }
 

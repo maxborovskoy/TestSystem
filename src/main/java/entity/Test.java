@@ -72,6 +72,8 @@ public class Test implements Serializable {
         return creationDate;
     }
 
+    public void setTestIdForQuest(Long testId) {quest.forEach(a -> a.setTestId(testId));}
+
     @Override
     public String toString() {
         return "Test{" +
