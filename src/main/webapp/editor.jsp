@@ -93,7 +93,7 @@
                 </c:if>
             </div>
             <button type="submit" class="btn btn-primary" onclick="biuldTest()">Save</button>
-            <button type="submit" class="btn btn-danger">Cancel</button>
+            <a href="<c:url value="/catalog"/>" class="btn btn-danger">Cancel</a>
             <!--</form>-->
         </div>
     </main>
