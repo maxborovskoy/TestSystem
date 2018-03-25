@@ -9,7 +9,7 @@ public enum TestTypes {
     @JsonProperty("Physics")
     PHYSICS("Physics"),
     @JsonProperty("Russian")
-    RUSSIAN("Russan"),
+    RUSSIAN("Russian"),
     @JsonProperty("English")
     ENGLISH("English");
 

@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.Test;
 import services.api.TestService;
+import services.impl.EditorStatus;
 import services.impl.TestServiceImpl;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ public class EditorServlet extends HttpServlet {
 
     private static final String EDITOR_JSP = "editor.jsp";
     private static final String TEST = "test";
+    private static final String PROBLEM = "problem";
     private static final String ID = "id";
     private static final String TEST_ID = "testId";
     private static final TestService testService = new TestServiceImpl();
@@ -27,12 +29,13 @@ public class EditorServlet extends HttpServlet {
         String test = req.getParameter(TEST);
         Test editableTest = convertJson(test);
         editableTest.setId(Long.parseLong(testId));
-        String result = changeTest(editableTest);
-        if("OK".equals(result)){
+        EditorStatus result = changeTest(editableTest);
+        if(result == EditorStatus.OK){
             session.setAttribute(TEST_ID, null);
             resp.sendRedirect("/catalog");
         } else {
             req.setAttribute(TEST, editableTest);
+            req.setAttribute(PROBLEM, result.getType());
             req.getRequestDispatcher(EDITOR_JSP).forward(req, resp);
         }
     }
@@ -53,7 +56,7 @@ public class EditorServlet extends HttpServlet {
         return mapper.readValue(test, Test.class);
     }
 
-    private String changeTest(Test test) {
+    private EditorStatus changeTest(Test test) {
         return testService.editThroughForm(test);
     }
 }

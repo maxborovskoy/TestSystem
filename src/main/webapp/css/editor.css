@@ -33,3 +33,7 @@ body {
 .create-answer-button{
     margin: 15px;
 }
+
+#editorWarn{
+    padding-bottom: 15px;
+}

@@ -22,14 +22,27 @@ var testObject = {
 function addQuestionField() {
     console.log("addQuestion");
 
+    var containerId = generateNextQuestionId();
+
     var questionDiv = document.createElement("div");
     questionDiv.className = "question";
+    questionDiv.id = "question".concat(containerId);
     questionDiv.classList.add("form-group");
 
-
+    var questionDeleteButton = document.createElement("button");
+    questionDeleteButton.type = "button";
+    questionDeleteButton.className = "close";
+    var deleteSpan = document.createElement("span");
+    var deleteText = document.createTextNode(String.fromCharCode(215));
+    deleteSpan.appendChild(deleteText);
+    questionDeleteButton.appendChild(deleteSpan);
     var questionLabel = document.createElement("label");
     var labelText = document.createTextNode("Question text:");
     var questionInput = document.createElement("input");
+    questionDeleteButton.onclick = function () {
+        var currentQuestion = document.getElementById("question".concat(containerId));
+        currentQuestion.parentNode.removeChild(currentQuestion);
+    };
 
     questionInput.type = "question";
     questionInput.placeholder = "Enter question";
@@ -37,13 +50,13 @@ function addQuestionField() {
     questionInput.classList.add("form-control");
     questionInput.classList.add("question-text");
 
+    questionDiv.appendChild(questionDeleteButton);
     questionDiv.appendChild(questionLabel);
     questionDiv.appendChild(questionInput);
 
 
     var answerContainer = document.createElement("div");
     answerContainer.className = "answer-container col-md-8";
-    var containerId = generateNextQuestionId();
     console.log("generatedId=", containerId);
     answerContainer.id = "answer-container".concat(containerId);
     questionDiv.appendChild(answerContainer);
@@ -54,6 +67,9 @@ function addQuestionField() {
     addAnswerButton.className = "btn btn-primary create-answer-button";
     addAnswerButton.onclick = function () {
         console.log("addAnswer");
+
+        var answerId = generateNextAnswerId();
+
         var answerDiv = document.createElement("div");
         answerDiv.className = "answer form-group";
         var answerInput = document.createElement("input");
@@ -61,7 +77,21 @@ function addQuestionField() {
         answerInput.placeholder = "Enter answer";
         answerInput.classList.add("form-control");
         answerInput.classList.add("answer-text");
+
+        var answerDeleteButton = document.createElement("button");
+        answerDeleteButton.type = "button";
+        answerDeleteButton.className = "close";
+        answerDeleteButton.onclick = function () {
+            var currentAnswer = document.getElementById("answ".concat(answerId));
+            currentAnswer.parentNode.removeChild(currentAnswer);
+        };
+        var deleteSpan = document.createElement("span");
+        var deleteText = document.createTextNode(String.fromCharCode(215));
+        deleteSpan.appendChild(deleteText);
+        answerDeleteButton.appendChild(deleteSpan);
+
         answerDiv.appendChild(answerInput);
+
 
         var answerCheckBoxDiv = document.createElement("div");
         answerCheckBoxDiv.className = "form-check";
@@ -78,7 +108,9 @@ function addQuestionField() {
         var hr = document.createElement("hr");
 
         var answerGroup = document.createElement("div");
+        answerGroup.id = "answ".concat(answerId);
         answerGroup.className = "answer-group";
+        answerGroup.appendChild(answerDeleteButton);
         answerGroup.appendChild(answerDiv);
         answerGroup.appendChild(answerCheckBoxDiv);
         answerGroup.appendChild(hr);
@@ -96,8 +128,7 @@ function addQuestionField() {
 }
 
 
-
-function addAnswerField(contId)  {
+function addAnswerField(contId) {
     console.log("addAnswer");
     var answerDiv = document.createElement("div");
     answerDiv.className = "answer form-group";
@@ -106,7 +137,23 @@ function addAnswerField(contId)  {
     answerInput.placeholder = "Enter answer";
     answerInput.classList.add("form-control");
     answerInput.classList.add("answer-text");
+
+
+    var answerDeleteButton = document.createElement("button");
+    answerDeleteButton.type = "button";
+    answerDeleteButton.className = "close";
+    answerDeleteButton.onclick = function () {
+        var currentAnswer = document.getElementById("answ".concat(contId));
+        currentAnswer.parentNode.removeChild(currentAnswer);
+    };
+    var deleteSpan = document.createElement("span");
+    deleteSpan.setAttribute("aria-hidden", true);
+    var deleteText = document.createTextNode(String.fromCharCode(215));
+    deleteSpan.appendChild(deleteText);
+    answerDeleteButton.appendChild(deleteSpan);
+
     answerDiv.appendChild(answerInput);
+
 
     var answerCheckBoxDiv = document.createElement("div");
     answerCheckBoxDiv.className = "form-check";
@@ -123,46 +170,37 @@ function addAnswerField(contId)  {
     var hr = document.createElement("hr");
 
     var answerGroup = document.createElement("div");
+    answerGroup.id = "answ".concat(contId);
     answerGroup.className = "answer-group";
+    answerGroup.appendChild(answerDeleteButton);
     answerGroup.appendChild(answerDiv);
     answerGroup.appendChild(answerCheckBoxDiv);
     answerGroup.appendChild(hr);
 
     var answerContainer = document.getElementById("answer-container".concat(contId));
     answerContainer.appendChild(answerGroup);
-};
-
-
-
-function getQuestionById(id) {
-    for (var i = 0; i < questions.length; i++) {
-        console.log(questions[i]);
-        if (questions[i]["id"] === id.toString()) {
-            console.log(questions[i]);
-            return questions[i];
-        }
-    }
-    console.log("no such question");
-    return null;
 }
 
-function getAnswerById() {
-
-}
-
-function getAnswerByQuestionId(id) {
-
-}
 
 function generateNextQuestionId() {
     console.log("next question id =", questionId);
     return questionId++;
 }
 
-
 function generateNextAnswerId() {
     console.log("next answer id =", answerId);
     return answerId++;
+}
+
+
+function deleteQuestion(id) {
+    var currentQuestion = document.getElementById("question".concat(id));
+    currentQuestion.parentNode.removeChild(currentQuestion);
+}
+
+function deleteAnswer(id) {
+    var currentAnswer = document.getElementById("answ".concat(id));
+    currentAnswer.parentNode.removeChild(currentAnswer);
 }
 
 

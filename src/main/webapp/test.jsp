@@ -88,7 +88,7 @@
                                         ${a.getText()}
                                 </div>
                             </c:if>
-                            <c:if test="${correctAnswers > 1}">
+                            <c:if test="${correctAnswers > 1 or correctAnswers == 0}">
                                 <div>
                                     <input name="q${q.getId()}" type="checkbox" value="${a.getId()}">
                                         ${a.getText()}

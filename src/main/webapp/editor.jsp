@@ -59,39 +59,96 @@
             <button type="submit" class="btn btn-primary create-question-button" onclick="addQuestionField()">Add
                 question
             </button>
+            <c:if test="${not empty problem}">
+                <c:choose>
+                    <c:when test="${problem eq 'TEST_EXISTS'}">
+                        <small id="editorWarn" class="form-text text-danger">Test with same name and type is already
+                            exists
+                        </small>
+                    </c:when>
+                    <c:when test="${problem eq 'TEST_NO_NAME'}">
+                        <small id="editorWarn" class="form-text text-danger">You forgot set test name</small>
+                    </c:when>
+                    <c:when test="${problem eq 'EMPTY_QUESTIONS'}">
+                        <small id="editorWarn" class="form-text text-danger">You didn't add any question to you test
+                        </small>
+                    </c:when>
+                    <c:when test="${problem eq 'QUESTION_EXISTS'}">
+                        <small id="editorWarn" class="form-text text-danger">There is duplicate question in that test
+                        </small>
+                    </c:when>
+                    <c:when test="${problem eq 'QUESTION_NO_TEXT'}">
+                        <small id="editorWarn" class="form-text text-danger">You left some question fields without
+                            text
+                        </small>
+                    </c:when>
+                    <c:when test="${problem eq 'QUESTION_NO_ANSWERS'}">
+                        <small id="editorWarn" class="form-text text-danger">You left some questions without answers
+                        </small>
+                    </c:when>
+                    <c:when test="${problem eq 'ANSWER_EXISTS'}">
+                        <small id="editorWarn" class="form-text text-danger">Some of your questions have duplicate
+                            answers
+                        </small>
+                    </c:when>
+                    <c:when test="${problem eq 'ANSWER_NO_TEXT'}">
+                        <small id="editorWarn" class="form-text text-danger">You left some answer fields without text
+                        </small>
+                    </c:when>
+                </c:choose>
+            </c:if>
             <div class="question-container" id="question-parent">
                 <c:if test="${not empty test}">
                     <c:set var="contId" value="10"/>
-                <c:forEach items="${test.getQuest()}" var="q">
-                <div class="question form-group form-control">
-                    <input type="question" placeholder = "Enter question" class="form-control question-text" value="${q.getText()}">
-                    <div class="answer-container col-md-8" id="answer-container${contId}">
-                        <button type="submit" class="btn btn-primary create-answer-button" onclick="addAnswerField('${contId}')">Add answer</button>
-                        <c:set var="contId" value="${contId+1}"/>
-                        <c:forEach items="${q.getAnswers()}" var="a">
-                            <div class="answer-group">
-                                    <div class="answer form-group">
-                                        <label></label>
-                                        <input type="question" placeholder = "Enter answer" class="form-control answer-text" value="${a.getText()}">
-                                    </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <c:if test="${a.getRight()}">
-                                                <input class="form-check-input" type="checkbox" checked>
-                                            </c:if>
-                                            <c:if test="${not a.getRight()}">
-                                                <input class="form-check-input" type="checkbox">
-                                            </c:if>
+                    <c:forEach items="${test.getQuest()}" var="q">
+                        <div class="question form-group form-control">
+                            <button type="button" class="close" aria-label="Close"
+                                    onclick="deleteQuestion('${contId}')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <input type="question" placeholder="Enter question" class="form-control question-text"
+                                   value="${q.getText()}">
+                            <div class="answer-container col-md-8" id="answer-container${contId}">
+                                <button type="submit" class="btn btn-primary create-answer-button"
+                                        onclick="addAnswerField('${contId}')">Add answer
+                                </button>
+                                <c:set var="contId" value="${contId+1}"/>
+                                <c:forEach items="${q.getAnswers()}" var="a">
+                                    <div class="answer-group">
+                                        <div class="answer form-group">
+                                            <button type="button" class="close" aria-label="Close"
+                                                    onclick="deleteAnswer('${contId}')">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <label></label>
+                                            <input type="question" placeholder="Enter answer"
+                                                   class="form-control answer-text" value="${a.getText()}">
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <c:if test="${a.getRight()}">
+                                                    <input class="form-check-input" type="checkbox" checked>
+                                                </c:if>
+                                                <c:if test="${not a.getRight()}">
+                                                    <input class="form-check-input" type="checkbox">
+                                                </c:if>
                                                 "It's right answer?"
-                                        </label>
+                                            </label>
+                                        </div>
+                                        <hr>
                                     </div>
-                                    <hr>
+                                </c:forEach>
                             </div>
-                        </c:forEach>
-                    </div>
-                </div>
-                </c:forEach>
-                    <input type="hidden" id="edit" value="1">
+                        </div>
+                    </c:forEach>
+                    <c:choose>
+                        <c:when test="${test.getId() == -1}">
+                            <input type="hidden" id="edit" value="0">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="hidden" id="edit" value="1">
+                        </c:otherwise>
+                    </c:choose>
                 </c:if>
             </div>
             <button type="submit" class="btn btn-primary" onclick="biuldTest()">Save</button>

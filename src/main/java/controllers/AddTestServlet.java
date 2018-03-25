@@ -1,15 +1,9 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entity.Answer;
-import entity.Question;
 import entity.Test;
-import services.api.AnswerService;
-import services.api.QuestionService;
 import services.api.TestService;
-import services.impl.AnswerServiceImpl;
-import services.impl.CreationStatus;
-import services.impl.QuestionServiceImpl;
+import services.impl.EditorStatus;
 import services.impl.TestServiceImpl;
 
 import javax.servlet.ServletException;
@@ -22,15 +16,20 @@ public class AddTestServlet extends HttpServlet {
 
     private static final String TEST = "test";
     private static final TestService testService = new TestServiceImpl();
+    private static final String PROBLEM = "problem";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String test = req.getParameter(TEST);
-        CreationStatus result = createNewTest(convertJson(test));
-        if(result == CreationStatus.OK){
+        Test newTest = convertJson(test);
+        EditorStatus result = createNewTest(newTest);
+        if(result == EditorStatus.OK){
             resp.sendRedirect("/catalog");
         } else {
-            resp.sendRedirect("/editor");
+            newTest.setId(-1);
+            req.setAttribute(TEST, newTest);
+            req.setAttribute(PROBLEM, result.getType());
+            req.getRequestDispatcher("/editor.jsp").forward(req, resp);
         }
     }
 
@@ -39,7 +38,7 @@ public class AddTestServlet extends HttpServlet {
         return mapper.readValue(test, Test.class);
     }
 
-    private CreationStatus createNewTest(Test test) {
+    private EditorStatus createNewTest(Test test) {
         return testService.addTestFromForm(test);
     }
 }

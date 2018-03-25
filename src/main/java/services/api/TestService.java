@@ -1,7 +1,7 @@
 package services.api;
 
 import entity.Test;
-import services.impl.CreationStatus;
+import services.impl.EditorStatus;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public interface TestService {
 
     void updateTest(Test test);
 
-    CreationStatus addTestFromForm(Test test);
+    EditorStatus addTestFromForm(Test test);
 
-    String editThroughForm(Test test);
+    EditorStatus editThroughForm(Test test);
 }

@@ -4,24 +4,30 @@ import dao.TestDAO;
 import entity.Answer;
 import entity.Question;
 import entity.Test;
+import services.api.AnswerService;
+import services.api.QuestionService;
 import services.api.TestService;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestServiceImpl implements TestService {
 
     private TestDAO testDAO = new TestDAO();
+    private static final QuestionService questionService = new QuestionServiceImpl();
+    private static final AnswerService answerService = new AnswerServiceImpl();
 
     @Override
     public Test addTest(Test test) {
-        test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(test.getId()));
+        test.setQuest(questionService.getAllQuestionsByTestId(test.getId()));
         return testDAO.add(test);
     }
 
     @Override
     public Test getTest(Long id) {
         Test test = testDAO.get(id);
-        test.setQuest(new QuestionServiceImpl().getAllQuestionsByTestId(id));
+        test.setQuest(questionService.getAllQuestionsByTestId(id));
         return test;
     }
 
@@ -47,42 +53,40 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public CreationStatus addTestFromForm(Test test) {
+    public EditorStatus addTestFromForm(Test test) {
         if (testDAO.getTestsIdByNameAndType(test.getName(), test.getType()) != -1) {
-            return CreationStatus.TEST_EXISTS;
+            return EditorStatus.TEST_EXISTS;
         } else {
             if (test.getName().isEmpty()) {
-                return CreationStatus.TEST_NO_NAME;
+                return EditorStatus.TEST_NO_NAME;
             }
             if (test.getQuest().isEmpty()) {
-                return CreationStatus.EMPTY_QUESTIONS;
+                return EditorStatus.EMPTY_QUESTIONS;
             }
-            QuestionServiceImpl questionService = new QuestionServiceImpl();
-            AnswerServiceImpl answerService = new AnswerServiceImpl();
             Test testWithId = testDAO.add(test);
             for (Question quest : test.getQuest()) {
                 if (questionService.getQuestionsIdByTextAndTestId(quest.getText(), testWithId.getId()) != -1) {
                     testDAO.remove(testWithId.getId());
-                    return CreationStatus.QUESTION_EXISTS;
+                    return EditorStatus.QUESTION_EXISTS;
                 } else {
                     if (quest.getText().isEmpty()) {
                         testDAO.remove(testWithId.getId());
-                        return CreationStatus.QUESTION_NO_TEXT;
+                        return EditorStatus.QUESTION_NO_TEXT;
                     }
                     if (quest.getAnswers().isEmpty()) {
                         testDAO.remove(testWithId.getId());
-                        return CreationStatus.QUESTION_NO_ANSWERS;
+                        return EditorStatus.QUESTION_NO_ANSWERS;
                     }
                     quest.setTestId(testWithId.getId());
                     Question questionWithId = questionService.addEmptyQuestion(quest);
                     for (Answer answer : quest.getAnswers()) {
                         if (answerService.getAnswerByTextAndQuestionId(answer.getText(), questionWithId.getId()) != -1) {
                             testDAO.remove(testWithId.getId());
-                            return CreationStatus.ANSWER_EXISTS;
+                            return EditorStatus.ANSWER_EXISTS;
                         } else {
                             if (answer.getText().isEmpty()) {
                                 testDAO.remove(testWithId.getId());
-                                return CreationStatus.ANSWER_NO_TEXT;
+                                return EditorStatus.ANSWER_NO_TEXT;
                             }
                             answer.setQuestionId(questionWithId.getId());
                             answerService.add(answer);
@@ -90,19 +94,16 @@ public class TestServiceImpl implements TestService {
                     }
                 }
             }
-            return CreationStatus.OK;
+            return EditorStatus.OK;
         }
     }
 
     @Override
-    public String editThroughForm(Test test) {
-        String checkResult = checkTest(test);
-        if (checkResult.equals("OK")) {
+    public EditorStatus editThroughForm(Test test) {
+        EditorStatus checkResult = checkTest(test);
+        if (checkResult == EditorStatus.OK) {
             Long testId = test.getId();
             updateTest(test);
-            AnswerServiceImpl answerService = new AnswerServiceImpl();
-            QuestionServiceImpl questionService = new QuestionServiceImpl();
-
             questionService.removeAllQuestionsByTestId(testId);
             for (Question quest : test.getQuest()) {
                 quest.setTestId(testId);
@@ -118,25 +119,57 @@ public class TestServiceImpl implements TestService {
 
     }
 
-    private String checkTest(Test test) {
-        if(test.getName().isEmpty()){
-            return "EMPTY_NAME";
+    private EditorStatus checkTest(Test test) {
+        if (test.getName().isEmpty()) {
+            return EditorStatus.TEST_NO_NAME;
         }
-        if(test.getQuest().isEmpty()){
-            return "EMPTY_QUESTIONS";
+        if (test.getQuest().isEmpty()) {
+            return EditorStatus.EMPTY_QUESTIONS;
+        }
+
+        if (hasDuplicateQuestions(test)) {
+            return EditorStatus.QUESTION_EXISTS;
         }
 
         for (Question quest : test.getQuest()) {
-                if(quest.getText().isEmpty()){
-                    return "QUESTION_NO_TEXT";
+
+            if (quest.getText().isEmpty()) {
+                return EditorStatus.QUESTION_NO_TEXT;
+            }
+            if (quest.getAnswers().isEmpty()) {
+                return EditorStatus.QUESTION_NO_ANSWERS;
+            } else {
+                if (hasDuplicateAnswers(quest)) {
+                    return EditorStatus.ANSWER_EXISTS;
                 }
                 for (Answer answer : quest.getAnswers()) {
-                    if(answer.getText().isEmpty()) {
-                        return "ANSWER_NO_TEXT";
+                    if (answer.getText().isEmpty()) {
+                        return EditorStatus.ANSWER_NO_TEXT;
                     }
                 }
+            }
         }
-        return "OK";
+        return EditorStatus.OK;
+    }
+
+    private boolean hasDuplicateAnswers(Question quest) {
+        List<String> answerTexts = quest.getAnswers().stream().map(Answer::getText).collect(Collectors.toList());
+        for (String texts : answerTexts){
+            if(Collections.frequency(answerTexts, texts) > 1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasDuplicateQuestions(Test test) {
+        List<String> questionsTexts = test.getQuest().stream().map(Question::getText).collect(Collectors.toList());
+        for (String texts : questionsTexts){
+            if(Collections.frequency(questionsTexts, texts) > 1){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
