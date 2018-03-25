@@ -96,6 +96,44 @@ function addQuestionField() {
 }
 
 
+
+function addAnswerField(contId)  {
+    console.log("addAnswer");
+    var answerDiv = document.createElement("div");
+    answerDiv.className = "answer form-group";
+    var answerInput = document.createElement("input");
+    answerInput.type = "question";
+    answerInput.placeholder = "Enter answer";
+    answerInput.classList.add("form-control");
+    answerInput.classList.add("answer-text");
+    answerDiv.appendChild(answerInput);
+
+    var answerCheckBoxDiv = document.createElement("div");
+    answerCheckBoxDiv.className = "form-check";
+    var checkboxLabel = document.createElement("label");
+    checkboxLabel.className = "form-check-label";
+    var checkBoxInput = document.createElement("input");
+    checkBoxInput.className = "form-check-input";
+    checkBoxInput.type = "checkbox";
+    var checkBoxText = document.createTextNode("It's right answer?");
+    checkboxLabel.appendChild(checkBoxInput);
+    checkboxLabel.appendChild(checkBoxText);
+    answerCheckBoxDiv.appendChild(checkboxLabel);
+
+    var hr = document.createElement("hr");
+
+    var answerGroup = document.createElement("div");
+    answerGroup.className = "answer-group";
+    answerGroup.appendChild(answerDiv);
+    answerGroup.appendChild(answerCheckBoxDiv);
+    answerGroup.appendChild(hr);
+
+    var answerContainer = document.getElementById("answer-container".concat(contId));
+    answerContainer.appendChild(answerGroup);
+};
+
+
+
 function getQuestionById(id) {
     for (var i = 0; i < questions.length; i++) {
         console.log(questions[i]);
