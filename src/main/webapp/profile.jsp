@@ -68,20 +68,23 @@
     </div>
 </header>
 
-
 <table>
     <tr>
         <th>Test</th>
         <th>Result</th>
         <th>%</th>
         <th>date</th>
-        <c:forEach items="${sessionScope.testResults}" var="tR">
+    </tr>
+
+        <c:forEach items="${requestScope.testResults}" var="tR">
+            <tr>
             <td>${f:getTestName(tR.getTestId())}</td>
             <td>${tR.getCorrectAnswers()}/${tR.getCountAnswers()}</td>
             <td>${f:getPercents(tR)}</td>
             <td>${tR.getDate()}</td>
+            </tr>
         </c:forEach>
-    </tr>
+
 </table>
 
 

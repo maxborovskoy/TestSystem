@@ -61,10 +61,20 @@
   </servlet>
 
   <servlet>
+    <servlet-name>ProfileServlet</servlet-name>
+    <servlet-class>controllers.ProfileServlet</servlet-class>
+  </servlet>
+
+  <servlet>
     <servlet-name>InitDB</servlet-name>
     <servlet-class>config.InitDB</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ProfileServlet</servlet-name>
+    <url-pattern>/profileServlet</url-pattern>
+  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>Catalog</servlet-name>
