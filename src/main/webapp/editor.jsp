@@ -62,38 +62,28 @@
             <c:if test="${not empty problem}">
                 <c:choose>
                     <c:when test="${problem eq 'TEST_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">Test with same name and type is already
-                            exists
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">Test with same name and type is already exists</small>
                     </c:when>
                     <c:when test="${problem eq 'TEST_NO_NAME'}">
                         <small id="editorWarn" class="form-text text-danger">You forgot set test name</small>
                     </c:when>
                     <c:when test="${problem eq 'EMPTY_QUESTIONS'}">
-                        <small id="editorWarn" class="form-text text-danger">You didn't add any question to you test
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">You didn't add any question to you test</small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">There is duplicate question in that test
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">There is duplicate question in that test</small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_NO_TEXT'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some question fields without
-                            text
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">You left some question fields without text</small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_NO_ANSWERS'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some questions without answers
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">You left some questions without answers</small>
                     </c:when>
                     <c:when test="${problem eq 'ANSWER_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">Some of your questions have duplicate
-                            answers
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">Some of your questions have duplicate answers</small>
                     </c:when>
                     <c:when test="${problem eq 'ANSWER_NO_TEXT'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some answer fields without text
-                        </small>
+                        <small id="editorWarn" class="form-text text-danger">You left some answer fields without text</small>
                     </c:when>
                 </c:choose>
             </c:if>
@@ -102,8 +92,7 @@
                     <c:set var="contId" value="10"/>
                     <c:forEach items="${test.getQuest()}" var="q">
                         <div class="question form-group form-control">
-                            <button type="button" class="close" aria-label="Close"
-                                    onclick="deleteQuestion('${contId}')">
+                            <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <input type="question" placeholder="Enter question" class="form-control question-text"
@@ -116,8 +105,7 @@
                                 <c:forEach items="${q.getAnswers()}" var="a">
                                     <div class="answer-group">
                                         <div class="answer form-group">
-                                            <button type="button" class="close" aria-label="Close"
-                                                    onclick="deleteAnswer('${contId}')">
+                                            <button type="button" class="close" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                             <label></label>

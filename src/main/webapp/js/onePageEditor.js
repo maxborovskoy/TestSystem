@@ -41,6 +41,8 @@ function addQuestionField() {
     var questionInput = document.createElement("input");
     questionDeleteButton.onclick = function () {
         var currentQuestion = document.getElementById("question".concat(containerId));
+        console.log(document.getElementById("question".concat(containerId)));
+
         currentQuestion.parentNode.removeChild(currentQuestion);
     };
 
@@ -83,6 +85,7 @@ function addQuestionField() {
         answerDeleteButton.className = "close";
         answerDeleteButton.onclick = function () {
             var currentAnswer = document.getElementById("answ".concat(answerId));
+            console.log(document.getElementById("answ".concat(answerId)));
             currentAnswer.parentNode.removeChild(currentAnswer);
         };
         var deleteSpan = document.createElement("span");
@@ -144,6 +147,7 @@ function addAnswerField(contId) {
     answerDeleteButton.className = "close";
     answerDeleteButton.onclick = function () {
         var currentAnswer = document.getElementById("answ".concat(contId));
+        console.log(document.getElementById("answ".concat(contId)));
         currentAnswer.parentNode.removeChild(currentAnswer);
     };
     var deleteSpan = document.createElement("span");
@@ -210,9 +214,15 @@ function biuldTest() {
     test.type = $("#testTheme").val();
     test.quest = [];
     var questions = $(".question");
+
+    console.log(questions);
+
     Array.from(questions).forEach(function (question) {
         var newQuestion = {};
-        newQuestion.Qtext = question.childNodes.item(1).value;
+
+        console.log(question.getElementsByClassName("question-text")[0].value);
+
+        newQuestion.Qtext = question.getElementsByClassName("question-text")[0].value;
         newQuestion.answers = [];
         var answerGroups = question.getElementsByClassName("answer-container")[0].getElementsByClassName("answer-group");
         Array.from(answerGroups).forEach(function (answer) {

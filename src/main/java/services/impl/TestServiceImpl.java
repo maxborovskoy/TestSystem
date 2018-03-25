@@ -69,7 +69,7 @@ public class TestServiceImpl implements TestService {
                     testDAO.remove(testWithId.getId());
                     return EditorStatus.QUESTION_EXISTS;
                 } else {
-                    if (quest.getText().isEmpty()) {
+                    if (quest.getText() == null || quest.getText().isEmpty()) {
                         testDAO.remove(testWithId.getId());
                         return EditorStatus.QUESTION_NO_TEXT;
                     }
@@ -84,7 +84,7 @@ public class TestServiceImpl implements TestService {
                             testDAO.remove(testWithId.getId());
                             return EditorStatus.ANSWER_EXISTS;
                         } else {
-                            if (answer.getText().isEmpty()) {
+                            if (answer.getText() == null || answer.getText().isEmpty()) {
                                 testDAO.remove(testWithId.getId());
                                 return EditorStatus.ANSWER_NO_TEXT;
                             }
@@ -154,8 +154,8 @@ public class TestServiceImpl implements TestService {
 
     private boolean hasDuplicateAnswers(Question quest) {
         List<String> answerTexts = quest.getAnswers().stream().map(Answer::getText).collect(Collectors.toList());
-        for (String texts : answerTexts){
-            if(Collections.frequency(answerTexts, texts) > 1){
+        for (String texts : answerTexts) {
+            if (Collections.frequency(answerTexts, texts) > 1) {
                 return true;
             }
         }
@@ -164,8 +164,8 @@ public class TestServiceImpl implements TestService {
 
     private boolean hasDuplicateQuestions(Test test) {
         List<String> questionsTexts = test.getQuest().stream().map(Question::getText).collect(Collectors.toList());
-        for (String texts : questionsTexts){
-            if(Collections.frequency(questionsTexts, texts) > 1){
+        for (String texts : questionsTexts) {
+            if (Collections.frequency(questionsTexts, texts) > 1) {
                 return true;
             }
         }

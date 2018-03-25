@@ -1,5 +1,6 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <html>
 <head>
@@ -31,7 +32,7 @@
 
 </head>
 <body>
-<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"></div>
 
 <div class="mainContent">
     <header>

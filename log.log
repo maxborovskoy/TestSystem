@@ -637,3 +637,263 @@ Column "creationDate" not found [42122-196]
 25/03/2018 8:19 [localhost-startStop-1] INFO - <Database successfully initialized>
 25/03/2018 8:20 [localhost-startStop-1] INFO - <Database successfully initialized>
 25/03/2018 8:25 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:42 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:42 [http-bio-8888-exec-6] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+25/03/2018 11:44 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:44 [http-bio-8888-exec-10] INFO - <Test Test{name='Mew math', quest=[Question{text='null'}, Question{text='null'}], type=MATH} was added>
+25/03/2018 11:45 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:48 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:48 [http-bio-8888-exec-5] INFO - <Test(id:385) was removed>
+25/03/2018 11:48 [http-bio-8888-exec-7] INFO - <Test(id:417) was removed>
+25/03/2018 11:49 [http-bio-8888-exec-2] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+25/03/2018 11:49 [http-bio-8888-exec-3] INFO - <Test(id:449) was removed>
+25/03/2018 11:50 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:51 [http-bio-8888-exec-5] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+25/03/2018 11:53 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:53 [http-bio-8888-exec-7] INFO - <Test(id:481) was removed>
+25/03/2018 11:54 [http-bio-8888-exec-6] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+25/03/2018 11:54 [http-bio-8888-exec-6] INFO - <Test(id:513) was removed>
+25/03/2018 11:54 [http-bio-8888-exec-7] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:54 [http-bio-8888-exec-7] INFO - <Test(id:514) was removed>
+25/03/2018 11:54 [http-bio-8888-exec-8] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:54 [http-bio-8888-exec-8] INFO - <Test(id:515) was removed>
+25/03/2018 11:54 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:54 [http-bio-8888-exec-9] INFO - <Test(id:516) was removed>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test(id:517) was removed>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test(id:518) was removed>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test(id:519) was removed>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+25/03/2018 11:55 [http-bio-8888-exec-9] INFO - <Test(id:520) was removed>
+25/03/2018 11:57 [localhost-startStop-1] INFO - <Database successfully initialized>
+25/03/2018 11:58 [http-bio-8888-exec-8] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+25/03/2018 11:59 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:01 [http-bio-8888-exec-8] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+26/03/2018 12:01 [http-bio-8888-exec-8] INFO - <Test(id:545) was removed>
+26/03/2018 12:01 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 12:01 [http-bio-8888-exec-9] INFO - <Test(id:546) was removed>
+26/03/2018 12:01 [http-bio-8888-exec-10] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 12:01 [http-bio-8888-exec-10] INFO - <Test(id:547) was removed>
+26/03/2018 12:01 [http-bio-8888-exec-10] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 12:01 [http-bio-8888-exec-10] INFO - <Test(id:548) was removed>
+26/03/2018 12:01 [http-bio-8888-exec-10] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 12:01 [http-bio-8888-exec-10] INFO - <Test(id:549) was removed>
+26/03/2018 12:01 [http-bio-8888-exec-3] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 12:01 [http-bio-8888-exec-3] INFO - <Test(id:550) was removed>
+26/03/2018 12:02 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:06 [http-bio-8888-exec-10] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+26/03/2018 12:11 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:12 [http-bio-8888-exec-8] INFO - <Test(id:577) was removed>
+26/03/2018 12:12 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:15 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:17 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:20 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:21 [http-bio-8888-exec-3] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=MATH} was added>
+26/03/2018 12:21 [http-bio-8888-exec-3] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:21 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:21 [http-bio-8888-exec-3] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:21 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:22 [http-bio-8888-exec-3] INFO - <Test(id:609) was removed>
+26/03/2018 12:22 [http-bio-8888-exec-1] INFO - <Test Test{name='New test', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 12:22 [http-bio-8888-exec-1] INFO - <Test(id:610) was removed>
+26/03/2018 12:22 [http-bio-8888-exec-1] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+26/03/2018 12:22 [http-bio-8888-exec-1] INFO - <Test(id:611) was removed>
+26/03/2018 12:22 [http-bio-8888-exec-4] INFO - <Test Test{name='New test', quest=[Question{text='null'}], type=MATH} was added>
+26/03/2018 12:22 [http-bio-8888-exec-4] INFO - <Test(id:612) was removed>
+26/03/2018 12:26 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:28 [http-bio-8888-exec-4] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:28 [http-bio-8888-exec-4] INFO - <Test(id:641) was removed>
+26/03/2018 12:30 [http-bio-8888-exec-5] INFO - <Test Test{name='New test', quest=[Question{text='null'}, Question{text=''}], type=MATH} was added>
+26/03/2018 12:30 [http-bio-8888-exec-5] INFO - <Test(id:642) was removed>
+26/03/2018 12:31 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:36 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:37 [http-bio-8888-exec-5] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=MATH} was added>
+26/03/2018 12:37 [http-bio-8888-exec-5] INFO - <Test(id:673) was removed>
+26/03/2018 12:38 [http-bio-8888-exec-4] INFO - <Test Test{name='New test', quest=[Question{text='null'}, Question{text='null'}], type=MATH} was added>
+26/03/2018 12:38 [http-bio-8888-exec-4] INFO - <Test(id:674) was removed>
+26/03/2018 12:41 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:41 [http-bio-8888-exec-3] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:41 [http-bio-8888-exec-3] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:41 [http-bio-8888-exec-3] INFO - <Test(id:705) was removed>
+26/03/2018 12:41 [http-bio-8888-exec-4] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text=''}], type=MATH} was added>
+26/03/2018 12:41 [http-bio-8888-exec-4] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:41 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:41 [http-bio-8888-exec-4] INFO - <Test(id:706) was removed>
+26/03/2018 12:42 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:42 [http-bio-8888-exec-9] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-9] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-9] INFO - <Test(id:707) was removed>
+26/03/2018 12:42 [http-bio-8888-exec-2] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=MATH} was added>
+26/03/2018 12:42 [http-bio-8888-exec-2] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-2] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-2] INFO - <Test(id:708) was removed>
+26/03/2018 12:42 [http-bio-8888-exec-3] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=MATH} was added>
+26/03/2018 12:42 [http-bio-8888-exec-3] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-3] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:42 [http-bio-8888-exec-3] INFO - <Test(id:709) was removed>
+26/03/2018 12:43 [http-bio-8888-exec-8] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=ENGLISH} was added>
+26/03/2018 12:43 [http-bio-8888-exec-8] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-8] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=MATH} was updated>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Question(id:487) was removed>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Question(id:488) was removed>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-10] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=ENGLISH} was updated>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Question(id:489) was removed>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Question(id:490) was removed>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:43 [http-bio-8888-exec-1] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=MATH} was updated>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Question(id:491) was removed>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Question(id:492) was removed>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=RUSSIAN} was updated>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Question(id:493) was removed>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Question(id:494) was removed>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Question(id:495) was removed>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 12:44 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:49 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:57 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=MATH} was updated>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Question(id:496) was removed>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Question(id:497) was removed>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Question(id:498) was removed>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-9] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Test Test{name='New', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=MATH} was updated>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Question(id:394) was removed>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Question(id:395) was removed>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Question(id:396) was removed>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 12:58 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 1:01 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=MATH} was updated>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Question(id:513) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Question(id:514) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Question(id:515) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-3] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=MATH} was solved. Score: 100. Correct answers: 3/3.>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Test Test{name='T11', quest=[Question{text='Qq1'}, Question{text='Q22'}, Question{text='Q3'}], type=MATH} was updated>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Question(id:231) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Question(id:232) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Question(id:233) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Question Question{text='Qq1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A22'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Question Question{text='Q22'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A11'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-5] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Test Test{name='New', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=PHYSICS} was updated>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Question(id:516) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Question(id:517) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Question(id:518) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-8] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}, Question{text='Q3'}], type=ENGLISH} was updated>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Question(id:545) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Question(id:546) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Question(id:547) was removed>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Answer Answer{text='A2'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Question Question{text='Q3'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 1:02 [http-bio-8888-exec-6] INFO - <Answer Answer{text='A3'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-8] INFO - <Test Test{name='A', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-8] INFO - <Test(id:737) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-2] INFO - <Test Test{name='A', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-2] INFO - <Test(id:738) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-6] INFO - <Test Test{name='A', quest=[Question{text='Q'}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-6] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-6] INFO - <Test(id:739) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-6] INFO - <Test Test{name='A', quest=[Question{text='Q'}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-6] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-6] INFO - <Test(id:740) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Test Test{name='A', quest=[Question{text='Q'}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Answer Answer{text='A'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Test(id:741) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Test Test{name='A', quest=[Question{text='Q'}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Answer Answer{text='A'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-10] INFO - <Test(id:742) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-7] INFO - <Test Test{name='A', quest=[Question{text='Q'}, Question{text=''}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-7] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-7] INFO - <Answer Answer{text='Aa'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-7] INFO - <Test(id:743) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-1] INFO - <Test Test{name='A', quest=[Question{text='Q'}, Question{text='Qq'}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-1] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-1] INFO - <Answer Answer{text='A'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-1] INFO - <Answer Answer{text='Aa'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-1] INFO - <Test(id:744) was removed>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Test Test{name='A', quest=[Question{text='Q'}, Question{text='Qq'}], type=MATH} was added>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Question Question{text='Q'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Answer Answer{text='Aa'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Question Question{text='Qq'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Answer Answer{text='A'} was added>
+26/03/2018 1:03 [http-bio-8888-exec-4] INFO - <Test(id:745) was removed>
