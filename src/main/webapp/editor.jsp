@@ -61,11 +61,13 @@
             </button>
             <div class="question-container" id="question-parent">
                 <c:if test="${not empty test}">
+                    <c:set var="contId" value="10"/>
                 <c:forEach items="${test.getQuest()}" var="q">
                 <div class="question form-group form-control">
                     <input type="question" placeholder = "Enter question" class="form-control question-text" value="${q.getText()}">
-                    <div class="answer-container col-md-8" id="answer-container">
-                        <button value="Add button" class="btn btn-primary create-answer-button">Add answer</button>
+                    <div class="answer-container col-md-8" id="answer-container${contId}">
+                        <button type="submit" class="btn btn-primary create-answer-button" onclick="addAnswerField('${contId}')">Add answer</button>
+                        <c:set var="contId" value="${contId+1}"/>
                         <c:forEach items="${q.getAnswers()}" var="a">
                             <div class="answer-group">
                                     <div class="answer form-group">

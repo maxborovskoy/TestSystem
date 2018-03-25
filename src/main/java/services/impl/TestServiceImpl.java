@@ -82,11 +82,10 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public String editThroughForm(Test test) {
-        // TODO: edit service
         String checkResult = checkTest(test);
-
         if (checkResult.equals("OK")) {
             Long testId = test.getId();
+            updateTest(test);
             AnswerServiceImpl answerService = new AnswerServiceImpl();
             QuestionServiceImpl questionService = new QuestionServiceImpl();
 

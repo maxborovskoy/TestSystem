@@ -20,7 +20,6 @@ public class EditorServlet extends HttpServlet {
     private static final String TEST_ID = "testId";
     private static final TestService testService = new TestServiceImpl();
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

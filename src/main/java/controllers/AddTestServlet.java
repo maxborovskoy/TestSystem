@@ -29,7 +29,7 @@ public class AddTestServlet extends HttpServlet {
         if("OK".equals(result)){
             resp.sendRedirect("/catalog");
         } else {
-            resp.sendRedirect("/catalog.jsp");
+            resp.sendRedirect("/editor");
         }
     }
 
