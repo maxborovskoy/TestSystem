@@ -36,16 +36,11 @@ public class ProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user;
-        System.out.println("NAme:" + req.getParameter(USER));
-
         if(req.getParameter(USER) == null) {
             user = (User) session.getAttribute(USER);
         } else {
             user = new UserServiceImpl().get(req.getParameter(USER));
-            System.out.println(user);
         }
-
-
         List<TestResult> testResults = new TestResultServiceImpl()
                 .getAllTestResultsByUserId(user.getId());
         req.setAttribute("testResults", testResults);

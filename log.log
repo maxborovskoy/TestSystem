@@ -1099,3 +1099,5 @@ DELETE FROM tests WHERE id=? [23503-196]
 26/03/2018 4:17 [http-bio-8888-exec-6] INFO - <Test Test{name='physicsTest', quest=[], type=PHYSICS} is solving by User{name='max@max'}>
 26/03/2018 4:19 [localhost-startStop-1] INFO - <Database successfully initialized>
 26/03/2018 4:20 [http-bio-8888-exec-10] INFO - <Test Test{name='physicsTest', quest=[], type=PHYSICS} is solving by User{name='max@max'}>
+26/03/2018 4:29 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 4:30 [localhost-startStop-1] INFO - <Database successfully initialized>

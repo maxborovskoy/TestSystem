@@ -79,9 +79,9 @@
     <tbody>
       <c:forEach items="${requestScope.users}" var="use">
                   <tr>
-                  <td><p class="float-right">
+                  <td>
                       <a href="profileServlet?user=${use.getName()}">${use.getName()}</a>
-                  </p></td>
+                  </td>
                   </tr>
               </c:forEach>
     </tbody>
