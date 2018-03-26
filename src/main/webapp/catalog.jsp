@@ -65,10 +65,15 @@
                             <button type="submit" class="btn btn-primary">Create test</button>
                         </form>
                     </div>
+                    <div class="col-md-2">
+                        <form action="userListServlet" method="post" name="userList">
+                            <button type="submit" class="btn btn-primary">Users</button>
+                        </form>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <div class="col-md-2">
-                      <form action="profileServlet" method="post" name="profile">
+                      <form action="profileServlet" method="get" name="profile">
                        <button type="submit" class="btn btn-primary">Result page</button>
                        </form>
                       </div>
