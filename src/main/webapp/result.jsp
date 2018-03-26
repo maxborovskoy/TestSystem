@@ -66,16 +66,14 @@
     </div>
 </div>
 
-<footer class="text-muted footer">
+<footer class="text-muted">
     <div class="container">
         <p class="float-right">
-            <a href="#">Back to top</a>
+            <a href="#"><fmt:message key="catalog.back"/> </a>
         </p>
-        <p>Test tutor system has been developed by: </p>
-        <p>Students: Dmitrii Guba, Elena Okhrimenko, Maksim Borovskoi,
-            Dmitrii Dementev, Andrei Zakomornyi,
-            Boris Korotetskii </p>
-        <p>Mentors: Evgenii Aleksandrov, Arsenii Nazarov, Konstantin Evstafev </p>
+        <p><fmt:message key="catalog.developdescription"/></p>
+        <p><fmt:message key="catalog.students"/></p>
+        <p><fmt:message key="catalog.mentors"/></p>
     </div>
 </footer>
 </body>

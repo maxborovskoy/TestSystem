@@ -37,6 +37,7 @@
     <c:set var="tests" scope="session" value="${f:getAllTestsByTheme(sessionScope.theme)}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Profile</title>
+    <link rel="stylesheet" href="css/profile.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
     <link rel="stylesheet" href="css/language.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -68,25 +69,30 @@
     </div>
 </header>
 
-<table>
-    <tr>
+<div class="container">
+<h2>Your results</h2>
+  <p>Here is final results of your passed tests:</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
         <th>Test</th>
         <th>Result</th>
-        <th>%</th>
-        <th>date</th>
-    </tr>
-
-        <c:forEach items="${requestScope.testResults}" var="tR">
-            <tr>
-            <td>${f:getTestName(tR.getTestId())}</td>
-            <td>${tR.getCorrectAnswers()}/${tR.getCountAnswers()}</td>
-            <td>${f:getPercents(tR)}</td>
-            <td>${tR.getDate()}</td>
-            </tr>
-        </c:forEach>
-
-</table>
-
+        <th>Percentage</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach items="${requestScope.testResults}" var="tR">
+                  <tr>
+                  <td>${f:getTestName(tR.getTestId())}</td>
+                  <td>${tR.getCorrectAnswers()}/${tR.getCountAnswers()}</td>
+                  <td>${f:getPercents(tR)}</td>
+                  <td>${tR.getDate()}</td>
+                  </tr>
+              </c:forEach>
+    </tbody>
+  </table>
+</div>
 
 <footer class="text-muted">
     <div class="container">

@@ -46,6 +46,11 @@
   </servlet>
 
   <servlet>
+    <servlet-name>resultServlet</servlet-name>
+    <servlet-class>controllers.ResultServlet</servlet-class>
+  </servlet>
+
+  <servlet>
     <servlet-name>addTestForm</servlet-name>
     <servlet-class>controllers.addTestServlet</servlet-class>
   </servlet>

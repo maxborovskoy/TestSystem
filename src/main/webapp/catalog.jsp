@@ -58,13 +58,22 @@
                     <h4 class="text-white"><fmt:message key="catalog.tts"/></h4>
                     <p class="text-muted"><fmt:message key="catalog.description"/></p>
                 </div>
-                <c:if test="${sessionScope.user.getTutor()}">
+                <c:choose>
+                <c:when test="${sessionScope.user.getTutor()}">
                     <div class="col-md-2">
                         <form action="addTestForm" method="get" name="createTestForm">
                             <button type="submit" class="btn btn-primary">Create test</button>
                         </form>
                     </div>
-                </c:if>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-2">
+                      <form action="profileServlet" method="post" name="profile">
+                       <button type="submit" class="btn btn-primary">Result page</button>
+                       </form>
+                      </div>
+                 </c:otherwise>
+                </c:choose>
                 <div class="col-md-1">
                     <form action="logoutServlet" method="post" name="LogoutForm">
                         <button type="submit" class="btn btn-primary">Log out</button>
