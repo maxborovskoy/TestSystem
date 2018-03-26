@@ -90,6 +90,7 @@
     </div>
 </header>
 
+<div class="container">
 <form>
     <select id="theme" onchange="changeTheme()" class="custom-select custom-select-sm col-md-1">
         <option value="All" ${sessionScope.theme == 'All' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
@@ -103,6 +104,7 @@
                 key="catalog.phisics"/></option>
     </select>
 </form>
+</div>
 <c:choose>
     <c:when test="${(sessionScope.tests ne null) && (not empty sessionScope.tests)}">
         <div class="album py-5 bg-light">
