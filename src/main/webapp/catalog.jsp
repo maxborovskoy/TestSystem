@@ -62,30 +62,29 @@
                 </div>
                 <c:choose>
                 <c:when test="${sessionScope.user.getTutor()}">
-                    <div class="col-md-2">
-                        <form action="/editor.jsp" method="get" name="createTestForm">
-                            <button type="submit" class="btn btn-primary">Create test</button>
-                        </form>
-                    </div>
-                    <div class="col-md-2">
-                        <form action="userListServlet" method="post" name="userList">
-                            <button type="submit" class="btn btn-primary">Users</button>
-                        </form>
+
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <form action="/editor.jsp" method="get" name="createTestForm">
+                                                  <button type="submit" class="btn btn-primary">Create test</button>
+                                              </form>
+                      <form action="userListServlet" method="post" name="userList">
+                                                  <button type="submit" class="btn btn-primary">Users</button>
+                                              </form>
+                      <form action="logoutServlet" method="post" name="LogoutForm">
+                                              <button type="submit" class="btn btn-primary">Log out</button>
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="col-md-2">
+                    <div class="btn-group" role="group" aria-label="Basic example">
                       <form action="profileServlet" method="get" name="profile">
                        <button type="submit" class="btn btn-primary">Result page</button>
                        </form>
-                      </div>
+                       <form action="logoutServlet" method="post" name="LogoutForm">
+                                               <button type="submit" class="btn btn-primary">Log out</button>
+                                           </form>
+                     </div>
                  </c:otherwise>
                 </c:choose>
-                <div class="col-md-1">
-                    <form action="logoutServlet" method="post" name="LogoutForm">
-                        <button type="submit" class="btn btn-primary">Log out</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
