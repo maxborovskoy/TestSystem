@@ -5,6 +5,8 @@ import entity.User;
 import org.mindrot.jbcrypt.BCrypt;
 import services.api.UserService;
 
+import java.util.List;
+
 public class UserServiceImpl implements UserService {
 
     private static final UserDAO userDAO = new UserDAO();
@@ -35,6 +37,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(long id) {
         return userDAO.get(id);
+    }
+
+    @Override
+    public User get(String name) {
+        return userDAO.get(name);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDAO.getAll();
     }
 
 
