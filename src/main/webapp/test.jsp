@@ -59,7 +59,7 @@
     </form>
 
     <div class="container">
-        <form action="testpage" method="POST" name="testpageForm">
+        <form action="result" method="POST" name="testpageForm">
             <c:set var="qNumber" value="0"/>
             <c:forEach items="${test.getQuest()}" var="q">
                 <c:set var="qNumber" value="${qNumber+1}"/>
@@ -113,13 +113,11 @@
 <footer class="text-muted">
     <div class="container">
         <p class="float-right">
-            <a href="#">Back to top</a>
+            <a href="#"><fmt:message key="catalog.back"/> </a>
         </p>
-        <p>Test tutor system has been developed by: </p>
-        <p>Students: Dmitrii Guba, Elena Okhrimenko, Maksim Borovskoi,
-            Dmitrii Dementev, Andrei Zakomornyi,
-            Boris Korotetskii </p>
-        <p>Mentors: Evgenii Aleksandrov, Arsenii Nazarov, Konstantin Evstafev </p>
+        <p><fmt:message key="catalog.developdescription"/></p>
+        <p><fmt:message key="catalog.students"/></p>
+        <p><fmt:message key="catalog.mentors"/></p>
     </div>
 </footer>
 </body>
