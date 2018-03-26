@@ -42,9 +42,6 @@
 
 <footer class="text-muted">
     <div class="container">
-        <p class="float-right">
-            <a href="#"><fmt:message key="catalog.back"/> </a>
-        </p>
         <p><fmt:message key="catalog.developdescription"/></p>
         <p><fmt:message key="catalog.students"/></p>
         <p><fmt:message key="catalog.mentors"/></p>
