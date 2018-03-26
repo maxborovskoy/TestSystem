@@ -87,7 +87,7 @@
 </header>
 
 <form>
-    <select id="theme" onchange="changeTheme()">
+    <select id="theme" onchange="changeTheme()" class="custom-select custom-select-sm col-md-1">
         <option value="All" ${sessionScope.theme == 'All' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
         <option value="English" ${sessionScope.theme == 'English' ? 'selected' : ''}><fmt:message
                 key="catalog.english"/></option>
