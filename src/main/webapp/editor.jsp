@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="js/jquery.redirect.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#testTheme option[value=${test.getType().getName()}]").prop ('selected', true);
+        });
+    </script>
 
 </head>
 <body>
@@ -50,10 +55,10 @@
             </div>
             <label for="testTheme">Choose theme:</label>
             <select class="form-control" id="testTheme">
-                <option>Math</option>
-                <option>Physics</option>
-                <option>Russian</option>
-                <option>English</option>
+                <option value="Math">Math</option>
+                <option value="Physics">Physics</option>
+                <option value="Russian">Russian</option>
+                <option value="English">English</option>
             </select>
 
             <button type="submit" class="btn btn-primary create-question-button" onclick="addQuestionField()">Add
