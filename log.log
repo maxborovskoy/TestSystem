@@ -988,3 +988,12 @@ Column "creationDate" not found [42122-196]
 26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Question Question{text='Q2'} was added>
 26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
 26/03/2018 12:06 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=PHYSICS} was solved. Score: 100. Correct answers: 2/2.>
+26/03/2018 2:32 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 2:33 [http-bio-8888-exec-6] INFO - <Test Test{name='Haha', quest=[Question{text=''}], type=MATH} was added>
+26/03/2018 2:33 [http-bio-8888-exec-6] INFO - <Test(id:3) was removed>
+26/03/2018 2:34 [http-bio-8888-exec-6] INFO - <Test Test{name='Haha', quest=[Question{text='Ququu'}], type=MATH} was added>
+26/03/2018 2:34 [http-bio-8888-exec-6] INFO - <Test(id:4) was removed>
+26/03/2018 2:34 [http-bio-8888-exec-6] INFO - <Test Test{name='Haha', quest=[Question{text='Ququu'}], type=MATH} was added>
+26/03/2018 2:34 [http-bio-8888-exec-6] INFO - <Question Question{text='Ququu'} was added>
+26/03/2018 2:34 [http-bio-8888-exec-6] INFO - <Answer Answer{text='rereer'} was added>
+26/03/2018 2:34 [http-bio-8888-exec-6] INFO - <Test Test{name='Haha', quest=[Question{text='Ququu'}], type=MATH} was solved. Score: 100. Correct answers: 1/1.>
