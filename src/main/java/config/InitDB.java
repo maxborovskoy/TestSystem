@@ -18,6 +18,7 @@ public class InitDB extends HttpServlet {
     private static final String H2_CREATE_TEST = "h2.create.test";
     private static final String H2_CREATE_QUESTION = "h2.create.question";
     private static final String H2_CREATE_ANSWER = "h2.create.answer";
+    private static final String H2_CREATE_TESTRESULT = "h2.create.testresult";
     private static final String H2_CREATE_USER_TUTOR = "h2.create.user.tutor";
 
     @Override
@@ -33,6 +34,7 @@ public class InitDB extends HttpServlet {
                     res.getString(H2_CREATE_TEST),
                     res.getString(H2_CREATE_QUESTION),
                     res.getString(H2_CREATE_ANSWER),
+                    res.getString(H2_CREATE_TESTRESULT),
                     res.getString(H2_CREATE_USER_TUTOR)};
             st = con.createStatement();
             for (String sql : sqls) {

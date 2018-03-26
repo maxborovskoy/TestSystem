@@ -60,26 +60,39 @@
                     <h4 class="text-white"><fmt:message key="catalog.tts"/></h4>
                     <p class="text-muted"><fmt:message key="catalog.description"/></p>
                 </div>
-                <c:if test="${sessionScope.user.getTutor()}">
-                    <div class="col-md-2">
-                        <form action="/editor.jsp" method="get" name="createTestForm">
-                            <button type="submit" class="btn btn-primary">Create test</button>
-                        </form>
-                    </div>
-                </c:if>
+                <c:choose>
+                <c:when test="${sessionScope.user.getTutor()}">
 
-                <div class="col-md-1">
-                    <form action="logoutServlet" method="post" name="LogoutForm">
-                        <button type="submit" class="btn btn-primary">Log out</button>
-                    </form>
-                </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <form action="/editor.jsp" method="get" name="createTestForm">
+                                                  <button type="submit" class="btn btn-primary">Create test</button>
+                                              </form>
+                      <form action="userListServlet" method="post" name="userList">
+                                                  <button type="submit" class="btn btn-primary">Users</button>
+                                              </form>
+                      <form action="logoutServlet" method="post" name="LogoutForm">
+                                              <button type="submit" class="btn btn-primary">Log out</button>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <form action="profileServlet" method="get" name="profile">
+                       <button type="submit" class="btn btn-primary">Result page</button>
+                       </form>
+                       <form action="logoutServlet" method="post" name="LogoutForm">
+                                               <button type="submit" class="btn btn-primary">Log out</button>
+                                           </form>
+                     </div>
+                 </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
 </header>
 
+<div class="container">
 <form>
-    <select id="theme" onchange="changeTheme()">
+    <select id="theme" onchange="changeTheme()" class="custom-select custom-select-sm col-md-1">
         <option value="All" ${sessionScope.theme == 'All' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
         <option value="English" ${sessionScope.theme == 'English' ? 'selected' : ''}><fmt:message
                 key="catalog.english"/></option>
@@ -91,6 +104,7 @@
                 key="catalog.phisics"/></option>
     </select>
 </form>
+</div>
 <c:choose>
     <c:when test="${(sessionScope.tests ne null) && (not empty sessionScope.tests)}">
         <div class="album py-5 bg-light">
