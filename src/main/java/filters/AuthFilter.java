@@ -85,7 +85,12 @@ public class AuthFilter implements Filter {
                 || uri.endsWith("addAnswerForm.jsp")
                 || uri.endsWith("addAnswerForm")
                 || uri.endsWith("addQuestionForm")
-                || uri.endsWith("addTestForm");
+                || uri.endsWith("addTestForm")
+                || uri.endsWith("editor")
+                || uri.endsWith("editor.jsp")
+                || uri.endsWith("userList.jsp")
+                || uri.endsWith("userListServlet");
+
     }
 
     private HttpSession getHttpSession(HttpServletRequest request) {
