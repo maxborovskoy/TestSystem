@@ -12,12 +12,13 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionDAO questionDAO = new QuestionDAO();
 
     @Override
-    public void add(Question question) {
-        questionDAO.add(question);
+    public Question add(Question question) {
+        Question quest = questionDAO.add(question);
         AnswerService answerService = new AnswerServiceImpl();
         for (Answer a : question.getAnswers()) {
             answerService.add(a);
         }
+        return quest;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class QuestionServiceImpl implements QuestionService {
     public void removeAllQuestionsByTestId(long testId) {
         List<Question> questionList = questionDAO.getAllQuestionsByTestId(testId);
         for (Question question : questionList) {
-            remove(question.getId());
+            questionDAO.remove(question.getId());
         }
     }
 
@@ -58,4 +59,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
 
+    @Override
+    public Question addEmptyQuestion(Question question) {
+        return questionDAO.add(question);
+    }
+
+
+    @Override
+    public long getQuestionsIdByTextAndTestId(String text, long testId) {
+        return questionDAO.getQuestionsIdByTextAndTestId(text, testId);
+    }
 }

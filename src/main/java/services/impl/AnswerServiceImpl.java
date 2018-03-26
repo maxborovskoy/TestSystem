@@ -10,8 +10,8 @@ public class AnswerServiceImpl implements AnswerService {
     private AnswerDAO answerDAO = new AnswerDAO();
 
     @Override
-    public void add(Answer answer) {
-        answerDAO.add(answer);
+    public Answer add(Answer answer) {
+        return answerDAO.add(answer);
     }
 
     @Override
@@ -53,5 +53,10 @@ public class AnswerServiceImpl implements AnswerService {
 
     private boolean sameText(Answer answer, String text, Answer a) {
         return a.getText().equals(text) && a.getId() != answer.getId();
+    }
+
+    @Override
+    public long getAnswerByTextAndQuestionId(String text, long questionId) {
+        return answerDAO.getAnswerByTextAndQuestionId(text, questionId);
     }
 }

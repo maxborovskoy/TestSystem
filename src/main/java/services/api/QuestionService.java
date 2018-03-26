@@ -5,7 +5,7 @@ import entity.Question;
 import java.util.List;
 
 public interface QuestionService {
-    void add(Question question);
+    Question add(Question question);
 
     Question get(long id);
 
@@ -16,4 +16,8 @@ public interface QuestionService {
     void removeAllQuestionsByTestId(long testId);
 
     Boolean updateText(String text, Question question);
+
+    Question addEmptyQuestion(Question question);
+
+    long getQuestionsIdByTextAndTestId(String text, long testId);
 }

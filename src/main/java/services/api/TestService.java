@@ -1,13 +1,14 @@
 package services.api;
 
 import entity.Test;
+import services.impl.EditorStatus;
 
 import java.util.List;
 
 public interface TestService {
 
 
-    void addTest(Test test);
+    Test addTest(Test test);
 
     Test getTest(Long id);
 
@@ -18,4 +19,8 @@ public interface TestService {
     void removeTest(Long id);
 
     void updateTest(Test test);
+
+    EditorStatus addTestFromForm(Test test);
+
+    EditorStatus editThroughForm(Test test);
 }

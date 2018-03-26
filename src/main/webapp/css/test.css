@@ -33,6 +33,18 @@ footer {
     box-sizing: border-box;
 }
 
+.low-btn{
+    padding-top: 100px;
+}
+
+.row.red {
+    color: #ff0000;
+}
+
+.row.green {
+    color: #28a745;
+}
+
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 .border-top-gray { border-top-color: #adb5bd; }

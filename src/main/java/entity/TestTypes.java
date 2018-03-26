@@ -1,9 +1,16 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum TestTypes {
+    @JsonProperty("Math")
     MATH("Math"),
+    @JsonProperty("Physics")
     PHYSICS("Physics"),
+    @JsonProperty("Russian")
     RUSSIAN("Russian"),
+    @JsonProperty("English")
     ENGLISH("English");
 
     private String name;
@@ -16,6 +23,7 @@ public enum TestTypes {
         return this.name;
     }
 
+    @JsonCreator
     public static TestTypes getType(String name) {
         switch (name) {
             case "Math": return TestTypes.MATH;

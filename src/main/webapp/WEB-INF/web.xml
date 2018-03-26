@@ -1,131 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app
-  version="3.0"
-  xmlns="http://java.sun.com/xml/ns/javaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 >
-  <display-name>Testsystem</display-name>
+    <display-name>Testsystem</display-name>
 
 
-  <servlet>
-    <servlet-name>Catalog</servlet-name>
-    <servlet-class>controllers.CatalogServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>Catalog</servlet-name>
+        <servlet-class>controllers.CatalogServlet</servlet-class>
+    </servlet>
 
 
-  <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>controllers.LoginServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controllers.LoginServlet</servlet-class>
+    </servlet>
 
-  <servlet>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>controllers.LogoutServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controllers.LogoutServlet</servlet-class>
+    </servlet>
 
-  <servlet>
-    <servlet-name>RegistrationServlet</servlet-name>
-    <servlet-class>controllers.RegistrationServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>controllers.RegistrationServlet</servlet-class>
+    </servlet>
 
-  <servlet>
-      <servlet-name>TestServlet</servlet-name>
-      <servlet-class>controllers.TestServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>controllers.TestServlet</servlet-class>
+    </servlet>
 
-  <servlet>
-    <servlet-name>TestPage</servlet-name>
-    <servlet-class>controllers.TestPageServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>TestPage</servlet-name>
+        <servlet-class>controllers.TestPageServlet</servlet-class>
+    </servlet>
 
-  <servlet>
-    <servlet-name>deleteTestServlet</servlet-name>
-    <servlet-class>controllers.deleteTestServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>addTestForm</servlet-name>
-    <servlet-class>controllers.addTestServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>addQuestionForm</servlet-name>
-    <servlet-class>controllers.addQuestionServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>addAnswerForm</servlet-name>
-    <servlet-class>controllers.addAnswerServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>InitDB</servlet-name>
-    <servlet-class>config.InitDB</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>Catalog</servlet-name>
-    <url-pattern>/catalog</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/loginServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logoutServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>RegistrationServlet</servlet-name>
-    <url-pattern>/registrationServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-      <servlet-name>TestServlet</servlet-name>
-      <url-pattern>/test</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>deleteTestServlet</servlet-name>
-    <url-pattern>/delete</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>TestPage</servlet-name>
-    <url-pattern>/testpage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>addTestForm</servlet-name>
-    <url-pattern>/addTestForm</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>addQuestionForm</servlet-name>
-    <url-pattern>/addQuestionForm</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>addAnswerForm</servlet-name>
-    <url-pattern>/addAnswerForm</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteTestServlet</servlet-name>
+        <servlet-class>controllers.deleteTestServlet</servlet-class>
+    </servlet>
 
 
-  <filter>
-    <filter-name>AuthFilter</filter-name>
-    <filter-class>filters.AuthFilter</filter-class>
-  </filter>
+    <servlet>
+        <servlet-name>Editor</servlet-name>
+        <servlet-class>controllers.AddTestServlet</servlet-class>
+    </servlet>
 
 
-  <filter-mapping>
-    <filter-name>AuthFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <servlet>
+        <servlet-name>InitDB</servlet-name>
+        <servlet-class>config.InitDB</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EditorServlet</servlet-name>
+        <servlet-class>controllers.EditorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Catalog</servlet-name>
+        <url-pattern>/catalog</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logoutServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/registrationServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deleteTestServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TestPage</servlet-name>
+        <url-pattern>/testpage</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>Editor</servlet-name>
+        <url-pattern>/addTest</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EditorServlet</servlet-name>
+        <url-pattern>/editor</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>filters.AuthFilter</filter-class>
+    </filter>
+
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

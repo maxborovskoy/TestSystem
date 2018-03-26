@@ -21,6 +21,8 @@ public class TestCheckerServiceImpl implements TestCheckerService {
                     List<Long> answerIds = answers.get(q.getId());
                     if (CheckQuestion(q, answerIds))
                         correctAnswers++;
+                } else if (noCorrectAnswers(q)){
+                    correctAnswers++;
                 }
             }
 
@@ -29,6 +31,15 @@ public class TestCheckerServiceImpl implements TestCheckerService {
             result.setScore(correctAnswers * 100 / test.getQuest().size());
         }
         return result;
+    }
+
+    private boolean noCorrectAnswers(Question question) {
+        for(Answer answer : question.getAnswers()){
+            if(answer.getRight()){
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean CheckQuestion(Question q, List<Long> answerIds) {

@@ -48,7 +48,9 @@
 
 </head>
 <body>
-<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()">
+    <div></div>
+</div>
 
 <header>
     <div class="bg-dark" id="navbarHeader">
@@ -60,11 +62,12 @@
                 </div>
                 <c:if test="${sessionScope.user.getTutor()}">
                     <div class="col-md-2">
-                        <form action="addTestForm" method="get" name="createTestForm">
+                        <form action="/editor.jsp" method="get" name="createTestForm">
                             <button type="submit" class="btn btn-primary">Create test</button>
                         </form>
                     </div>
                 </c:if>
+
                 <div class="col-md-1">
                     <form action="logoutServlet" method="post" name="LogoutForm">
                         <button type="submit" class="btn btn-primary">Log out</button>
@@ -78,10 +81,14 @@
 <form>
     <select id="theme" onchange="changeTheme()">
         <option value="All" ${sessionScope.theme == 'All' ? 'selected' : ''}><fmt:message key="catalog.all"/></option>
-        <option value="English" ${sessionScope.theme == 'English' ? 'selected' : ''}><fmt:message key="catalog.english"/></option>
-        <option value="Russian" ${sessionScope.theme == 'Russian' ? 'selected' : ''}><fmt:message key="catalog.russian"/></option>
-        <option value="Math" ${sessionScope.theme == 'Math' ? 'selected' : ''}><fmt:message key="catalog.math"/></option>
-        <option value="Physics" ${sessionScope.theme == 'Physics' ? 'selected' : ''}><fmt:message key="catalog.phisics"/></option>
+        <option value="English" ${sessionScope.theme == 'English' ? 'selected' : ''}><fmt:message
+                key="catalog.english"/></option>
+        <option value="Russian" ${sessionScope.theme == 'Russian' ? 'selected' : ''}><fmt:message
+                key="catalog.russian"/></option>
+        <option value="Math" ${sessionScope.theme == 'Math' ? 'selected' : ''}><fmt:message
+                key="catalog.math"/></option>
+        <option value="Physics" ${sessionScope.theme == 'Physics' ? 'selected' : ''}><fmt:message
+                key="catalog.phisics"/></option>
     </select>
 </form>
 <c:choose>
@@ -94,41 +101,45 @@
                             <div class="card mb-4 box-shadow">
                                 <c:choose>
                                     <c:when test="${test.getType().getName() eq 'Math'}">
-                                    <c:if test="${sessionScope.user.getTutor()}">
-                                        <div class="d-flex justify-content-end align-items-baseline">
-                                          <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
-                                        </div>
-                                    </c:if>
+                                        <c:if test="${sessionScope.user.getTutor()}">
+                                            <div class="d-flex justify-content-end align-items-baseline">
+                                                <a href="<c:url value="/delete?id=${test.getId()}"/>"
+                                                   class="btn btn-danger btn-xs">X</a>
+                                            </div>
+                                        </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/math.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'Physics'}">
-                                    <c:if test="${sessionScope.user.getTutor()}">
-                                      <div class="d-flex justify-content-end align-items-baseline">
-                                          <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
-                                      </div>
-                                    </c:if>
+                                        <c:if test="${sessionScope.user.getTutor()}">
+                                            <div class="d-flex justify-content-end align-items-baseline">
+                                                <a href="<c:url value="/delete?id=${test.getId()}"/>"
+                                                   class="btn btn-danger btn-xs">X</a>
+                                            </div>
+                                        </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/physics.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'Russian'}">
-                                    <c:if test="${sessionScope.user.getTutor()}">
-                                       <div class="d-flex justify-content-end align-items-baseline">
-                                         <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
-                                       </div>
-                                    </c:if>
+                                        <c:if test="${sessionScope.user.getTutor()}">
+                                            <div class="d-flex justify-content-end align-items-baseline">
+                                                <a href="<c:url value="/delete?id=${test.getId()}"/>"
+                                                   class="btn btn-danger btn-xs">X</a>
+                                            </div>
+                                        </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/russian.png"
                                              alt="Card image cap">
                                     </c:when>
                                     <c:when test="${test.getType().getName() eq 'English'}">
-                                    <c:if test="${sessionScope.user.getTutor()}">
-                                       <div class="d-flex justify-content-end align-items-baseline">
-                                         <a href="<c:url value="/delete?id=${test.getId()}"/>" class="btn btn-danger btn-xs">X</a>
-                                       </div>
-                                    </c:if>
+                                        <c:if test="${sessionScope.user.getTutor()}">
+                                            <div class="d-flex justify-content-end align-items-baseline">
+                                                <a href="<c:url value="/delete?id=${test.getId()}"/>"
+                                                   class="btn btn-danger btn-xs">X</a>
+                                            </div>
+                                        </c:if>
                                         <img class="card-img-top test-img"
                                              src="images/english.png"
                                              alt="Card image cap">
@@ -137,24 +148,27 @@
                                 <div class="card-body">
                                     <h5 class="card-title">${test.getName()}</h5>
                                     <p class="card-text">
-                                    <c:if test="${test.getType().getName() eq 'Math'}">
-                                    This is test for checking if your knowledges in Math is wide enough to become a Jedi Knight.
-                                    </c:if>
-                                    <c:if test="${test.getType().getName() eq 'Physics'}">
-                                     This is test for checking if your knowledges in Physics is wide enough to become a Jedi Knight.
-                                    </c:if>
-                                    <c:if test="${test.getType().getName() eq 'Russian'}">
-                                     This is test for checking if your knowledges in Russian is wide enough to become a Jedi Knight.
-                                    </c:if>
-                                    <c:if test="${test.getType().getName() eq 'English'}">
-                                      This is test for checking if your knowledges in English is wide enough to become a Jedi Knight.
-                                    </c:if>
+                                        <c:if test="${test.getType().getName() eq 'Math'}">
+                                            This is test for checking if your knowledges in Math is wide enough to become a Jedi Knight.
+                                        </c:if>
+                                        <c:if test="${test.getType().getName() eq 'Physics'}">
+                                            This is test for checking if your knowledges in Physics is wide enough to become a Jedi Knight.
+                                        </c:if>
+                                        <c:if test="${test.getType().getName() eq 'Russian'}">
+                                            This is test for checking if your knowledges in Russian is wide enough to become a Jedi Knight.
+                                        </c:if>
+                                        <c:if test="${test.getType().getName() eq 'English'}">
+                                            This is test for checking if your knowledges in English is wide enough to become a Jedi Knight.
+                                        </c:if>
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
                                             test</a>
+                                        <c:if test="${sessionScope.user.getTutor()}">
+                                          <a href="<c:url value="/editor?id=${test.getId()}"/>" class="btn btn-primary btn-xs">Edit test</a>
+                                        </c:if>
                                         <small class="text-muted">
-                                        <c:out value="${test.getCreationDate().toString()}"/>
+                                            <c:out value="${test.getCreationDate().toString()}"/>
                                         </small>
                                     </div>
                                 </div>
@@ -183,9 +197,6 @@
 
 <footer class="text-muted">
     <div class="container">
-        <p class="float-right">
-            <a href="#"><fmt:message key="catalog.back"/> </a>
-        </p>
         <p><fmt:message key="catalog.developdescription"/></p>
         <p><fmt:message key="catalog.students"/></p>
         <p><fmt:message key="catalog.mentors"/></p>

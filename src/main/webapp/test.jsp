@@ -1,6 +1,6 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <html>
 <head>
@@ -20,7 +20,6 @@
     <fmt:setBundle basename="internationalization"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="test.testpage"/></title>
-    <link rel="stylesheet" href="css/catalog.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
     <link rel="stylesheet" href="css/language.css">
     <title>${test.getName()}</title>
@@ -33,7 +32,7 @@
 
 </head>
 <body>
-<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"></div>
 
 <div class="mainContent">
     <header>
@@ -88,7 +87,7 @@
                                         ${a.getText()}
                                 </div>
                             </c:if>
-                            <c:if test="${correctAnswers > 1}">
+                            <c:if test="${correctAnswers > 1 or correctAnswers == 0}">
                                 <div>
                                     <input name="q${q.getId()}" type="checkbox" value="${a.getId()}">
                                         ${a.getText()}
