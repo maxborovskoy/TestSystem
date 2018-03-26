@@ -36,8 +36,8 @@
     </servlet>
 
     <servlet>
-        <servlet-name>TestPage</servlet-name>
-        <servlet-class>controllers.TestPageServlet</servlet-class>
+        <servlet-name>ResultServlet</servlet-name>
+        <servlet-class>controllers.ResultServlet</servlet-class>
     </servlet>
 
     <servlet>
@@ -45,10 +45,25 @@
         <servlet-class>controllers.deleteTestServlet</servlet-class>
     </servlet>
 
+  <servlet>
+    <servlet-name>resultServlet</servlet-name>
+    <servlet-class>controllers.ResultServlet</servlet-class>
+  </servlet>
+
 
     <servlet>
         <servlet-name>Editor</servlet-name>
         <servlet-class>controllers.AddTestServlet</servlet-class>
+    </servlet>
+
+  <servlet>
+    <servlet-name>ProfileServlet</servlet-name>
+    <servlet-class>controllers.ProfileServlet</servlet-class>
+  </servlet>
+
+    <servlet>
+        <servlet-name>UserListServlet</servlet-name>
+        <servlet-class>controllers.UserListServlet</servlet-class>
     </servlet>
 
 
@@ -64,6 +79,16 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>UserListServlet</servlet-name>
+        <url-pattern>/userListServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+    <servlet-name>ProfileServlet</servlet-name>
+    <url-pattern>/profileServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
         <servlet-name>Catalog</servlet-name>
         <url-pattern>/catalog</url-pattern>
     </servlet-mapping>
@@ -94,8 +119,8 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>TestPage</servlet-name>
-        <url-pattern>/testpage</url-pattern>
+        <servlet-name>ResultServlet</servlet-name>
+        <url-pattern>/result</url-pattern>
     </servlet-mapping>
 
 

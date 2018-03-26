@@ -61,15 +61,15 @@
     </form>
 
     <div class="container">
-        <c:if test="${result.getScore() > 60}">
+        <c:if test="${score > 60}">
             <div class="row green"><fmt:message key="result.success"/>.</div>
         </c:if>
-        <c:if test="${result.getScore() <= 60}">
+        <c:if test="${score <= 60}">
             <div class = "row red"><fmt:message key="result.fail"/>.</div>
         </c:if>
         <div class="row">
             <fmt:message key="result.res1"/> ${result.getCorrectAnswers()} <fmt:message
-                key="result.res2"/> ${result.getCountAnswers()} <fmt:message key="result.res3"/>. <fmt:message key="result.yourresult"/> ${result.getScore()}%
+                key="result.res2"/> ${result.getCountAnswers()} <fmt:message key="result.res3"/>. <fmt:message key="result.yourresult"/> ${score}%
         </div>
     </div>
     <div class="d-flex justify-content-md-center">
@@ -79,13 +79,14 @@
     </div>
 </div>
 
-<footer class="text-muted footer">
+<footer class="text-muted">
     <div class="container">
-        <p>Test tutor system has been developed by: </p>
-        <p>Students: Dmitrii Guba, Elena Okhrimenko, Maksim Borovskoi,
-            Dmitrii Dementev, Andrei Zakomornyi,
-            Boris Korotetskii </p>
-        <p>Mentors: Evgenii Aleksandrov, Arsenii Nazarov, Konstantin Evstafev </p>
+    <p class="float-right">
+                <a href="catalog.jsp"><fmt:message key="catalog.back"/> </a>
+            </p>
+        <p><fmt:message key="catalog.developdescription"/></p>
+        <p><fmt:message key="catalog.students"/></p>
+        <p><fmt:message key="catalog.mentors"/></p>
     </div>
 </footer>
 </body>
