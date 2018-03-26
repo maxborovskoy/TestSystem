@@ -970,3 +970,21 @@ Column "creationDate" not found [42122-196]
 26/03/2018 1:27 [http-bio-8888-exec-7] INFO - <Answer Answer{text='A4'} was added>
 26/03/2018 1:27 [http-bio-8888-exec-7] INFO - <Answer Answer{text='d4'} was added>
 26/03/2018 1:27 [http-bio-8888-exec-7] INFO - <Answer Answer{text='e3'} was added>
+26/03/2018 11:59 [localhost-startStop-1] INFO - <Database successfully initialized>
+26/03/2018 12:05 [http-bio-8888-exec-6] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:05 [http-bio-8888-exec-6] INFO - <Test(id:801) was removed>
+26/03/2018 12:06 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:06 [http-bio-8888-exec-9] INFO - <Test(id:802) was removed>
+26/03/2018 12:06 [http-bio-8888-exec-1] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:06 [http-bio-8888-exec-1] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-1] INFO - <Test(id:803) was removed>
+26/03/2018 12:06 [http-bio-8888-exec-10] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q1'}], type=MATH} was added>
+26/03/2018 12:06 [http-bio-8888-exec-10] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-10] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-10] INFO - <Test(id:804) was removed>
+26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=PHYSICS} was added>
+26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Question Question{text='Q1'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Question Question{text='Q2'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-3] INFO - <Answer Answer{text='A1'} was added>
+26/03/2018 12:06 [http-bio-8888-exec-9] INFO - <Test Test{name='New test', quest=[Question{text='Q1'}, Question{text='Q2'}], type=PHYSICS} was solved. Score: 100. Correct answers: 2/2.>

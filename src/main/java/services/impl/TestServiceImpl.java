@@ -54,47 +54,10 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public EditorStatus addTestFromForm(Test test) {
-        if (testDAO.getTestsIdByNameAndType(test.getName(), test.getType()) != -1) {
+        if (isTestExists(test)) {
             return EditorStatus.TEST_EXISTS;
         } else {
-            if (test.getName().isEmpty()) {
-                return EditorStatus.TEST_NO_NAME;
-            }
-            if (test.getQuest().isEmpty()) {
-                return EditorStatus.EMPTY_QUESTIONS;
-            }
-            Test testWithId = testDAO.add(test);
-            for (Question quest : test.getQuest()) {
-                if (questionService.getQuestionsIdByTextAndTestId(quest.getText(), testWithId.getId()) != -1) {
-                    testDAO.remove(testWithId.getId());
-                    return EditorStatus.QUESTION_EXISTS;
-                } else {
-                    if (quest.getText() == null || quest.getText().isEmpty()) {
-                        testDAO.remove(testWithId.getId());
-                        return EditorStatus.QUESTION_NO_TEXT;
-                    }
-                    if (quest.getAnswers().isEmpty()) {
-                        testDAO.remove(testWithId.getId());
-                        return EditorStatus.QUESTION_NO_ANSWERS;
-                    }
-                    quest.setTestId(testWithId.getId());
-                    Question questionWithId = questionService.addEmptyQuestion(quest);
-                    for (Answer answer : quest.getAnswers()) {
-                        if (answerService.getAnswerByTextAndQuestionId(answer.getText(), questionWithId.getId()) != -1) {
-                            testDAO.remove(testWithId.getId());
-                            return EditorStatus.ANSWER_EXISTS;
-                        } else {
-                            if (answer.getText() == null || answer.getText().isEmpty()) {
-                                testDAO.remove(testWithId.getId());
-                                return EditorStatus.ANSWER_NO_TEXT;
-                            }
-                            answer.setQuestionId(questionWithId.getId());
-                            answerService.add(answer);
-                        }
-                    }
-                }
-            }
-            return EditorStatus.OK;
+            return validateTestEntry(test);
         }
     }
 
@@ -115,8 +78,90 @@ public class TestServiceImpl implements TestService {
             }
         }
         return checkResult;
+    }
 
+    private EditorStatus validateTestEntry(Test test) {
+        if (test.getName().isEmpty()) {
+            return EditorStatus.TEST_NO_NAME;
+        }
+        if (test.getQuest().isEmpty()) {
+            return EditorStatus.EMPTY_QUESTIONS;
+        }
+        Test testWithId = testDAO.add(test);
+        for (Question quest : test.getQuest()) {
+            EditorStatus x = validateQuestion(testWithId, quest);
+            if (x != null) return x;
+        }
+        return EditorStatus.OK;
+    }
 
+    private EditorStatus validateQuestion(Test testWithId, Question quest) {
+        if (isQuestionExists(testWithId, quest)) {
+            testDAO.remove(testWithId.getId());
+            return EditorStatus.QUESTION_EXISTS;
+        } else {
+            EditorStatus x = validateQuestionEntry(testWithId, quest);
+            if (x != null) return x;
+        }
+        return null;
+    }
+
+    private EditorStatus validateQuestionEntry(Test testWithId, Question quest) {
+        if (isEmptyQuestionText(quest)) {
+            testDAO.remove(testWithId.getId());
+            return EditorStatus.QUESTION_NO_TEXT;
+        }
+        if (quest.getAnswers().isEmpty()) {
+            testDAO.remove(testWithId.getId());
+            return EditorStatus.QUESTION_NO_ANSWERS;
+        }
+        quest.setTestId(testWithId.getId());
+        Question questionWithId = questionService.addEmptyQuestion(quest);
+        for (Answer answer : quest.getAnswers()) {
+            EditorStatus x = validateAnswer(testWithId, questionWithId, answer);
+            if (x != null) return x;
+        }
+        return null;
+    }
+
+    private EditorStatus validateAnswer(Test testWithId, Question questionWithId, Answer answer) {
+        if (isAnswerExists(questionWithId, answer)) {
+            testDAO.remove(testWithId.getId());
+            return EditorStatus.ANSWER_EXISTS;
+        } else {
+            if (validateAnswerEntry(testWithId, questionWithId, answer)) return EditorStatus.ANSWER_NO_TEXT;
+        }
+        return null;
+    }
+
+    private boolean validateAnswerEntry(Test testWithId, Question questionWithId, Answer answer) {
+        if (isEmptyAnswerText(answer)) {
+            testDAO.remove(testWithId.getId());
+            return true;
+        }
+        answer.setQuestionId(questionWithId.getId());
+        answerService.add(answer);
+        return false;
+    }
+
+    private boolean isTestExists(Test test) {
+        return testDAO.getTestsIdByNameAndType(test.getName(), test.getType()) != -1;
+    }
+
+    private boolean isQuestionExists(Test testWithId, Question quest) {
+        return questionService.getQuestionsIdByTextAndTestId(quest.getText(), testWithId.getId()) != -1;
+    }
+
+    private boolean isEmptyQuestionText(Question quest) {
+        return quest.getText() == null || quest.getText().isEmpty();
+    }
+
+    private boolean isAnswerExists(Question questionWithId, Answer answer) {
+        return answerService.getAnswerByTextAndQuestionId(answer.getText(), questionWithId.getId()) != -1;
+    }
+
+    private boolean isEmptyAnswerText(Answer answer) {
+        return answer.getText() == null || answer.getText().isEmpty();
     }
 
     private EditorStatus checkTest(Test test) {
