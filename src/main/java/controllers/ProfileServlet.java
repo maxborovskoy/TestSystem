@@ -4,6 +4,7 @@ import entity.TestResult;
 import entity.User;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -43,6 +44,7 @@ public class ProfileServlet extends HttpServlet {
         }
         List<TestResult> testResults = new TestResultServiceImpl()
                 .getAllTestResultsByUserId(user.getId());
+        Collections.reverse(testResults);
         req.setAttribute("testResults", testResults);
         doPost(req, resp);
 
