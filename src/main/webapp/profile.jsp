@@ -87,7 +87,7 @@
                   <td>${f:getTestName(tR.getTestId())}</td>
                   <td>${tR.getCorrectAnswers()}/${tR.getCountAnswers()}</td>
                   <td>${f:getPercents(tR)}</td>
-                  <td>${tR.getDate()}</td>
+                  <td>${f:dateFormat(tR.getDate())}</td>
                   </tr>
               </c:forEach>
     </tbody>

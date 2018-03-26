@@ -20,4 +20,10 @@
     <function-class>config.Utils</function-class>
     <function-signature>int getPercents(entity.TestResult)</function-signature>
   </function>
+
+  <function>
+    <name>dateFormat</name>
+    <function-class>config.Utils</function-class>
+    <function-signature>java.lang.String dateFormat(java.time.LocalDateTime)</function-signature>
+  </function>
 </taglib>

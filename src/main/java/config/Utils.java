@@ -5,6 +5,9 @@ import entity.TestResult;
 import services.api.TestService;
 import services.impl.TestResultServiceImpl;
 import services.impl.TestServiceImpl;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Utils {
@@ -20,5 +23,9 @@ public class Utils {
 
     public static int getPercents(TestResult testResult){
         return new TestResultServiceImpl().getScore(testResult);
+    }
+    public static String dateFormat(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLL yyyy HH:mm");
+        return localDateTime.format(formatter);
     }
 }
