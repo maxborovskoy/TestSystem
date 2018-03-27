@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <html>
 <head>
@@ -10,6 +9,7 @@
     </c:if>
     <c:if test="${empty sessionScope.locale}">
         <fmt:setLocale value="en"/>
+        <c:set var="locale" scope="session" value="en"/>
     </c:if>
     <c:if test="${sessionScope.locale eq 'en'}">
         <fmt:setLocale value="en"/>
@@ -20,8 +20,8 @@
     <fmt:setBundle basename="internationalization"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><fmt:message key="test.testpage"/></title>
-    <link rel="stylesheet" href="css/catalog.css" type="text/css">
     <script src="js/changeLanguage.js"></script>
+    <link rel="stylesheet" href="css/language.css">
     <title>${test.getName()}</title>
     <link rel="stylesheet" href="css/test.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -32,7 +32,8 @@
 
 </head>
 <body>
-<body>
+<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"></div>
+
 <div class="mainContent">
     <header>
         <div class="bg-dark">
@@ -58,7 +59,7 @@
     </form>
 
     <div class="container">
-        <form action="testpage" method="POST" name="testpageForm">
+        <form action="result" method="POST" name="testpageForm">
             <c:set var="qNumber" value="0"/>
             <c:forEach items="${test.getQuest()}" var="q">
                 <c:set var="qNumber" value="${qNumber+1}"/>
@@ -86,7 +87,7 @@
                                         ${a.getText()}
                                 </div>
                             </c:if>
-                            <c:if test="${correctAnswers > 1}">
+                            <c:if test="${correctAnswers > 1 or correctAnswers == 0}">
                                 <div>
                                     <input name="q${q.getId()}" type="checkbox" value="${a.getId()}">
                                         ${a.getText()}
@@ -112,13 +113,11 @@
 <footer class="text-muted">
     <div class="container">
         <p class="float-right">
-            <a href="#">Back to top</a>
+            <a href="catalog.jsp"><fmt:message key="catalog.back"/> </a>
         </p>
-        <p>Test tutor system has been developed by: </p>
-        <p>Students: Dmitrii Guba, Elena Okhrimenko, Maksim Borovskoi,
-            Dmitrii Dementev, Andrei Zakomornyi,
-            Boris Korotetskii </p>
-        <p>Mentors: Evgenii Aleksandrov, Arsenii Nazarov, Konstantin Evstafev </p>
+        <p><fmt:message key="catalog.developdescription"/></p>
+        <p><fmt:message key="catalog.students"/></p>
+        <p><fmt:message key="catalog.mentors"/></p>
     </div>
 </footer>
 </body>

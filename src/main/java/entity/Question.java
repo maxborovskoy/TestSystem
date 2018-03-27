@@ -1,21 +1,33 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class Question implements Serializable {
+    @JsonIgnore
     private long id;
+    @JsonProperty("Qtext")
     private String text;
+    @JsonProperty("answers")
     private List<Answer> answers;
+    @JsonIgnore
     private long testId;
 
     public Question(String text, List<Answer> answers, long testId) {
         this.text = text;
         this.answers = answers;
         this.testId = testId;
+    }
+
+    public Question() {
+        answers = new ArrayList<>();
     }
 
     public long getTestId() {
@@ -48,7 +60,7 @@ public class Question implements Serializable {
     }
 
     public void setAnswers(List<Answer> answers) {
-        Collections.copy(this.answers, answers);
+        this.answers = answers;
     }
 
     @Override

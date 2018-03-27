@@ -3,6 +3,8 @@ package controllers;
 import entity.User;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ public class LoginServlet extends HttpServlet {
     private static final String TUTOR_EMAIL = "tutor@tutor";
     private static final String CATALOG = "/catalog";
     private static final String LOGIN_JSP = "login.jsp";
+    private static final String FLAG = "flag";
 
 
     @Override
@@ -42,14 +45,26 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         User user = validator.authorizeUser(name, pass);
+        HttpSession session = req.getSession();
+        Locale locale;
+
+        String language = (String) session.getAttribute("locale");
+        if(language == null) {
+            language = "en";
+        }
+        req.setAttribute("locale", language);
+        locale = new Locale(language);
+        ResourceBundle r = ResourceBundle.getBundle("internationalization", locale);
         if (user != null) {
 
-            HttpSession session = req.getSession();
             session.setAttribute(USER, user);
 
             resp.sendRedirect(CATALOG);
 
         } else {
+            //session.setAttribute(FLAG, "Login/email combination not found");
+            req.setAttribute(FLAG, r.getString("loginservlet.notfound"));
+
             req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
         }
 
@@ -58,6 +73,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
+
     }
 }

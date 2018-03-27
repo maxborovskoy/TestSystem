@@ -1,6 +1,8 @@
 package controllers;
 
 import entity.Test;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import services.api.TestService;
 import services.impl.TestServiceImpl;
 
@@ -15,6 +17,7 @@ public class TestServlet extends HttpServlet {
     private static final String TEST_JSP = "/test.jsp";
     private static final String TEST = "test";
     private static final String ID = "id";
+    private static final Logger log = LogManager.getLogger(TestServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,5 +31,6 @@ public class TestServlet extends HttpServlet {
         Test particularTest = testService.getTest(Long.parseLong(id));         
         req.setAttribute(TEST, particularTest);
         req.getRequestDispatcher(TEST_JSP).forward(req, resp);
+        log.info("Test " + particularTest + " is solving by " + req.getSession().getAttribute("user"));
     }
 }

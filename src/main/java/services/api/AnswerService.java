@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AnswerService {
 
-    void add(Answer answer);
+    Answer add(Answer answer);
 
     Answer get(long id);
 
@@ -17,4 +17,6 @@ public interface AnswerService {
     void removeAllAnswersByQuestionId(long questionId);
 
     Boolean updateAnswer(Answer answer, String text, Boolean isRight);
+
+    long getAnswerByTextAndQuestionId(String text, long questionId);
 }

@@ -7,16 +7,19 @@ import entity.TestTypes;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestDAO extends AbstractDAO<Test, Long> {
 
     private final static Logger log = LogManager.getLogger(TestDAO.class);
+    private final static String ID = "id";
+    private final static String NAME = "name";
+    private final static String TYPE = "type";
+    private final static String DATE = "creationDate";
+    private final static LocalDate DATE_NOW = LocalDate.now();
 
     @Override
     public Test add(Test test) {
@@ -40,14 +43,14 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         }
     }
 
-    private long getTestsIdByNameAndType(String name, TestTypes type) {
+    public long getTestsIdByNameAndType(String name, TestTypes type) {
         Connection con = pool.getConnection();
 
         try (
                 PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_TEST_BY_NAME_AND_TYPE"));
         ) {
-            st.setString(2, name);
-            st.setString(3, type.getName());
+            st.setString(1, name);
+            st.setString(2, type.getName());
             try (
                     ResultSet rs = st.executeQuery()
             ) {
@@ -66,6 +69,37 @@ public class TestDAO extends AbstractDAO<Test, Long> {
         } finally {
             freeCon(con);
         }
+    }
+
+    public List<Test> getAllByTheme(String theme) {
+
+        Connection con = pool.getConnection();
+        List<Test> testList = new ArrayList<>();
+
+        try (
+                PreparedStatement st = con.prepareStatement(sqlQueries.getString("GET_ALL_TESTS_BY_THEME"));
+        ) {
+            st.setString(1, theme);
+            try (
+                    ResultSet rs = st.executeQuery()
+            ) {
+                while (rs.next()) {
+                    long testId = rs.getLong("id");
+                    Test test = getTestById(testId, rs);
+                    testList.add(test);
+                }
+            } catch (SQLException e) {
+                log.error("Test(theme:" + theme + ") cannot be gotten", e);
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            log.error("Test(theme:" + theme + ") cannot be gotten", e);
+            throw new RuntimeException(e);
+        } finally {
+            freeCon(con);
+        }
+        return testList;
     }
 
     @Override
@@ -107,7 +141,7 @@ public class TestDAO extends AbstractDAO<Test, Long> {
                 ResultSet rs = st.executeQuery()
         ) {
             while (rs.next()) {
-                long testId = rs.getLong("id");
+                long testId = rs.getLong(ID);
                 Test test = getTestById(testId, rs);
                 testList.add(test);
             }
@@ -169,17 +203,20 @@ public class TestDAO extends AbstractDAO<Test, Long> {
     private void setSQLParameters(Test test, PreparedStatement st) throws SQLException {
         st.setString(1, test.getName());
         st.setString(2, test.getType().getName());
+        st.setDate(3, Date.valueOf(DATE_NOW));
     }
 
     private Test getTestById(Long id, ResultSet rs) throws SQLException {
-        String name = rs.getString("name");
-        TestTypes type = TestTypes.getType(rs.getString("type"));
+        String name = rs.getString(NAME);
+        TestTypes type = TestTypes.getType(rs.getString(TYPE));
+        Date creationDate = rs.getDate(DATE);
 
         QuestionDAO help = new QuestionDAO();
         List<Question> questionList = help.getAllQuestionsByTestId(id);
 
         Test test = new Test(name, questionList, type);
         test.setId(id);
+        test.setCreationDate(creationDate);
         return test;
     }
 }
