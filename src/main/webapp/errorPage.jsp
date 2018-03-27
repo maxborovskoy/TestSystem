@@ -30,7 +30,7 @@
 
     <div class = "container">
         <div class="main">
-                <h1>${requestScope.statusCode}</h1>
+                <h1>404</h1>
                 <h2>Ooops :(</h2>
                 <h2>Something went wrong</h2>
             <div class="more_w3ls">
