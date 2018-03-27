@@ -6,8 +6,11 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 >
-    <display-name>Testsystem</display-name>
+    <welcome-file-list>
+        <welcome-file>catalog.jsp</welcome-file>
+    </welcome-file-list>
 
+    <display-name>Testsystem</display-name>
 
     <servlet>
         <servlet-name>Catalog</servlet-name>
