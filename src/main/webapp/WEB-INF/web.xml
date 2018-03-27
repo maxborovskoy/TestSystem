@@ -147,6 +147,11 @@
         <url-pattern>/ErrorHandler</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>ErrorHandler</servlet-name>
+        <url-pattern>/parts/*</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>filters.AuthFilter</filter-class>

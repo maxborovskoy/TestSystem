@@ -1,46 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: El
-  Date: 14.03.2018
-  Time: 16:57
-  To change this template use File | Settings | File Templates.
---%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <c:if test="${not empty param.language}">
-        <c:set var="locale" scope="session" value="${param.language}"/>
-    </c:if>
-    <c:if test="${empty sessionScope.locale}">
-        <fmt:setLocale value="en"/>
-        <c:set var="locale" scope="session" value="en"/>
-    </c:if>
-    <c:if test="${sessionScope.locale eq 'en'}">
-        <fmt:setLocale value="en"/>
-    </c:if>
-    <c:if test="${sessionScope.locale eq 'ru'}">
-        <fmt:setLocale value="ru"/>
-    </c:if>
-    <fmt:setBundle basename="internationalization"/>
-    <title><fmt:message key="login.login"/></title>
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/language.css">
-    <script src="js/changeLanguage.js"></script>
 
+    <%@ include file="parts/head.jsp" %>
+
+    <title><fmt:message key="login.login"/></title>
 </head>
 <body>
 
-<div id="lang" class="lang ${sessionScope.locale}" onclick="changeLanguage()"><div></div></div>
+<%@ include file="parts/lang.jsp" %>
 
 <div class="container login-form">
     <form action="loginServlet" method="post" name="loginForm">
@@ -88,5 +58,6 @@
         </div>
     </form>
 </div>
+
 </body>
 </html>
