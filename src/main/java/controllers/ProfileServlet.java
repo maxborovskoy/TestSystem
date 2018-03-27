@@ -27,7 +27,6 @@ public class ProfileServlet extends HttpServlet {
     private final static Logger log = LogManager.getLogger(ProfileServlet.class);
 
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher(PROFILE_JSP).forward(req, resp);
@@ -37,18 +36,25 @@ public class ProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user;
-        if(req.getParameter(USER) == null) {
+        if (req.getParameter(USER) == null) {
             user = (User) session.getAttribute(USER);
+            doPostTestResults(req, resp, user);
         } else {
-            user = new UserServiceImpl().get(req.getParameter(USER));
+            if (((User) session.getAttribute(USER)).getTutor()) {
+                user = new UserServiceImpl().get(req.getParameter(USER));
+                doPostTestResults(req, resp, user);
+            } else {
+                req.getRequestDispatcher("forbidden.jsp").forward(req, resp);
+            }
         }
+    }
+
+    private void doPostTestResults(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
         List<TestResult> testResults = new TestResultServiceImpl()
                 .getAllTestResultsByUserId(user.getId());
         Collections.reverse(testResults);
         req.setAttribute("testResults", testResults);
         doPost(req, resp);
-
-
     }
 }
 
