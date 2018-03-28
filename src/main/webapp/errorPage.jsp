@@ -8,15 +8,15 @@
 </head>
 <body>
 
-    <c:set value="TUTOR TEST SYSTEM" var="headerTitle" />
-    <c:set value="Tutor test system has been developed to improve your skills, help you find yourself in one of provided spheres and of course fill enormous satisfaction from your excellent knowledge." var="headerDesc" />
+    <fmt:message key="catalog.tts" var="headerTitle" />
+    <fmt:message key="catalog.description" var="headerDesc" />
     <%@ include file="parts/header.jsp" %>
 
         <div class="error">
-            <h1>${requestScope.statusCode}</h1>
-            <h2>Ooops :(</h2>
-            <h2>Something went wrong</h2>
-            <a href="/catalog">Go home</a>
+            <h1>404</h1>
+            <h2><fmt:message key="error.oops"/></h2>
+            <h2><fmt:message key="error.sww"/></h2>
+            <a href="/catalog"><fmt:message key="error.home"/></a>
         </div>
 
     <%@ include file="parts/footer.jsp" %>

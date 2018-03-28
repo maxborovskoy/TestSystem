@@ -30,7 +30,7 @@
             <option value="Math" ${sessionScope.theme == 'Math' ? 'selected' : ''}><fmt:message
                     key="catalog.math"/></option>
             <option value="Physics" ${sessionScope.theme == 'Physics' ? 'selected' : ''}><fmt:message
-                    key="catalog.phisics"/></option>
+                    key="catalog.physics"/></option>
     </select>
 
 
@@ -66,23 +66,26 @@
                                 <h5 class="card-title">${test.getName()}</h5>
                                 <p class="card-text">
                                     <c:if test="${test.getType().getName() eq 'Math'}">
-                                        This is test for checking if your knowledges in Math is wide enough to become a Jedi Knight.
+                                        <fmt:message key="catalog.descriptionmath"/>
                                     </c:if>
                                     <c:if test="${test.getType().getName() eq 'Physics'}">
-                                        This is test for checking if your knowledges in Physics is wide enough to become a Jedi Knight.
+                                        <fmt:message key="catalog.descriptionphys"/>
                                     </c:if>
                                     <c:if test="${test.getType().getName() eq 'Russian'}">
-                                        This is test for checking if your knowledges in Russian is wide enough to become a Jedi Knight.
+                                        <fmt:message key="catalog.descriptionrus"/>
                                     </c:if>
                                     <c:if test="${test.getType().getName() eq 'English'}">
-                                        This is test for checking if your knowledges in English is wide enough to become a Jedi Knight.
+                                        <fmt:message key="catalog.descriptioneng"/>
                                     </c:if>
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">Start
-                                        test</a>
+                                    <a href="<c:url value="/test?id=${test.getId()}"/>" class="btn btn-primary">
+                                    <fmt:message key="catalog.start"/>
+                                    </a>
                                     <c:if test="${sessionScope.user.getTutor()}">
-                                      <a href="<c:url value="/editor?id=${test.getId()}"/>" class="btn btn-primary btn-xs">Edit test</a>
+                                      <a href="<c:url value="/editor?id=${test.getId()}"/>" class="btn btn-primary btn-xs">
+                                      <fmt:message key="catalog.edit"/>
+                                      </a>
                                     </c:if>
                                     <small class="text-muted">
                                         <c:out value="${test.getCreationDate().toString()}"/>

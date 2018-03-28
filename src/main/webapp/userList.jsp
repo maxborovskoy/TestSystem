@@ -12,11 +12,11 @@
     <fmt:message key="catalog.description" var="headerDesc" />
     <%@ include file="parts/header.jsp" %>
 
-    <h2>All users</h2>
+    <h2><fmt:message key="userlist.allusers"/></h2>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>User</th>
+                <th><fmt:message key="userlist.user"/></th>
             </tr>
         </thead>
         <tbody>

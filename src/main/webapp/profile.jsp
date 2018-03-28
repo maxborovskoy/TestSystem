@@ -12,15 +12,15 @@
     <fmt:message key="catalog.description" var="headerDesc" />
     <%@ include file="parts/header.jsp" %>
 
-    <h2>Your results</h2>
-    <p>Here is final results of your passed tests:</p>
+    <h2><fmt:message key="profile.yourresults"/></h2>
+    <p><fmt:message key="profile.text"/></p>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Test</th>
-                <th>Result</th>
-                <th>Percentage</th>
-                <th>Date</th>
+                <th><fmt:message key="profile.test"/></th>
+                <th><fmt:message key="profile.result"/></th>
+                <th><fmt:message key="profile.percentage"/></th>
+                <th><fmt:message key="profile.date"/></th>
             </tr>
         </thead>
         <tbody>

@@ -19,62 +19,68 @@
 </head>
 <body>
 
-    <c:set value="TUTOR TEST EDITOR" var="headerTitle" />
-    <c:set value="Edit test" var="headerDesc" />
+    <fmt:message key="catalog.tts" var="headerTitle" />
+    <fmt:message key="catalog.description" var="headerDesc" />
     <%@ include file="parts/header.jsp" %>
 
     <main role="main" class="container">
         <div class="jumbotron">
-            <h2>Edit test form</h2>
+            <h2><fmt:message key="testeditor.edittestform"/></h2>
             <div class="form-group">
-                <label for="testNameInput">Test title: </label>
+                <label for="testNameInput"><fmt:message key="testeditor.testtitle"/></label>
                 <input type="text" class="form-control" id="testNameInput" value="${test.getName()}">
             </div>
-            <label for="testTheme">Choose theme:</label>
+            <label for="testTheme"><fmt:message key="testeditor.choosetheme"/></label>
             <select class="form-control" id="testTheme">
-                <option value="Math">Math</option>
-                <option value="Physics">Physics</option>
-                <option value="Russian">Russian</option>
-                <option value="English">English</option>
+                <option value="Math"><fmt:message key="catalog.math"/></option>
+                <option value="Physics"><fmt:message key="catalog.physics"/></option>
+                <option value="Russian"><fmt:message key="catalog.russian"/></option>
+                <option value="English"><fmt:message key="catalog.english"/></option>
             </select>
 
-            <button type="submit" class="btn btn-primary create-question-button" onclick="addQuestionField()">Add
-                question
+            <button type="submit" class="btn btn-primary create-question-button" onclick="addQuestionField()">
+            <fmt:message key="testeditor.addquestion"/>
             </button>
             <c:if test="${not empty problem}">
                 <c:choose>
                     <c:when test="${problem eq 'TEST_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">Test with same name and type is already
-                            exists
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.testexists"/>
                         </small>
                     </c:when>
                     <c:when test="${problem eq 'TEST_NO_NAME'}">
-                        <small id="editorWarn" class="form-text text-danger">You forgot set test name</small>
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.forgotname"/>
+                        </small>
                     </c:when>
                     <c:when test="${problem eq 'EMPTY_QUESTIONS'}">
-                        <small id="editorWarn" class="form-text text-danger">You didn't add any question to you test
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.noquestions"/>
                         </small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">There is duplicate question in that test
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.duplquest"/>
                         </small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_NO_TEXT'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some question fields without
-                            text
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.emptyquesttext"/>
                         </small>
                     </c:when>
                     <c:when test="${problem eq 'QUESTION_NO_ANSWERS'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some questions without answers
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.emptyquest"/>
                         </small>
                     </c:when>
                     <c:when test="${problem eq 'ANSWER_EXISTS'}">
-                        <small id="editorWarn" class="form-text text-danger">Some of your questions have duplicate
-                            answers
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.duplans"/>
                         </small>
                     </c:when>
                     <c:when test="${problem eq 'ANSWER_NO_TEXT'}">
-                        <small id="editorWarn" class="form-text text-danger">You left some answer fields without text
+                        <small id="editorWarn" class="form-text text-danger">
+                        <fmt:message key="testeditor.emptyans"/>
                         </small>
                     </c:when>
                 </c:choose>
@@ -91,7 +97,8 @@
                                    value="${q.getText()}">
                             <div class="answer-container col-md-8" id="answer-container${contId}">
                                 <button type="submit" class="btn btn-primary create-answer-button"
-                                        onclick="addAnswerField('${contId}')">Add answer
+                                        onclick="addAnswerField('${contId}')">
+                                        <fmt:message key="testeditor.addanswer"/>
                                 </button>
                                 <c:set var="contId" value="${contId+1}"/>
                                 <c:forEach items="${q.getAnswers()}" var="a">
@@ -114,7 +121,7 @@
                                                 <c:if test="${not a.getRight()}">
                                                     <input class="form-check-input" type="checkbox">
                                                 </c:if>
-                                                "It's right answer?"
+                                                <fmt:message key="testeditor.isrightanswer"/>
                                             </label>
                                         </div>
                                         <hr>
@@ -134,8 +141,12 @@
                     </c:choose>
                 </c:if>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="biuldTest()">Save</button>
-            <a href="<c:url value="/catalog"/>" class="btn btn-danger">Cancel</a>
+            <button type="submit" class="btn btn-primary" onclick="biuldTest()">
+            <fmt:message key="testeditor.save"/>
+            </button>
+            <a href="<c:url value="/catalog"/>" class="btn btn-danger">
+            <fmt:message key="testeditor.cancel"/>
+            </a>
         </div>
     </main>
 

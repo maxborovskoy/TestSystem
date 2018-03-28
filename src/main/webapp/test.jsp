@@ -56,7 +56,7 @@
             <div class="col-md-4">
                 <input type="hidden" name="testId" value="${test.getId()}">
                 <button class="btn btn-primary" type="submit"><fmt:message key="test.send"/></button>
-                <a href="/catalog">Close without saving</a>
+                <a href="/catalog"><fmt:message key="test.close"/></a>
             </div>
         </div>
     </form>
