@@ -24,6 +24,8 @@ public class EditorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         String testId = String.valueOf(session.getAttribute(TEST_ID));
         String test = req.getParameter(TEST);
@@ -42,6 +44,8 @@ public class EditorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         TestService testService = new TestServiceImpl();
         Long testID = Long.parseLong(req.getParameter(ID));

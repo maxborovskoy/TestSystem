@@ -1110,3 +1110,80 @@ DELETE FROM tests WHERE id=? [23503-196]
 26/03/2018 5:16 [localhost-startStop-1] INFO - <Database successfully initialized>
 26/03/2018 5:16 [localhost-startStop-1] INFO - <Database successfully initialized>
 26/03/2018 5:17 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 4:44 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 4:46 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 5:32 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 6:44 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 6:44 [http-bio-8888-exec-10] INFO - <
+Error: 404
+Request URI: /favicon.ico
+Exception type: null
+Exception message: null>
+27/03/2018 6:48 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 11:37 [localhost-startStop-1] INFO - <Database successfully initialized>
+27/03/2018 11:38 [http-bio-8888-exec-9] INFO - <
+Error: 404
+Request URI: /favicon.ico
+Exception type: null
+Exception message: null>
+28/03/2018 12:06 [localhost-startStop-1] INFO - <Database successfully initialized>
+28/03/2018 12:06 [http-bio-8888-exec-10] INFO - <
+Error: 500
+Request URI: /loginServlet
+Exception type: java.lang.IllegalArgumentException
+Exception message: Invalid salt version>
+28/03/2018 12:07 [localhost-startStop-1] INFO - <Database successfully initialized>
+28/03/2018 12:07 [http-bio-8888-exec-1] INFO - <
+Error: 404
+Request URI: /favicon.ico
+Exception type: null
+Exception message: null>
+28/03/2018 12:07 [http-bio-8888-exec-8] INFO - <
+Error: 404
+Request URI: /css/editor.css
+Exception type: null
+Exception message: null>
+28/03/2018 12:08 [http-bio-8888-exec-5] INFO - <
+Error: 404
+Request URI: /css/editor.css
+Exception type: null
+Exception message: null>
+28/03/2018 12:08 [http-bio-8888-exec-5] INFO - <
+Error: 404
+Request URI: /css/editor.css
+Exception type: null
+Exception message: null>
+28/03/2018 12:21 [localhost-startStop-1] INFO - <Database successfully initialized>
+28/03/2018 12:41 [http-bio-8888-exec-1] INFO - <Test(id:805) was removed>
+28/03/2018 12:44 [http-bio-8888-exec-1] INFO - <
+Error: 404
+Request URI: /css/editor.css
+Exception type: null
+Exception message: null>
+28/03/2018 12:44 [http-bio-8888-exec-1] INFO - <
+Error: 404
+Request URI: /css/editor.css
+Exception type: null
+Exception message: null>
+28/03/2018 12:44 [http-bio-8888-exec-1] INFO - <Test Test{name='ÐÐ¾Ð²ÑÐ¹ ÑÐµÑÑ Ð¿Ð¾ ÑÐ¸Ð·Ð¸ÐºÐµ', quest=[Question{text='ÐÐ¿Ð°'}], type=MATH} was added>
+28/03/2018 12:44 [http-bio-8888-exec-1] INFO - <Question Question{text='ÐÐ¿Ð°'} was added>
+28/03/2018 12:44 [http-bio-8888-exec-1] INFO - <Answer Answer{text='ÐÐ°'} was added>
+28/03/2018 12:44 [http-bio-8888-exec-1] INFO - <Answer Answer{text='ÐÐ°Ð¼'} was added>
+28/03/2018 12:45 [http-bio-8888-exec-7] INFO - <Test Test{name='ÐÐ¾Ð²ÑÐ¹ ÑÐµÑÑ Ð¿Ð¾ ÑÐ¸Ð·Ð¸ÐºÐµ', quest=[Question{text='ÐÐ¿Ð°'}], type=MATH} is solving by User{name='tutor@tutor'}>
+28/03/2018 12:45 [http-bio-8888-exec-3] INFO - <Test Test{name='T11', quest=[Question{text='Qq1'}, Question{text='Q22'}, Question{text='Q3'}], type=MATH} is solving by User{name='tutor@tutor'}>
+28/03/2018 12:45 [http-bio-8888-exec-3] INFO - <Test Test{name='T11', quest=[Question{text='Qq1'}, Question{text='Q22'}, Question{text='Q3'}], type=MATH} is solving by User{name='tutor@tutor'}>
+28/03/2018 12:45 [http-bio-8888-exec-3] INFO - <Test Test{name='T11', quest=[Question{text='Qq1'}, Question{text='Q22'}, Question{text='Q3'}], type=MATH} is solving by User{name='tutor@tutor'}>
+28/03/2018 12:46 [http-bio-8888-exec-2] INFO - <Test(id:833) was removed>
+28/03/2018 12:49 [localhost-startStop-1] INFO - <Database successfully initialized>
+28/03/2018 12:49 [http-bio-8888-exec-4] INFO - <
+Error: 404
+Request URI: /css/editor.css
+Exception type: null
+Exception message: null>
+28/03/2018 12:49 [http-bio-8888-exec-5] INFO - <Test Test{name='Тест', quest=[Question{text='Ф'}, Question{text='Ы'}], type=MATH} was added>
+28/03/2018 12:49 [http-bio-8888-exec-5] INFO - <Question Question{text='Ф'} was added>
+28/03/2018 12:49 [http-bio-8888-exec-5] INFO - <Answer Answer{text='в'} was added>
+28/03/2018 12:49 [http-bio-8888-exec-5] INFO - <Question Question{text='Ы'} was added>
+28/03/2018 12:49 [http-bio-8888-exec-5] INFO - <Answer Answer{text='ы'} was added>
+28/03/2018 12:49 [http-bio-8888-exec-7] INFO - <Test Test{name='Тест', quest=[Question{text='Ф'}, Question{text='Ы'}], type=MATH} is solving by User{name='tutor@tutor'}>
+28/03/2018 12:51 [http-bio-8888-exec-1] INFO - <Test Test{name='Тест', quest=[Question{text='Ф'}, Question{text='Ы'}], type=MATH} is solving by User{name='tutor@tutor'}>

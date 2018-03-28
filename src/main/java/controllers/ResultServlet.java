@@ -34,6 +34,8 @@ public class ResultServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         TestServiceImpl testService = new TestServiceImpl();
         Test test = testService.getTest(Long.parseLong(req.getParameter(TEST_ID)));
         Map<Long, List<Long>> answers = new HashMap<>();
@@ -62,6 +64,8 @@ public class ResultServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         resp.sendRedirect(CATALOG);
     }
 }
