@@ -1,23 +1,14 @@
-
-
 package controllers;
 
-import entity.TestResult;
 import entity.User;
+import services.impl.UserServiceImpl;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import services.api.UserService;
-import services.impl.TestResultServiceImpl;
-import services.impl.UserServiceImpl;
+import java.io.IOException;
+import java.util.List;
 
 public class UserListServlet extends HttpServlet {
 
@@ -27,15 +18,17 @@ public class UserListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         List<User> users = new UserServiceImpl().getAll();
         req.setAttribute("users", users);
-        doGet(req, resp);
+        req.getRequestDispatcher(USER_LIST_JSP).forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(USER_LIST_JSP).forward(req, resp);
-
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        doPost(req, resp);
     }
 }
