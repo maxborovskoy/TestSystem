@@ -27,6 +27,8 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String userNameCred = req.getParameter(USER);
         String userPassCred = req.getParameter(PASSWORD);
         String userRePassCred = req.getParameter(REPASSWORD);
@@ -63,6 +65,8 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         req.getRequestDispatcher(REGISTRATION_JSP).forward(req, resp);
     }
 

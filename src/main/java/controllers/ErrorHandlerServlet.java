@@ -22,6 +22,8 @@ public class ErrorHandlerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         Throwable throwable = (Throwable) req.getAttribute("javax.servlet.error.exception");
         Integer statusCode = (Integer) req.getAttribute("javax.servlet.error.status_code");
         String servletName = (String) req.getAttribute("javax.servlet.error.servlet_name");
@@ -64,6 +66,8 @@ public class ErrorHandlerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         doGet(req, resp);
     }
 }
