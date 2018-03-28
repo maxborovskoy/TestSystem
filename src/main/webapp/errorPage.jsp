@@ -32,7 +32,7 @@
         <div class="main">
                 <h1>404</h1>
                 <h2>Ooops :(</h2>
-                <h2>Something went wrong</h2>
+                <h2>Page not found</h2>
             <div class="more_w3ls">
                 <a href="/catalog">Go home</a>
             </div>
