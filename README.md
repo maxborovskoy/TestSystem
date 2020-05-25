@@ -2,7 +2,7 @@
 
 Planned architecture:
 
-[Architecture]((https://github.com/Par0v0Zz/TestSystem/blob/develop/src/main/resources/img/microservices-migr-plan.png))
+[Architecture](https://github.com/Par0v0Zz/TestSystem/blob/develop/src/main/resources/img/microservices-migr-plan.png)
 
 User stories:
  - As a Teacher I want to create new tests and add answers, so that I can test everyone's knowledge;
