@@ -18,7 +18,7 @@
         <h2>1.4.196</h2>
         <tomcat-jdbc>9.0.6</tomcat-jdbc>
         <tomcat7-maven-plugin>2.2</tomcat7-maven-plugin>
-        <jackson>2.9.10.4</jackson>
+        <jackson>2.9.10.7</jackson>
         <jbcrypt>0.4</jbcrypt>
     </properties>
 
